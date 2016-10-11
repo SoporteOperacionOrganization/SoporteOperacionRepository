@@ -28,6 +28,7 @@ import com.eficacia.validator.UsuarioValidator;
 @Controller
 public class UsuariosController {
 
+	//Comentario de UsurioService
 	@Autowired
 	private UsuarioService usuarioService;
 	
