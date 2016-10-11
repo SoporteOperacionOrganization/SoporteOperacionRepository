@@ -27,12 +27,12 @@
                         <form id="loginform" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/j_spring_security_check" method="POST">
                                     
                             <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <span class="input-group-addon"><i style="color:#000;" class="glyphicon glyphicon-user"></i></span>
                                         <input id="login-username" type="text" class="form-control" name="soeid" value="" placeholder="Soeid" required="required" >                                        
                                     </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <span class="input-group-addon"><i style="color:#000;" class="glyphicon glyphicon-lock"></i></span>
                                         <input id="login-password" type="password" class="form-control" name="contrasena" placeholder="Contraseña" required="required" >
                                     </div>
                                     
@@ -65,7 +65,7 @@
 
                                     <div class="col-sm-12 controls">
                                       <!-- <a id="btn-login" class="btn btn-success">Login  </a> -->
-                                      <input type="submit" class="btn btn-success" value="Login"/>
+                                      <input type="submit" class="btn btn-success" value="Ingresar"/>
                                       
 
                                     </div>

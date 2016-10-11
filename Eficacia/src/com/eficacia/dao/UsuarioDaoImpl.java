@@ -29,7 +29,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			System.out.println("ID: " + userList.get(0).getId());
 			System.out.println("Soeid: " + userList.get(0).getSoeid());
 			System.out.println("Password: " + userList.get(0).getPassword());
-			//System.out.println("ROL: " + userList.get(0).getRole().getRole());
 			return userList.get(0);
 		}else{
 			return null;

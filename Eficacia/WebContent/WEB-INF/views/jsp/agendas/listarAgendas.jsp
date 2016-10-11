@@ -27,6 +27,7 @@
 	<div class="contenidoAgendas">
 		<table class="table table-default table-striped tabla">
 			<tr class="cabeceraTabla" style="vertical-align:middle;">
+				<th>#</th>
 				<th>Código transacción</th>
 				<th>Fecha transacción</th>
 				<th>Fecha de cierre</th>
@@ -39,8 +40,9 @@
 				<th>Sede</th>
 				<th colspan="2">Acciones</th>
 			</tr>
-			<c:forEach items="${agendas}" var="agenda">
+			<c:forEach items="${agendas}" var="agenda" varStatus="indice">
 			<tr>
+				<td class="negrita">${indice.index + 1}</td>
 				<td>${agenda.codigoTransaccion}</td>
 				<td>${agenda.fechaTransaccion}</td>
 				<td>${agenda.fechaCierre}</td>

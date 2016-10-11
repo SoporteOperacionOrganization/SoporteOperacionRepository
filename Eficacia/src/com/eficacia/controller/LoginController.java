@@ -31,11 +31,6 @@ public class LoginController {
 		return "login/inicio";
 	}
 	
-	/*@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model){
-		return "login/login";
-	}*/
-	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String forbidden(Model model){
 		return "errors/403";

@@ -24,6 +24,7 @@
 	<div class="contenidoUsuarios">
 		<table class="table table-default table-striped tabla">
 			<tr class="cabeceraTabla">
+				<th>#</th>
 				<th>SOEID</th>
 				<th>Nombre</th>
 				<th>Apellido paterno</th>
@@ -33,8 +34,9 @@
 				<th>Modificar</th>
 				<th>Eliminar</th>
 			</tr>
-			<c:forEach items="${usuarios}" var="usuario">
+			<c:forEach items="${usuarios}" var="usuario" varStatus="indice">
 			<tr>
+				<td class="negrita">${indice.index + 1}</td>
 				<td>${usuario.soeid}</td>
 				<td>${usuario.nombre}</td>
 				<td>${usuario.apellidoPaterno}</td>

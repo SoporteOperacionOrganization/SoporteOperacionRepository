@@ -23,11 +23,6 @@ import com.eficacia.model.Agenda;
 
 public class AgendaExcelBuilder extends AbstractXlsxView{
 
-	/*@Override
-	protected void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-	}*/
-
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, 
 									  Workbook workbook, 
@@ -40,6 +35,7 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
 		//Crear hoja excel
 		Sheet sheet = workbook.createSheet("Agendas");
         sheet.setDefaultColumnWidth(30);
+        sheet.protectSheet("12345");
         
         //crear estilo para cabecera
         CellStyle style = workbook.createCellStyle();
@@ -51,14 +47,15 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
         style.setAlignment(CellStyle.ALIGN_CENTER);
-		
+      
+        
         //crear cabecera
         Row header = sheet.createRow(0);
+        
          
         header.createCell(0).setCellValue("CODIGO TRANSACCION");
         header.getCell(0).setCellStyle(style);
         
-         
         header.createCell(1).setCellValue("FECHA TRANSACCION");
         header.getCell(1).setCellStyle(style);
          

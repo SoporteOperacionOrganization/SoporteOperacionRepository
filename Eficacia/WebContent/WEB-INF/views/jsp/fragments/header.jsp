@@ -21,7 +21,7 @@
             <li><a href="<c:url value='/listarAgendas' />">Consultar</a></li>
             <li><a href="<c:url value='/agregarAgenda' />">Agregar</a></li>
             <li role="separator" class="divider dividerColor" ></li>
-            <li><a class="subtitulosDropDown" style="color:#000;font-weight:bold;cursor:default;" href="#">Carga masiva</a></li>
+            <li><a class="subtitulosDropDown" style="color:#000;font-weight:bold;cursor:default;" href="#">Carga masiva &nbsp;<span class="glyphicon glyphicon-upload"></span></a></li>
             <li role="separator" class="divider" ></li>
             <li><a href="<c:url value='/cargaMasiva' />">Agregar</a></li>
             <li><a href="<c:url value='/eliminacionMasiva' />">Eliminar</a></li>

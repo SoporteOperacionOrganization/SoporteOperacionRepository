@@ -62,9 +62,7 @@ public class AgendaController {
 	@RequestMapping(value = "/listarAgendas", method = RequestMethod.GET)
 	public String listarAgendas(Model model){
 		List<Agenda> agendas = agendaService.obtenerAgendas();
-		//Long conteo = agendaService.contarRegistros();
 		model.addAttribute("agendas", agendas);
-		//model.addAttribute("conteo", conteo);
 		return "agendas/listarAgendas";
 	}
 	
@@ -93,20 +91,15 @@ public class AgendaController {
 	@RequestMapping(value = "/editarAgenda/{codigoTransaccion}", method = RequestMethod.GET)
 	public String editarAgenda(Model model, @PathVariable String codigoTransaccion){
 		Agenda agenda = agendaService.obtenerAgenda(codigoTransaccion);
-		//List<Rol> roles = rolService.obtenerRoles();
-		//model.addAttribute("codigoTransaccion",codigoTransaccion);
 		model.addAttribute("agenda",agenda);
-		//model.addAttribute("edit", true);
 		return "agendas/formularioAgendaModificar";
 	}
 	
 	@RequestMapping(value = "/editarAgenda/{codigoTransaccion1}", method = RequestMethod.POST)
 	public String modificarAgenda(@Valid Agenda agenda, BindingResult result,@PathVariable("codigoTransaccion1") String codigoTransaccion, Model model){
-		//if(result.hasErrors()){
-			//List<Rol> roles = rolService.obtenerRoles();
-			//model.addAttribute("roles",roles);
-			//return "usuarios/formularioAgendaModificar";
-		//}
+		if(result.hasErrors()){
+			return "agendas/formularioAgendaModificar";
+		}
 		agendaService.modificarAgenda(agenda);
 		return "redirect:/listarAgendas";
 	}
@@ -142,11 +135,9 @@ public class AgendaController {
 		}else{
 			String estatus = agendaService.validarExcel(excelfile);
 			if("".equals(estatus)){
-				//model.addAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
 				redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
 			}
 			redirectAttributes.addFlashAttribute("estatus", estatus);
-			//model.addAttribute("estatus", estatus);
 		}
 		return "redirect:/cargaMasiva";
 	}

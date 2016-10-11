@@ -46,11 +46,6 @@ public class UsuariosController {
 		webDataBinder.setValidator(usuarioValidator);
 	}
 	
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model){
-		return "redirect:/listarRoles";
-	}*/
-	
 	@RequestMapping(value = "/listarRoles", method = RequestMethod.GET)
 	public String test(Model model){
 		List<Rol> roles = rolService.obtenerRoles();
@@ -109,7 +104,6 @@ public class UsuariosController {
 			model.addAttribute("roles",roles);
 			return "usuarios/formularioUsuarioModificar";
 		}
-		//System.out.println("SOEID MODIF:" + soeid);
 		usuarioService.modificarUsuario(usuario);
 		return "redirect:/listarUsuarios";
 	}

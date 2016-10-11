@@ -24,43 +24,43 @@ import org.springframework.web.servlet.view.XmlViewResolver;
 public class EficaciaConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean
-	 public ViewResolver getXmlViewResolver() {
+	public ViewResolver getXmlViewResolver() {
 		 XmlViewResolver resolver = new XmlViewResolver();
 		 resolver.setOrder(0);
 	     resolver.setLocation(new ServletContextResource(servletContext,"/WEB-INF/spring-excel-views.xml"));
 	     return resolver;
-	 }
+	}
+	
+	@Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setOrder(1);
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/views/jsp/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/core/");
 	}
 	
-	 @Bean
-	 public MessageSource messageSource() {
+	@Bean
+	public MessageSource messageSource() {
 	        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 	        messageSource.setBasename("messages");
 	        return messageSource;
-	 }
+	}
 	 
-	 @Autowired
-	 ServletContext servletContext;
+	@Autowired
+	ServletContext servletContext;
 	 
-	 @Bean
-	 public CommonsMultipartResolver multipartResolver() {
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
 	     CommonsMultipartResolver resolver=new CommonsMultipartResolver();
 	     resolver.setDefaultEncoding("utf-8");
 	     return resolver;
-	 }
-	 
-	 @Bean
-	    public ViewResolver viewResolver() {
-	        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	        viewResolver.setOrder(1);
-	        viewResolver.setViewClass(JstlView.class);
-	        viewResolver.setPrefix("/WEB-INF/views/jsp/");
-	        viewResolver.setSuffix(".jsp");
-	        return viewResolver;
-	    }
+	}
 	
 }

@@ -16,8 +16,7 @@
           <h1>Permisos insuficientes <small><font face="Tahoma" color="red">Error 403</font></small></h1>
           <br />
           <p>No cuentas con los permisos suficientes para acceder a esta página. Contacta con tu webmaster para más detalles. Utiliza el boton <b>Back</b> de tu navegador para regresar a la página que navegabas previamente.</p>
-          <p><b>Or you could just press this neat little button:</b></p>
-          <a href="#" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Ir al inicio</a>
+          <a href="/inicio" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Ir al inicio</a>
         </div>
         <br />
      </div>

@@ -9,7 +9,7 @@
 
 .contenidoAgendas{
 	text-align:center;
-	margin:0 170px 0 85px;
+	margin:0 130px 0 85px;
 }
 
 .tabla{
@@ -86,10 +86,13 @@
 }
 
 .lineas{
-	/*color:#085398;*/
-	color:#085398;
-	background-color:#085398;
+	color:#e7e7e7;
+	background-color:#e7e7e7;
 	height:1px;
+}
+
+.negrita{
+	font-weight:bold;
 }
 /*BUSQUEDA*/
 /*

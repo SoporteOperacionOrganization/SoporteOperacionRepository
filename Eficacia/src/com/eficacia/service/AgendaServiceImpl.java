@@ -87,18 +87,11 @@ public class AgendaServiceImpl implements AgendaService {
 			
 			List<Agenda> agendas = new ArrayList<>();
 			
-			// Creates a workbook object from the uploaded excelfile
 			XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
-			// Creates a worksheet object representing the first sheet
 			XSSFSheet worksheet = workbook.getSheetAt(0);
-			// Reads the data in excel file until last row is encountered
 			while (i <= worksheet.getLastRowNum()) {
-				// Creates an object for the UserInfo Model
 				Agenda agenda = new Agenda();
-				// Creates an object representing a single row in excel
 				XSSFRow row = worksheet.getRow(i++);
-				// Sets the Read data to the model class
-				//String text = row.getCell(1).getRawValue();
 				//agenda.setCodigoTransaccion(row.getCell(0).getRawValue());
 				if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
 				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
@@ -146,18 +139,11 @@ public class AgendaServiceImpl implements AgendaService {
 		try{
 			List<Agenda> agendas = new ArrayList<>();
 			
-			// Creates a workbook object from the uploaded excelfile
 			XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
-			// Creates a worksheet object representing the first sheet
 			XSSFSheet worksheet = workbook.getSheetAt(0);
-			// Reads the data in excel file until last row is encountered
 			while (i <= worksheet.getLastRowNum()) {
-				// Creates an object for the UserInfo Model
 				Agenda agenda = new Agenda();
-				// Creates an object representing a single row in excel
 				XSSFRow row = worksheet.getRow(i++);
-				// Sets the Read data to the model class
-				//String text = row.getCell(1).getRawValue();
 				//agenda.setCodigoTransaccion(row.getCell(0).getRawValue());
 				
 				if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
@@ -196,7 +182,6 @@ public class AgendaServiceImpl implements AgendaService {
 		boolean estatus = true;
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 		System.out.println("NULO " +row.getCell(cell, row.RETURN_BLANK_AS_NULL));
-		//System.out.println("FECHA " + df.format(row.getCell(cell).getDateCellValue()));
 		if(row.getCell(cell) == null){
 			estatus = false;
 			System.out.println("EL CAMPO ES NULO");
