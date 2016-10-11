@@ -1,12 +1,10 @@
 package com.eficacia.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,21 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.eficacia.custommodel.CustomUsuario;
 import com.eficacia.model.Rol;
 import com.eficacia.model.Usuario;
 import com.eficacia.propertyeditors.RolPropertyEditor;
 import com.eficacia.service.RolService;
 import com.eficacia.service.UsuarioService;
 import com.eficacia.validator.UsuarioValidator;
-//prueba de control de cambios git
+//Comprobar sobreescritura en push
+
 @Controller
 public class UsuariosController {
 
-	//Comentario de UsurioService
 	@Autowired
 	private UsuarioService usuarioService;
-	//Comentario de RolService
+	
 	@Autowired
 	private RolService rolService;
 	

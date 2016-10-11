@@ -16,8 +16,8 @@
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                     <div class="panel-heading" style="background:#003478;color:#FFFFFF;">
-                        <div style="font-weight:bold;" class="panel-title">Log In</div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px; "><a style="color:#FFFFFF;" href="#">Olvidaste la constraseña?</a></div>
+                        <div style="font-weight:bold;" class="panel-title"><spring:message code="login.lbl.titulo" /></div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px; "><a style="color:#FFFFFF;" href="#"><spring:message code="login.lbl.contrasenaolvidada" /></a></div>
                     </div>     
 
                     <div style="padding-top:30px;border-style:solid;border-width:1px;border-color:#085398;" class="panel-body" >

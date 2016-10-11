@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.eficacia.custommodel.CustomUsuario;
-import com.eficacia.model.Usuario;
 
 @Controller
 @SessionAttributes("UsuarioSesion")

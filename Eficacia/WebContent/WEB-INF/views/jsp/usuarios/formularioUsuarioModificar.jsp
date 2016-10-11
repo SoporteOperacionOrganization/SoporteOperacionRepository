@@ -112,14 +112,14 @@
       
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="rol">Perfil</label>
+                <label class="col-md-3 control-lable" for="rol.id">Perfil</label>
                 <div class="col-md-7">
-                	<form:select path="rol" class="form-control input-sm">
+                	<form:select path="rol.id" class="form-control input-sm">
 						<form:options itemValue="id" itemLabel="nombre"  items="${roles}"></form:options>
 					</form:select>
                     
                     <div class="has-error errores">
-                        <form:errors path="rol" class="help-inline"/>
+                        <form:errors path="rol.id" class="help-inline"/>
                     </div>
                 </div>
             </div>
