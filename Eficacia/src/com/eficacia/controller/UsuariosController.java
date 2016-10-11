@@ -24,7 +24,7 @@ import com.eficacia.propertyeditors.RolPropertyEditor;
 import com.eficacia.service.RolService;
 import com.eficacia.service.UsuarioService;
 import com.eficacia.validator.UsuarioValidator;
-
+//prueba de control de cambios git
 @Controller
 public class UsuariosController {
 
