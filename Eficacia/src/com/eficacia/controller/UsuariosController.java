@@ -93,7 +93,7 @@ public class UsuariosController {
 		model.addAttribute("edit", true);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("roles",roles);
-		//model.addAttribute("passwordConfirmation", usuario.getPassword());
+		model.addAttribute("passwordConfirmation", usuario.getPassword());
 		return "usuarios/formularioUsuarioModificar";
 	}
 	

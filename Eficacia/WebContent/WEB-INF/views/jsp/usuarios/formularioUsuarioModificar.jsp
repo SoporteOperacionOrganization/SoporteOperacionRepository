@@ -88,7 +88,7 @@
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="password">Password</label>
+                <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
                     <form:input type="password" path="password" id="password" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -102,7 +102,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" name="passwordConfirmation" class="form-control input-sm"/>
+                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" name="passwordConfirmation" value="${passwordConfirmation}" class="form-control input-sm"/>
                     <div class="has-error errores">
                         <form:errors path="passwordConfirmation" class="help-inline"/>
                     </div>
