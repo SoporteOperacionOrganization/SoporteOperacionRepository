@@ -49,7 +49,7 @@ $( document ).ready(function() {
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="fechaTransaccion">Fecha transacción</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="fechaTransaccion" id="fechaTransaccion"  class="form-control input-sm" readonly="true"/>
+                    <form:input type="text" path="fechaTransaccion" id="fechaTransaccion"  class="form-control input-sm" disabled/>
                     <div class="has-error errores">
                         <form:errors path="fechaTransaccion" class="help-inline"/>
                     </div>
