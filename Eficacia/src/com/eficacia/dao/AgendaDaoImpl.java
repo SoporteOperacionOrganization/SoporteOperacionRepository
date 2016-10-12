@@ -123,11 +123,13 @@ public class AgendaDaoImpl implements AgendaDao {
 		session = sessionFactory.getCurrentSession();
 		for(int i = 0; i < tamano; i++){
 			System.out.println("Codigo transaccion:"+agendas.get(i).getCodigoTransaccion());
+			
 			String codigoTransaccion = agendas.get(i).getCodigoTransaccion();
 			
 			query = session.createQuery("DELETE FROM Agenda a WHERE a.codigoTransaccion = :codigoTransaccion");
 			query.setParameter("codigoTransaccion", codigoTransaccion);
-			query.executeUpdate();
+			Integer resultado=query.executeUpdate();
+			System.out.println("Resultado de la Consulta: "+resultado);
 		}
 		return "";
 	}
