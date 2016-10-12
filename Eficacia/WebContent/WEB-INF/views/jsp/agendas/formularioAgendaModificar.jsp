@@ -42,7 +42,7 @@ $( document ).ready(function() {
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="codigoTransaccion">Codigo transacción</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="codigoTransaccion" id="codigoTransaccion" class="form-control input-sm"/>
+                    <form:input type="text" path="codigoTransaccion" id="codigoTransaccion" class="form-control input-sm" readonly="true"/>
                     <div class="has-error errores">
                         <form:errors path="codigoTransaccion" class="help-inline"/>
                     </div>

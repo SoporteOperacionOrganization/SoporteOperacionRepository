@@ -17,11 +17,6 @@ public class LoginController {
 	public String index(Model model){
 		return "redirect:/login";
 	}
-	
-	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
-	public String prueba(Model model){
-		return "redirect:/login";
-	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model){
