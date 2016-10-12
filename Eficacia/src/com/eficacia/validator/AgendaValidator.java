@@ -18,7 +18,7 @@ public class AgendaValidator implements Validator{
     public void validate(Object obj, Errors errors) {
         Agenda agenda = (Agenda) obj;
              
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codigoTransaccion", "NotEmpty.agenda.codigoTransaccion");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codigoTransaccion", "NotEmpty.agenda.codigoTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaTransaccion", "NotEmpty.agenda.fechaTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaCierre", "NotEmpty.agenda.fechaCierre");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroCliente", "NotEmpty.agenda.numeroCliente");

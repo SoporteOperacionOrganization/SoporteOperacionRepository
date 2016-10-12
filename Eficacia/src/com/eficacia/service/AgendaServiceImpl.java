@@ -4,8 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -24,6 +27,9 @@ import com.eficacia.model.Agenda;
 @Transactional
 public class AgendaServiceImpl implements AgendaService {
 
+	Calendar date = new GregorianCalendar();
+	Random randomGenerator = new Random();
+	
 	@Autowired
 	private AgendaDao agendaDao;
 	
@@ -44,6 +50,13 @@ public class AgendaServiceImpl implements AgendaService {
 
 	@Override
 	public void agregarAgenda(Agenda agenda) {
+		String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
+		String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
+		String noCliente = agenda.getNumeroCliente();
+		int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
+		String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
+		//System.out.println("CODIGO DE TRANSACCION " + codigoTransaccion);
+		agenda.setCodigoTransaccion(codigoTransaccion);
 		agendaDao.agregarAgenda(agenda);
 	}
 
@@ -92,33 +105,40 @@ public class AgendaServiceImpl implements AgendaService {
 			while (i <= worksheet.getLastRowNum()) {
 				Agenda agenda = new Agenda();
 				XSSFRow row = worksheet.getRow(i++);
-				//agenda.setCodigoTransaccion(row.getCell(0).getRawValue());
-				if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
+				/*if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}*/
+				
+				if(validarCamposFecha(row,0)){agenda.setFechaTransaccion(df.format(row.getCell(0).getDateCellValue()));}
 				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
 				
-				if(validarCamposFecha(row,1)){agenda.setFechaTransaccion(df.format(row.getCell(1).getDateCellValue()));}
+				if(validarCamposFecha(row,1)){agenda.setFechaCierre(df.format(row.getCell(1).getDateCellValue()));}
 				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}
 				
-				/*if(validarCamposFecha(row,1)){agenda.setFechaTransaccion(row.getCell(1).getDateCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}*/
 				
-				if(validarCamposFecha(row,2)){agenda.setFechaCierre(df.format(row.getCell(2).getDateCellValue()));}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(2);break;}
+				if(validarCamposNumericos(row,2)){
+					agenda.setNumeroCliente(row.getCell(2).getRawValue());
+					System.out.println("dentroi de setNumeroCliente");
+					}
+				else{
+					estatusCarga = "Error en linea " + i + " celda " + letras.get(2);
+					break;
+					}
 				
-				//agenda.setFechaCierre(row.getCell(2).getDateCellValue());
+				String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
+				String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
+				String noCliente = agenda.getNumeroCliente();
+				int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
+				String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
+				agenda.setCodigoTransaccion(codigoTransaccion);
 				
-				if(validarCamposNumericos(row,3)){agenda.setNumeroCliente(row.getCell(3).getRawValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(3);break;}
+				agenda.setRazonSocial(row.getCell(3).getStringCellValue());
+				agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());
+				agenda.setNumeroTelefono(row.getCell(5).getRawValue());
 				
+				agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));
 				
-				agenda.setRazonSocial(row.getCell(4).getStringCellValue());
-				agenda.setNombreRepresentante(row.getCell(5).getStringCellValue());
-				agenda.setNumeroTelefono(row.getCell(6).getRawValue());
-				
-				agenda.setSoeid(String.valueOf(row.getCell(7).getStringCellValue()));
-				
-				agenda.setEjecutivo(row.getCell(8).getStringCellValue());
-				agenda.setSede(row.getCell(9).getStringCellValue());
+				agenda.setEjecutivo(row.getCell(7).getStringCellValue());
+				agenda.setSede(row.getCell(8).getStringCellValue());
 				
 				agendas.add(agenda);
 			}		
@@ -146,7 +166,7 @@ public class AgendaServiceImpl implements AgendaService {
 				XSSFRow row = worksheet.getRow(i++);
 				//agenda.setCodigoTransaccion(row.getCell(0).getRawValue());
 				
-				if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
+				if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
 				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
 								
 				
@@ -184,18 +204,11 @@ public class AgendaServiceImpl implements AgendaService {
 		System.out.println("NULO " +row.getCell(cell, row.RETURN_BLANK_AS_NULL));
 		if(row.getCell(cell) == null){
 			estatus = false;
-			System.out.println("EL CAMPO ES NULO");
 		}
 		if(row.getCell(cell).getCellType() == Cell.CELL_TYPE_BLANK){
 			estatus = false;
 		}
-		if(row.getCell(cell).getCellType() == Cell.CELL_TYPE_NUMERIC){
-			/*if(DateUtil.isCellDateFormatted(row.getCell(cell))){
-				System.out.println("FECHA CORRECTA --------------");
-			}else{
-				estatus = false;
-			}*/
-		}else{
+		if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
 			estatus = false;
 		}
 		return estatus;
@@ -210,7 +223,24 @@ public class AgendaServiceImpl implements AgendaService {
 			estatus = false;
 		}else if(row.getCell(cell).getRawValue().length() != 5){
 			estatus = false;
+		}else if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
+			estatus = false;
 		}
+		return estatus;
+	}
+	
+	public boolean validarCodigoTransaccion(XSSFRow row, int cell){
+		boolean estatus = true;
+		//System.out.println(row.getCell(cell, row.RETURN_BLANK_AS_NULL));
+		if(row.getCell(cell) == null){
+			estatus = false;
+		}else if(row.getCell(cell).getCellType() == Cell.CELL_TYPE_BLANK){
+			estatus = false;
+		}else if(row.getCell(cell).getStringCellValue().length() != 22){
+			estatus = false;
+		}
+		System.out.println("LONIG " + row.getCell(cell).getStringCellValue().length());
+		System.out.println("VALOR " + row.getCell(cell).getStringCellValue());
 		return estatus;
 	}
 	

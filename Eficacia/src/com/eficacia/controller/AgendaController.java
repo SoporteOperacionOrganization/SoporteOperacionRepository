@@ -67,7 +67,6 @@ public class AgendaController {
 	public String agregarAgenda(Model model){
 		Calendar fecha = new GregorianCalendar();
 		String fechaTransaccion= fecha.get(Calendar.DAY_OF_MONTH)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.YEAR);
-		System.out.println("Fecha Tramsaccion: " +fechaTransaccion);
 		model.addAttribute("agenda", new Agenda());
 		model.addAttribute("fechaTransaccion", fechaTransaccion);
 		return "agendas/formularioAgenda";

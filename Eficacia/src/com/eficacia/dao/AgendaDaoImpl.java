@@ -1,6 +1,8 @@
 package com.eficacia.dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -119,7 +121,6 @@ public class AgendaDaoImpl implements AgendaDao {
 	@Override
 	public String eliminacionMasiva(List<Agenda> agendas){
 		int tamano = agendas.size();
-		System.out.println("Tamaño:"+tamano);
 		session = sessionFactory.getCurrentSession();
 		for(int i = 0; i < tamano; i++){
 			System.out.println("Codigo transaccion:"+agendas.get(i).getCodigoTransaccion());
