@@ -1,5 +1,8 @@
 package com.eficacia.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -62,7 +65,11 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/agregarAgenda", method = RequestMethod.GET)
 	public String agregarAgenda(Model model){
+		Calendar fecha = new GregorianCalendar();
+		String fechaTransaccion= fecha.get(Calendar.DAY_OF_MONTH)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.YEAR);
+		System.out.println("Fecha Tramsaccion: " +fechaTransaccion);
 		model.addAttribute("agenda", new Agenda());
+		model.addAttribute("fechaTransaccion", fechaTransaccion);
 		return "agendas/formularioAgenda";
 	}
 	
@@ -79,6 +86,7 @@ public class AgendaController {
 	public String editarAgenda(Model model, @PathVariable String codigoTransaccion){
 		Agenda agenda = agendaService.obtenerAgenda(codigoTransaccion);
 		model.addAttribute("agenda",agenda);
+		
 		return "agendas/formularioAgendaModificar";
 	}
 	
