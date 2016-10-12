@@ -121,6 +121,8 @@ public class AgendaDaoImpl implements AgendaDao {
 	@Override
 	public String eliminacionMasiva(List<Agenda> agendas){
 		int tamano = agendas.size();
+		String totalNoEncontrados="";
+		int NoEncontrados=0;
 		session = sessionFactory.getCurrentSession();
 		for(int i = 0; i < tamano; i++){
 			System.out.println("Codigo transaccion:"+agendas.get(i).getCodigoTransaccion());
@@ -131,8 +133,17 @@ public class AgendaDaoImpl implements AgendaDao {
 			query.setParameter("codigoTransaccion", codigoTransaccion);
 			Integer resultado=query.executeUpdate();
 			System.out.println("Resultado de la Consulta: "+resultado);
+			if(resultado==0){
+				System.out.println("Dentro de la validacion");
+				System.out.println("Antes: "+NoEncontrados);
+				NoEncontrados ++;
+				System.out.println("Despues: "+NoEncontrados);
+			}
+			
 		}
-		return "";
+		totalNoEncontrados=Integer.toString(NoEncontrados);
+		System.out.println("Total de Registros No Encotrados:");
+		return totalNoEncontrados;
 	}
 
 	@Override
