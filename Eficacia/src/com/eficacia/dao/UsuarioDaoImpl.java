@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.eficacia.model.Agenda;
 import com.eficacia.model.Usuario;
 @Repository
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -43,6 +44,17 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		usuarios = query.list();
 		return usuarios;
 	}
+	
+	@Override
+	public List<Usuario> obtenerUsuariosPaginacion(Integer offset, Integer limite) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("FROM Usuario");
+		query.setFirstResult(offset!=null?offset:0);
+		query.setMaxResults(limite!=null?limite:5);
+		List<Usuario> usuarios = query.list();
+		return usuarios;
+	}
+	
 
 	@Override
 	public void agregarUsuario(Usuario usuario) {
@@ -72,6 +84,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		usuarios = query.list();
 		return usuarios;
 		
+	}
+
+	@Override
+	public Long contarRegistros() {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("SELECT count(u) from Usuario u");
+		Long count = (Long) query.uniqueResult();
+		return count;
 	}
 
 }

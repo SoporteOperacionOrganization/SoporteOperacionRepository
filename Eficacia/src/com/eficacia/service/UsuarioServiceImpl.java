@@ -17,8 +17,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public Usuario obtenerUsuario(String soeid) {
-		
 		return usuarioDao.obtenerUsuario(soeid);
+	}
+	
+	@Override
+	public List<Usuario> obtenerUsuariosPaginacion(Integer offset, Integer limite){
+		return usuarioDao.obtenerUsuariosPaginacion(offset, limite);
 	}
 
 	@Override
@@ -54,6 +58,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public List<Usuario> filtrarUsuarios(String soeid) {
 		return usuarioDao.filtrarUsuarios(soeid);
+	}
+
+	@Override
+	public Long contarRegistros() {
+		return usuarioDao.contarRegistros();
 	}
 
 }

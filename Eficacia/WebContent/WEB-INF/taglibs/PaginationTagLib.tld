@@ -5,21 +5,21 @@
 		version="2.1" > 
 <tlib-version>1.0</tlib-version>
 <jsp-version>2.1</jsp-version>
-<short-name>substr</short-name>
-<uri>/WEB-INF/taglibs/PaginationTagLib.tld</uri>
+<short-name>paginacion</short-name>
+<uri>http://eficacia/paginacion.tld</uri>
 <tag>
 	<name>paginate</name>
 	<tag-class>com.eficacia.taglibs.PaginationTaglib</tag-class>
 	<body-content>empty</body-content>
 	
 	<attribute>
-      <name>next</name>
+      <name>siguiente</name>
       <rtexprvalue>true</rtexprvalue>
       <type>java.lang.String</type>
     </attribute>
 	
 	<attribute>
-      <name>previous</name>
+      <name>anterior</name>
       <rtexprvalue>true</rtexprvalue>
       <type>java.lang.String</type>
     </attribute>
@@ -36,13 +36,13 @@
       <type>int</type>
     </attribute>
     <attribute>
-      <name>count</name>
+      <name>conteo</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <type>int</type>
     </attribute>
     <attribute>
-      <name>max</name>
+      <name>limite</name>
       <rtexprvalue>true</rtexprvalue>
       <type>int</type>
     </attribute>

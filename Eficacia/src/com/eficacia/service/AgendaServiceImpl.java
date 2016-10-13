@@ -152,6 +152,39 @@ public class AgendaServiceImpl implements AgendaService {
 		return estatusCarga;
 	}
 	
+	public ArrayList<String> registrosNoEncontrados(MultipartFile excelFile){
+		ArrayList<String> noEncontrados= new ArrayList<>();
+		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+		String estatusCarga = "";
+		int i = 0;
+		
+		try{
+			List<Agenda> agendas = new ArrayList<>();
+			
+			XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
+			XSSFSheet worksheet = workbook.getSheetAt(0);
+			while (i <= worksheet.getLastRowNum()) {
+				Agenda agenda = new Agenda();
+				XSSFRow row = worksheet.getRow(i++);
+				
+				if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
+			
+				agendas.add(agenda);
+			}		
+			if(estatusCarga.equals("")){
+					noEncontrados=agendaDao.registrosNoEncontrados(agendas);
+			}
+				workbook.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return noEncontrados;
+	}
+	
+	
 	public String validarExcelEliminacion(MultipartFile excelFile) {
 		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 		String estatusCarga = "";

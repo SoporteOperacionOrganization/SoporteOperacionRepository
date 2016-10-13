@@ -10,7 +10,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="header.lbl.seccionUsuarios" /> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/listarUsuarios' />"><spring:message code="header.lbl.consultarUsuarios" /></a></li>
+            <li><a href="<c:url value='listarUsuarios' />"><spring:message code="header.lbl.consultarUsuarios" /></a></li>
             <li><a href="<c:url value='/agregarUsuario' />"><spring:message code="header.lbl.agregarUsuario" /></a></li>
           </ul>
         </li>
@@ -19,7 +19,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="header.lbl.seccionAgendas" /> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/listarAgendasPaginacion' />"><spring:message code="header.lbl.consultarAgendas" /></a></li>
+            <li><a href="<c:url value='/listarAgendas' />"><spring:message code="header.lbl.consultarAgendas" /></a></li>
             <li><a href="<c:url value='/agregarAgenda' />"><spring:message code="header.lbl.agregarAgendas" /></a></li>
             <li role="separator" class="divider dividerColor" ></li>
             <li><a class="subtitulosDropDown" style="color:#000;font-weight:bold;cursor:default;" href="#"><spring:message code="header.lbl.CargaMasivaAgendas" /> &nbsp;<span class="glyphicon glyphicon-upload"></span></a></li>

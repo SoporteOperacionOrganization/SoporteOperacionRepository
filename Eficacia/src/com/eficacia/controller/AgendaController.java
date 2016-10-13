@@ -1,5 +1,6 @@
 package com.eficacia.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -48,18 +49,12 @@ public class AgendaController {
 		webDataBinder.setValidator(fileValidator);
 	}
 	
-	@RequestMapping(value = "/listarAgendasPaginacion", method = RequestMethod.GET)
-	public String listarAgendasPaginacion(Model model, Integer offset, Integer maxResults){
-		List<Agenda> agendas = agendaService.obtenerAgendasPaginacion(offset, maxResults);
-		model.addAttribute("agendas", agendas);
-		model.addAttribute("offset", offset);
-		return "agendas/listarAgendasPaginacion";
-	}
-	
 	@RequestMapping(value = "/listarAgendas", method = RequestMethod.GET)
-	public String listarAgendas(Model model){
-		List<Agenda> agendas = agendaService.obtenerAgendas();
+	public String listarAgendasPaginacion(Model model, Integer offset, Integer limite){
+		List<Agenda> agendas = agendaService.obtenerAgendasPaginacion(offset, limite);
 		model.addAttribute("agendas", agendas);
+		model.addAttribute("count", agendaService.contarRegistros());
+		model.addAttribute("offset", offset);
 		return "agendas/listarAgendas";
 	}
 	
@@ -137,6 +132,8 @@ public class AgendaController {
 			String estatus = agendaService.validarExcel(excelfile);
 			if("".equals(estatus)){
 				redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
+				
+				
 			}
 			redirectAttributes.addFlashAttribute("estatus", estatus);
 		}
@@ -154,11 +151,21 @@ public class AgendaController {
 		if(result.hasErrors()){	
 			return "agendas/eliminacionMasiva";
 		}
+		
+		
+		
+		ArrayList<String> noEncontrados =new ArrayList<>();
+		noEncontrados = agendaService.registrosNoEncontrados(excelfile);
+		model.addAttribute("noEncontrados", noEncontrados);
+		
+		
 		String estatus = agendaService.validarExcelEliminacion(excelfile);
 		if(estatus.equals("")){
 			model.addAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
 		}
 		model.addAttribute("estatus", estatus);
+	
+		
 		return "agendas/eliminacionMasiva";
 	}
 	

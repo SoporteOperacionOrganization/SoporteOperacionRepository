@@ -10,11 +10,11 @@ public class PaginationTaglib extends SimpleTagSupport{
 
 	private String uri;
 	 private int offset;
-	 private int count;
-	 private int max = 5;
+	 private int conteo;
+	 private int limite = 5;
 	 private int steps = 5;
-	 private String previous = "Previous";
-	 private String next = "Next";
+	 private String anterior = "Anterior";
+	 private String siguiente = "Siguiente";
 	 
 	 private Writer getWriter() {
 	  JspWriter out = getJspContext().getOut();
@@ -30,21 +30,21 @@ public class PaginationTaglib extends SimpleTagSupport{
 	   out.write("<ul class=\"pagination\">");
 	    
 	   if(offset<steps)
-	    out.write(constructLink(1, previous, "disabled", true));
+	    out.write(constructLink(1, anterior, "disabled", true));
 	   else
-	    out.write(constructLink(offset-steps, previous, null, false));
+	    out.write(constructLink(offset-steps, anterior, null, false));
 	    
-	   for(int itr=0;itr<count;itr+=steps) {
+	   for(int itr=0;itr<conteo;itr+=steps) {
 	    if(offset==itr)
 	     out.write(constructLink((itr/5+1)-1 *steps, String.valueOf(itr/5+1), "active", true));
 	    else
 	     out.write(constructLink(itr/5*steps, String.valueOf(itr/5+1), null , false));
 	   }
 	 
-	   if(offset+steps>=count)
-	    out.write(constructLink(offset+steps, next, "disabled", true));
+	   if(offset+steps>=conteo)
+	    out.write(constructLink(offset+steps, siguiente, "disabled", true));
 	   else
-	    out.write(constructLink(offset+steps, next, null , false));
+	    out.write(constructLink(offset+steps, siguiente, null , false));
 	    
 	    
 	   out.write("</ul>");
@@ -85,36 +85,36 @@ public class PaginationTaglib extends SimpleTagSupport{
 		  this.offset = offset;
 		 }
 		 
-		 public int getCount() {
-		  return count;
+		 public int getConteo() {
+		  return conteo;
 		 }
 		 
-		 public void setCount(int count) {
-		  this.count = count;
+		 public void setConteo(int conteo) {
+		  this.conteo = conteo;
 		 }
 		 
-		 public int getMax() {
-		  return max;
+		 public int getLimite() {
+		  return limite;
 		 }
 		 
-		 public void setMax(int max) {
-		  this.max = max;
+		 public void setLimite(int limite) {
+		  this.limite = limite;
 		 }
 		 
-		 public String getPrevious() {
-		  return previous;
+		 public String getAnterior() {
+		  return anterior;
 		 }
 		 
-		 public void setPrevious(String previous) {
-		  this.previous = previous;
+		 public void setAnterior(String anterior) {
+		  this.anterior = anterior;
 		 }
 		 
-		 public String getNext() {
-		  return next;
+		 public String getSiguiente() {
+		  return siguiente;
 		 }
 		 
-		 public void setNext(String next) {
-		  this.next = next;
+		 public void setSiguiente(String siguiente) {
+		  this.siguiente = siguiente;
 		 }
 		 
 		 public int getSteps() {

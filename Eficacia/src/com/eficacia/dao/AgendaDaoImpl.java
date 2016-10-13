@@ -121,16 +121,55 @@ public class AgendaDaoImpl implements AgendaDao {
 	@Override
 	public String eliminacionMasiva(List<Agenda> agendas){
 		int tamano = agendas.size();
+		String totalNoEncontrados="";
+		int NoEncontrados=0;
 		session = sessionFactory.getCurrentSession();
 		for(int i = 0; i < tamano; i++){
 			System.out.println("Codigo transaccion:"+agendas.get(i).getCodigoTransaccion());
+			
 			String codigoTransaccion = agendas.get(i).getCodigoTransaccion();
 			
 			query = session.createQuery("DELETE FROM Agenda a WHERE a.codigoTransaccion = :codigoTransaccion");
 			query.setParameter("codigoTransaccion", codigoTransaccion);
-			query.executeUpdate();
+			Integer resultado=query.executeUpdate();
+			//System.out.println("Resultado de la Consulta: "+resultado);
+			if(resultado==0){
+				System.out.println("Antes: "+NoEncontrados);
+				NoEncontrados ++;
+				}
 		}
-		return "";
+
+		totalNoEncontrados=Integer.toString(NoEncontrados);
+	
+		return totalNoEncontrados;
+	}
+	
+	
+	@Override
+	public ArrayList<String> registrosNoEncontrados(List<Agenda> agendas){
+		System.out.println("Inicio registrosNoEncontradosDAO");
+		int tamano = agendas.size();
+		ArrayList<String> noEncontrados= new ArrayList<>();
+		session = sessionFactory.getCurrentSession();
+		
+		for(int i = 0; i < tamano; i++){
+			System.out.println("Codigo transaccion:"+agendas.get(i).getCodigoTransaccion());
+			
+			String codigoTransaccion = agendas.get(i).getCodigoTransaccion();
+			
+			query = session.createQuery("FROM Agenda a WHERE a.codigoTransaccion = :codigoTransaccion");
+			query.setParameter("codigoTransaccion", codigoTransaccion);
+			List resultado=query.list();
+			System.out.println("Resultado de la busqueda del CodigoTransaccion:"+codigoTransaccion+ "fue: "+resultado);
+
+			if(resultado.isEmpty()){
+				noEncontrados.add(codigoTransaccion);
+				System.out.println("Codigo transaccion(No Encontrado):"+noEncontrados);
+			}
+		}
+
+		System.out.println("Fin registrosNoEncontrados");
+		return noEncontrados;
 	}
 
 	@Override
@@ -148,5 +187,5 @@ public class AgendaDaoImpl implements AgendaDao {
 		List<Agenda> agendas = query.list();
 		return agendas;
 	}
-
+	
 }

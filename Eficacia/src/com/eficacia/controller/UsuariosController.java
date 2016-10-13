@@ -21,7 +21,7 @@ import com.eficacia.propertyeditors.RolPropertyEditor;
 import com.eficacia.service.RolService;
 import com.eficacia.service.UsuarioService;
 import com.eficacia.validator.UsuarioValidator;
-//Comprobar sobreescritura en push
+
 
 @Controller
 public class UsuariosController {
@@ -52,9 +52,11 @@ public class UsuariosController {
 	}
 	
 	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET)
-	public String listarUsuarios(Model model){
-		List<Usuario> usuarios = usuarioService.obtenerUsuarios();
+	public String listarUsuariosPag(Model model, Integer offset, Integer limite){
+		List<Usuario> usuarios = usuarioService.obtenerUsuariosPaginacion(offset, limite);
+		model.addAttribute("count", usuarioService.contarRegistros());
 		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("offset", offset);
 		return "usuarios/listarUsuarios";
 	}
 	

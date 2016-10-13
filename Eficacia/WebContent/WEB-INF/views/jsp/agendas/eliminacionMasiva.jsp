@@ -39,10 +39,24 @@
     		</c:if>
     		<c:if test="${not empty procesoCorrecto}">
 	         <div style="color:green;margin:10px 0px;font-weight:bold;">
-	                ${procesoCorrecto}	            
+	                ${procesoCorrecto}	
+	                <!-- validacion de git -->            
 	         </div>
     		</c:if>
 		</div>
+		
+		<div>
+			<c:if test="${not empty noEncontrados}">
+	         	<div style="color:blue;margin:10px 0px;font-weight:bold;">
+	                Los siguientes  Codigos de Transaccion, es probable que <br/>
+	                los eliminaron anteriormente o nunca hayan existido <br/> 
+	                <br/>
+	                ${noEncontrados}
+	                      
+	         	</div>
+    		</c:if>
+		</div>
+	
 	</div>
 </div>
 

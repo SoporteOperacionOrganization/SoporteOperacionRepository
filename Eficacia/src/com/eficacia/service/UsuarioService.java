@@ -8,6 +8,8 @@ public interface UsuarioService {
 
 	public Usuario obtenerUsuario(String soeid);
 	
+	public List<Usuario> obtenerUsuariosPaginacion(Integer offset, Integer limite);
+	
 	public List<Usuario> filtrarUsuarios(String soeid);
 	
 	public List<Usuario> obtenerUsuarios();
@@ -17,5 +19,7 @@ public interface UsuarioService {
 	public void modificarUsuario(Usuario usuario);
 	
 	public void eliminarUsuario(String soeid);
+	
+	public Long contarRegistros();
 	
 }
