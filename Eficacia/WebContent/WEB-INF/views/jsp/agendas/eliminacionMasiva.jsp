@@ -39,7 +39,8 @@
     		</c:if>
     		<c:if test="${not empty procesoCorrecto}">
 	         <div style="color:green;margin:10px 0px;font-weight:bold;">
-	                ${procesoCorrecto}	            
+	                ${procesoCorrecto}	
+	                <!-- validacion de git -->            
 	         </div>
     		</c:if>
 		</div>
