@@ -1,5 +1,6 @@
 package com.eficacia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -26,4 +27,5 @@ public interface AgendaService {
 	
 	public String validarExcelEliminacion(MultipartFile excelFile);
 	
+	public ArrayList<String> registrosNoEncontrados(MultipartFile excelFile);
 }

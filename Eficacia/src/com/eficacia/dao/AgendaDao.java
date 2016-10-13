@@ -1,5 +1,6 @@
 package com.eficacia.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.eficacia.model.Agenda;
@@ -23,5 +24,7 @@ public interface AgendaDao {
 	public void modificarAgenda(Agenda agenda);
 	
 	public String eliminacionMasiva(List<Agenda> agendas);
+	
+	public ArrayList<String> registrosNoEncontrados (List<Agenda> agendas);
 	
 }

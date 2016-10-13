@@ -1,5 +1,6 @@
 package com.eficacia.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -130,6 +131,8 @@ public class AgendaController {
 			String estatus = agendaService.validarExcel(excelfile);
 			if("".equals(estatus)){
 				redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
+				
+				
 			}
 			redirectAttributes.addFlashAttribute("estatus", estatus);
 		}
@@ -147,11 +150,21 @@ public class AgendaController {
 		if(result.hasErrors()){	
 			return "agendas/eliminacionMasiva";
 		}
+		
+		
+		
+		ArrayList<String> noEncontrados =new ArrayList<>();
+		noEncontrados = agendaService.registrosNoEncontrados(excelfile);
+		model.addAttribute("noEncontrados", noEncontrados);
+		
+		
 		String estatus = agendaService.validarExcelEliminacion(excelfile);
 		if(estatus.equals("")){
 			model.addAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
 		}
 		model.addAttribute("estatus", estatus);
+	
+		
 		return "agendas/eliminacionMasiva";
 	}
 	
