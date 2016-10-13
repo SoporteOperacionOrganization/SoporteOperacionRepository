@@ -48,6 +48,13 @@ public class AgendaController {
 		webDataBinder.setValidator(fileValidator);
 	}
 	
+	@RequestMapping(value = "/listarAgendasPaginacion", method = RequestMethod.GET)
+	public String listarAgendasPaginacion(Model model, Integer offset, Integer maxResults){
+		List<Agenda> agendas = agendaService.obtenerAgendasPaginacion(offset, maxResults);
+		model.addAttribute("agendas", agendas);
+		model.addAttribute("offset", offset);
+		return "agendas/listarAgendasPaginacion";
+	}
 	
 	@RequestMapping(value = "/listarAgendas", method = RequestMethod.GET)
 	public String listarAgendas(Model model){

@@ -15,11 +15,23 @@
 <script src="${datepickerJs}"></script>
 <script>
 $( document ).ready(function() {
+	/*var date = new Date();
+	var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+	$('.datepicker').datepicker({ 
+    	format: 'yyyy/mm/dd',
+		startDate: '2016/10/13',
+		minDate: '2016/10/14',
+		autoclose: true
+	});*/
+});
+
+/*$( document ).ready(function() {
     $('.datepicker').datepicker({
     	format: 'dd/mm/yyyy',
         startDate: '-3d'
     });
-});
+});*/
 </script>
 </head>
 <body>

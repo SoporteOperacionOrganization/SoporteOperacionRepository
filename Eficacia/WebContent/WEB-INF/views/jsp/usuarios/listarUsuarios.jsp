@@ -21,7 +21,7 @@
 	    </form>
     </div>
 	<br /><br />
-	<div class="contenidoUsuarios">
+	<div class="contenidoUsuarios" style="margin-bottom:20px;">
 		<table class="table table-default table-striped tabla">
 			<tr class="cabeceraTabla">
 				<th>#</th>

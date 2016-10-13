@@ -225,6 +225,8 @@ public class AgendaServiceImpl implements AgendaService {
 			estatus = false;
 		}else if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
 			estatus = false;
+		}else if(!row.getCell(cell).getRawValue().matches("[0-9]+")){
+			estatus = false;
 		}
 		return estatus;
 	}
@@ -242,6 +244,11 @@ public class AgendaServiceImpl implements AgendaService {
 		System.out.println("LONIG " + row.getCell(cell).getStringCellValue().length());
 		System.out.println("VALOR " + row.getCell(cell).getStringCellValue());
 		return estatus;
+	}
+
+	@Override
+	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite) {
+		return agendaDao.obtenerAgendasPaginacion(offset, limite);
 	}
 	
 }

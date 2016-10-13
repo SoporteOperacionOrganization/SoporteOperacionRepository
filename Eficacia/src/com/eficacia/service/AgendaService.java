@@ -26,4 +26,6 @@ public interface AgendaService {
 	
 	public String validarExcelEliminacion(MultipartFile excelFile);
 	
+	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite);
+	
 }

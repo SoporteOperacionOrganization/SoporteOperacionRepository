@@ -139,4 +139,14 @@ public class AgendaDaoImpl implements AgendaDao {
 		session.update(agenda);
 	}
 
+	@Override
+	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("FROM Agenda");
+		query.setFirstResult(offset!=null?offset:0);
+		query.setMaxResults(limite!=null?limite:5);
+		List<Agenda> agendas = query.list();
+		return agendas;
+	}
+
 }
