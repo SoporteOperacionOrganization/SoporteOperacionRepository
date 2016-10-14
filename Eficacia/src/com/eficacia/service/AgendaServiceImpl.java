@@ -228,8 +228,7 @@ public class AgendaServiceImpl implements AgendaService {
 		}
 		return estatusCarga;
 	}
-	
-	
+
 	
 	public boolean validarCamposFecha(XSSFRow row, int cell){
 		boolean estatus = true;
@@ -281,7 +280,9 @@ public class AgendaServiceImpl implements AgendaService {
 
 	@Override
 	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite) {
+
 		return agendaDao.obtenerAgendasPaginacion(offset, limite);
 	}
 	
+
 }
