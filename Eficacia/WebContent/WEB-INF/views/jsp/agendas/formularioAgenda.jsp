@@ -15,7 +15,7 @@
 <script src="${datepickerJs}"></script>
 <script>
 $( document ).ready(function() {
-	/*var date = new Date();
+	var date = new Date();
 	var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
 	$('.datepicker').datepicker({ 
@@ -23,7 +23,7 @@ $( document ).ready(function() {
 		startDate: '2016/10/13',
 		minDate: '2016/10/14',
 		autoclose: true
-	});*/
+	});
 });
 
 /*$( document ).ready(function() {
@@ -119,7 +119,7 @@ $( document ).ready(function() {
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="numeroTelefono">Telefono</label>
+                <label class="col-md-3 control-lable" for="numeroTelefono">Teléfono</label>
                 <div class="col-md-7">
                     <form:input type="text" path="numeroTelefono" id="numeroTelefono" class="form-control input-sm"/>
                     <div class="has-error errores">

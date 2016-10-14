@@ -115,14 +115,8 @@ public class AgendaServiceImpl implements AgendaService {
 				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}
 				
 				
-				if(validarCamposNumericos(row,2)){
-					agenda.setNumeroCliente(row.getCell(2).getRawValue());
-					System.out.println("dentroi de setNumeroCliente");
-					}
-				else{
-					estatusCarga = "Error en linea " + i + " celda " + letras.get(2);
-					break;
-					}
+				if(validarCamposNumericos(row,2)){agenda.setNumeroCliente(row.getCell(2).getRawValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(2);break;}
 				
 				String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
 				String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
@@ -131,14 +125,23 @@ public class AgendaServiceImpl implements AgendaService {
 				String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
 				agenda.setCodigoTransaccion(codigoTransaccion);
 				
-				agenda.setRazonSocial(row.getCell(3).getStringCellValue());
-				agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());
+				if(validarCamposNoNumericos(row,3)){agenda.setRazonSocial(row.getCell(3).getStringCellValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(3);break;}
+				
+				if(validarCamposNoNumericos(row,4)){agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(4);break;}
+				
+				
 				agenda.setNumeroTelefono(row.getCell(5).getRawValue());
 				
 				agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));
 				
-				agenda.setEjecutivo(row.getCell(7).getStringCellValue());
-				agenda.setSede(row.getCell(8).getStringCellValue());
+				if(validarCamposNoNumericos(row,7)){agenda.setEjecutivo(row.getCell(7).getStringCellValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(7);break;}
+				
+				if(validarCamposNoNumericos(row,8)){agenda.setSede(row.getCell(8).getStringCellValue());}
+				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(8);break;}
+				
 				
 				agendas.add(agenda);
 			}		
@@ -259,6 +262,14 @@ public class AgendaServiceImpl implements AgendaService {
 		}else if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
 			estatus = false;
 		}else if(!row.getCell(cell).getRawValue().matches("[0-9]+")){
+			estatus = false;
+		}
+		return estatus;
+	}
+	
+	public boolean validarCamposNoNumericos(XSSFRow row, int cell){
+		boolean estatus = true;
+		if(row.getCell(cell) == null){
 			estatus = false;
 		}
 		return estatus;

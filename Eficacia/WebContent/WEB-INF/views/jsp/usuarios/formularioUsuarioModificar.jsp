@@ -15,6 +15,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/password-score.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-strength-meter.js"></script>
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp" />
@@ -90,11 +92,13 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="password" id="password" class="form-control input-sm"/>
+                    <form:input type="password" path="password" id="example-getting-started-input" class="form-control input-sm" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
                     </div>
                 </div>
+                <div class="col-md-2" id="example-getting-started-text" style="display:inline;font-weight:bold;padding:6px 12px;">
+        		</div>
             </div>
         </div>
         
@@ -102,7 +106,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" name="passwordConfirmation" value="${passwordConfirmation}" class="form-control input-sm"/>
+                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" name="passwordConfirmation" value="${passwordConfirmation}" class="form-control input-sm" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>
                     <div class="has-error errores">
                         <form:errors path="passwordConfirmation" class="help-inline"/>
                     </div>
@@ -144,5 +148,15 @@
     </div>
  			
 <jsp:include page="../fragments/footer.jsp" />
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    
+    $('#example-getting-started-input').strengthMeter('text', {
+        container: $('#example-getting-started-text')
+    });
+    
+});
+</script>
 </body>
 </html>
