@@ -1,11 +1,18 @@
 package com.eficacia.controller;
 
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eficacia.model.Agenda;
-import com.eficacia.model.File;
 import com.eficacia.service.AgendaService;
 import com.eficacia.validator.AgendaValidator;
 import com.eficacia.validator.FileValidator;
+
 
 @Controller
 public class AgendaController {
@@ -115,7 +122,7 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/cargaMasiva", method = RequestMethod.GET)
 	public String cargaMasiva(Model model){
-		model.addAttribute("file", new File());
+		model.addAttribute("file", new com.eficacia.model.File());
 		return "agendas/cargaMasiva";
 	}
 	
@@ -142,7 +149,7 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/eliminacionMasiva", method = RequestMethod.GET)
 	public String eliminacionMasiva(Model model){
-		model.addAttribute("file", new File());
+		model.addAttribute("file", new com.eficacia.model.File());
 		return "agendas/eliminacionMasiva";
 	}
 	
@@ -168,5 +175,79 @@ public class AgendaController {
 		
 		return "agendas/eliminacionMasiva";
 	}
+
+	@RequestMapping(value = "/descargarArchivo/{archivo}", method = RequestMethod.GET)
+    public String descargarArchivo(Model model, HttpServletResponse response, HttpServletRequest request, @PathVariable int archivo) throws IOException{
+		String rutaArchivo = "";
+		switch(archivo){
+        	case 1:
+        		rutaArchivo = "/WEB-INF/files/LayoutCargaMasiva.xlsm";
+        	break;
+        	
+        	case 2:
+        		rutaArchivo = "/WEB-INF/files/LayoutEliminacionMasiva.xlsm";
+        	break;
+        }
+       
+		System.out.println(rutaArchivo);
+		
+		int BUFFER_SIZE = 4096;    
+        ServletContext context = request.getServletContext();
+        String rutaAplicacion = context.getRealPath("");
+        String rutaCompleta = rutaAplicacion + rutaArchivo;      
+        File downloadFile = new File(rutaCompleta);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+        String mimeType = context.getMimeType(rutaCompleta);
+        if (mimeType == null) {
+        	mimeType = "application/octet-stream";
+        }
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+        downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+        OutputStream outStream = response.getOutputStream();
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+        	outStream.write(buffer, 0, bytesRead);
+        }
+        inputStream.close();
+        outStream.close();
+        
+        
+        return null;
+    }
+	
+	/*
+	@RequestMapping(value = "/descargarLayoutCargaMasiva", method = RequestMethod.GET)
+	public ModelAndView descargarLayoutCargaMasiva(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		try {
+            // Suponemos que es un zip lo que se quiere descargar el usuario.
+            // Aqui se hace a piñón fijo, pero podría obtenerse el fichero
+            // pedido por el usuario a partir de algún parámetro del request
+            // o de la URL con la que nos han llamado.
+            String nombreFichero = "LayoutCargaMasiva.xlsm";
+            String unPath = "C:/Users/JG77991/Desktop/";
+
+            response.setContentType("application/xlsm");
+            response.setHeader("Content-Disposition", "attachment; filename=\""
+                    + nombreFichero+ "\"");
+
+            InputStream is = new FileInputStream(unPath+nombreFichero);
+            
+            IOUtils.copy(is, response.getOutputStream());
+
+            response.flushBuffer();
+            
+        } catch (IOException ex) {
+            // Sacar log de error.
+            throw ex;
+        }
+        
+        return null;
+	}
+	*/
 	
 }

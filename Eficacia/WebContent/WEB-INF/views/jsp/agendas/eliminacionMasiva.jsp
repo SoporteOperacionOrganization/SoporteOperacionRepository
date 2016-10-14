@@ -29,6 +29,11 @@
 			<br/><br/>
 			<input type="submit" class="btn btn-primary" value="Cargar archivo">
 		</form:form>
+		
+		<div>
+			<a href="<c:url value='/descargarArchivo/2' />">Descargar Layout</a>
+		</div>
+		
 		<div>
 			<c:if test="${not empty estatus}">
 	         <div style="color:red;margin:10px 0px;font-weight:bold;">
