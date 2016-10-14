@@ -17,11 +17,28 @@ public class UsuarioValidator implements Validator{
     public void validate(Object obj, Errors errors) {
         Usuario usuario = (Usuario) obj;
              
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "soeid", "NotEmpty.usuario.soeid");
+        String patronContraseñaSegura =
+                "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%./_-]).{6,20})";
+        String patronSoloNumeros = "\\d+";
+        
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuario.nombre");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellidoPaterno", "NotEmpty.usuario.apellidoPaterno");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "telefono", "NotEmpty.usuario.telefono");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.usuario.password");
+        
+        if(usuario.getSoeid().length() != 7){
+        	errors.rejectValue("soeid", "NotLenght.usuario.soeid");
+        }
+        
+        if(usuario.getTelefono().equals("")){
+        	errors.rejectValue("telefono", "NotEmpty.usuario.telefono");
+        }else if(!usuario.getTelefono().matches(patronSoloNumeros)){
+        	errors.rejectValue("telefono", "NotNumber.usuario.notnumber");
+        }
+        
+        if(usuario.getPassword().equals("")){
+        	errors.rejectValue("password", "NotEmpty.usuario.password");
+        }else if(!usuario.getPassword().matches(patronContraseñaSegura)){
+        	errors.rejectValue("password", "NotPattern.usuario.password");
+        }
         
         if(!usuario.getPassword().equals(usuario.getPasswordConfirmation())){
         	 errors.rejectValue("passwordConfirmation", "notmatch.usuario.password");

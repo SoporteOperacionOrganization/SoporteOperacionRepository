@@ -11,6 +11,8 @@ import com.eficacia.model.Usuario;
 @Component
 public class AgendaValidator implements Validator{
 
+	String patronSoloNumeros = "\\d+";
+	
 	public boolean supports(Class<?> clazz) {
         return Agenda.class.isAssignableFrom(clazz);
     }
@@ -21,13 +23,31 @@ public class AgendaValidator implements Validator{
         //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codigoTransaccion", "NotEmpty.agenda.codigoTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaTransaccion", "NotEmpty.agenda.fechaTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaCierre", "NotEmpty.agenda.fechaCierre");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroCliente", "NotEmpty.agenda.numeroCliente");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroCliente", "NotEmpty.agenda.numeroCliente");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "razonSocial", "NotEmpty.agenda.razonSocial");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreRepresentante", "NotEmpty.agenda.nombreRepresentante");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroTelefono", "NotEmpty.agenda.numeroTelefono");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "soeid", "NotEmpty.agenda.soeid");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroTelefono", "NotEmpty.agenda.numeroTelefono");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "soeid", "NotEmpty.agenda.soeid");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ejecutivo", "NotEmpty.agenda.ejecutivo");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sede", "NotEmpty.agenda.sede");
+        
+        if(agenda.getNumeroCliente().length() != 5){
+        	errors.rejectValue("numeroCliente", "NotLenght.agenda.numeroCliente");
+        }else if(!agenda.getNumeroCliente().matches(patronSoloNumeros)){
+        	errors.rejectValue("numeroTelefono", "NotNumber.agenda.numeroCliente");
+        }
+        
+        if(agenda.getNumeroTelefono().equals("")){
+        	errors.rejectValue("numeroTelefono", "NotEmpty.agenda.numeroTelefono");
+        }else if(!agenda.getNumeroTelefono().matches(patronSoloNumeros)){
+        	errors.rejectValue("numeroTelefono", "NotNumber.agenda.numeroTelefono");
+        }
+        
+        if(agenda.getSoeid().length() != 7){
+        	errors.rejectValue("soeid", "NotLenght.agenda.soeid");
+        }
+        
+        
         
     }
 	

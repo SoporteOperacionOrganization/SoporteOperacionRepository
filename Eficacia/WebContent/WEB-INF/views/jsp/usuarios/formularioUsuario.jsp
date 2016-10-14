@@ -3,11 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <jsp:include page="../fragments/resources.jsp" />
+<spring:url value="resources/js/password-score.js" var="passwordScoreJs" />
+<spring:url value="resources/js/bootstrap-strength-meter.js" var="strength" />
+<script src="${passwordScoreJs}"></script>
+<script src="${strength}"></script>
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp" />
@@ -69,7 +74,7 @@
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="telefono">Telefono</label>
+                <label class="col-md-3 control-lable" for="telefono">Teléfono</label>
                 <div class="col-md-7">
                     <form:input type="text" path="telefono" id="telefono" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -81,21 +86,24 @@
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="password">Password</label>
+                <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="password" id="password" class="form-control input-sm"/>
+                    <form:input type="password" path="password" id="example-getting-started-input" class="form-control input-sm"  data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>               
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
                     </div>
                 </div>
+                <div class="col-md-2" id="example-getting-started-text" style="display:inline;font-weight:bold;padding:6px 12px;">
+        		</div>
             </div>
+            
         </div>
         
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" class="form-control input-sm"/>
+                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" class="form-control input-sm" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>
                     <div class="has-error errores">
                         <form:errors path="passwordConfirmation" class="help-inline"/>
                     </div>
@@ -139,5 +147,15 @@
     </div>
  			
 <jsp:include page="../fragments/footer.jsp" />
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    
+    $('#example-getting-started-input').strengthMeter('text', {
+        container: $('#example-getting-started-text')
+    });
+    
+});
+</script>
 </body>
 </html>
