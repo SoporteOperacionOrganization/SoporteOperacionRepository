@@ -1,1 +1,3 @@
-/com/
+/files/
+/application.properties
+/WebContent/WEB-INF/spring-excel-views.xml
