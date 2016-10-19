@@ -22,4 +22,8 @@ public interface UsuarioDao {
 	
 	public Long contarRegistros();
 	
+	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid);
+	
+	public void renovarCredenciales(String passwordActual, String passwordNuevo, String fechaTransaccion, String soeid);
+	
 }

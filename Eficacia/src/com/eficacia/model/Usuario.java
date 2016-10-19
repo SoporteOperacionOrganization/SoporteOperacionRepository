@@ -37,6 +37,13 @@ public class Usuario{
 	@JoinColumn(name = "usuariorol")
 	private Rol rol;
 	
+	@Column(name = "usuarioContrasenaAnterior")
+	private String usuarioContrasenaAnterior;
+	@Column(name = "usuarioFechaExpiracionContrasena")
+	private String usuarioFechaExpiracionContrasena;
+	@Column(name = "usuarioCredencialesNoExpiradas")
+	private boolean usuarioCredencialesNoExpiradas;
+	
 	public int getId(){
 		return id;
 	}
@@ -96,6 +103,24 @@ public class Usuario{
 	}
 	public void setPasswordConfirmation(String passwordConfirmation) {
 		this.passwordConfirmation = passwordConfirmation;
+	}
+	public String getUsuarioContrasenaAnterior() {
+		return usuarioContrasenaAnterior;
+	}
+	public void setUsuarioContrasenaAnterior(String usuarioContrasenaAnterior) {
+		this.usuarioContrasenaAnterior = usuarioContrasenaAnterior;
+	}
+	public String getUsuarioFechaExpiracionContrasena() {
+		return usuarioFechaExpiracionContrasena;
+	}
+	public void setUsuarioFechaExpiracionContrasena(String usuarioFechaExpiracionContrasena) {
+		this.usuarioFechaExpiracionContrasena = usuarioFechaExpiracionContrasena;
+	}
+	public boolean isUsuarioCredencialesNoExpiradas() {
+		return usuarioCredencialesNoExpiradas;
+	}
+	public void setUsuarioCredencialesNoExpiradas(boolean usuarioCredencialesNoExpiradas) {
+		this.usuarioCredencialesNoExpiradas = usuarioCredencialesNoExpiradas;
 	}	
 	
 }

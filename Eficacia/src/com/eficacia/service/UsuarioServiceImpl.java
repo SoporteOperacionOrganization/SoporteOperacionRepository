@@ -1,11 +1,19 @@
 package com.eficacia.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eficacia.custommodel.CustomUsuario;
 import com.eficacia.dao.UsuarioDao;
 import com.eficacia.model.Usuario;
 @Service
@@ -14,6 +22,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioDao usuarioDao;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public Usuario obtenerUsuario(String soeid) {
@@ -32,6 +43,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public void agregarUsuario(Usuario usuario) {
+		Calendar fecha = new GregorianCalendar();
+		String fechaActual = fecha.get(Calendar.YEAR)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.DAY_OF_MONTH);
+		usuario.setUsuarioFechaExpiracionContrasena(fechaActual);
+		usuario.setUsuarioCredencialesNoExpiradas(true);
 		usuarioDao.agregarUsuario(usuario);
 	}
 
@@ -63,6 +78,78 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Long contarRegistros() {
 		return usuarioDao.contarRegistros();
+	}
+
+	@Override
+	public boolean validarExpiracionContrasena(String soeid) throws ParseException {
+		boolean validacion = true;
+		DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		Usuario usuario = usuarioDao.obtenerUsuario(soeid);
+		
+		String fechaUltimaModificacionContrasena = usuario.getUsuarioFechaExpiracionContrasena().substring(0, 4) + "/" + usuario.getUsuarioFechaExpiracionContrasena().substring(5, 7) + "/" + usuario.getUsuarioFechaExpiracionContrasena().substring(8, 10);
+		Calendar fecha = new GregorianCalendar();
+		String fechaActual = fecha.get(Calendar.YEAR)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.DAY_OF_MONTH);
+		Date fechaUltim = null;
+		Date fechaAct= null;
+		fechaUltim = format.parse(fechaUltimaModificacionContrasena);
+		fechaAct = format.parse(fechaActual);
+		
+		Calendar startCal = Calendar.getInstance();
+	    startCal.setTime(fechaUltim);        
+	    Calendar endCal = Calendar.getInstance();
+	    endCal.setTime(fechaAct);
+	    int diferencia = 0;
+	    if (startCal.getTimeInMillis() == endCal.getTimeInMillis()) {
+	        
+	    }
+	    if (startCal.getTimeInMillis() > endCal.getTimeInMillis()) {
+	        startCal.setTime(fechaAct);
+	        endCal.setTime(fechaUltim);
+	    }
+	    do {
+	        startCal.add(Calendar.DAY_OF_MONTH, 1);
+	        if (startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+	            ++diferencia;
+	        }
+	    } while (startCal.getTimeInMillis() < endCal.getTimeInMillis()); //excluding end date
+	    System.out.println("DIAS DIFERENCIA " + diferencia);
+		if(diferencia > 15){
+			validacion = false;
+		}
+		
+		return validacion;
+	}
+
+	@Override
+	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid) {
+		usuarioDao.modificarCredencialesExpiradas(estatusCredencialesExpiradas, soeid);
+	}
+
+	@Override
+	public void renovarCredenciales(String passwordActual, String passwordNuevo, String fechaTransaccion, String soeid) {
+		usuarioDao.renovarCredenciales(passwordActual, passwordNuevo, fechaTransaccion, soeid);
+	}
+
+	@Override
+	public int validarCambioContraseña(CustomUsuario principal, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo) {
+		int validacion = 0;
+		String patronContraseñaSegura = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%./_-]).{6,20})";
+		Calendar fecha = new GregorianCalendar();
+		String fechaTransaccion= fecha.get(Calendar.DAY_OF_MONTH)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.YEAR);
+		
+		Usuario usuario = usuarioDao.obtenerUsuario(principal.getUsername());
+		if(!passwordEncoder.matches(passwordActual,usuario.getPassword())){
+			validacion = 1;
+		}else if(!passwordNuevo.equals(confirmacionPasswordNuevo)){
+			validacion = 2;
+		}else if(passwordNuevo.equals(passwordActual)){
+			validacion = 3;
+		}else if(!passwordNuevo.matches(patronContraseñaSegura)){
+			validacion = 4;
+		}else{
+			usuarioDao.renovarCredenciales(passwordEncoder.encode(passwordActual), passwordEncoder.encode(passwordNuevo), fechaTransaccion, principal.getUsername());
+		}
+		return validacion;
 	}
 
 }

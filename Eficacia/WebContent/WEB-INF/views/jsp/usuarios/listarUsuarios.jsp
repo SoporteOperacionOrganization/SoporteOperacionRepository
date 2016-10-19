@@ -54,6 +54,7 @@
 	                    </c:otherwise>
 	                </c:choose>
 	            </td>
+	            ${usuario.soeid}
 				<td>
 					<c:choose>
 	                    <c:when test="${pageContext.request.userPrincipal.name == usuario.soeid}">

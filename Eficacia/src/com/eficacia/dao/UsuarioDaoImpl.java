@@ -7,12 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.eficacia.model.Agenda;
 import com.eficacia.model.Usuario;
 @Repository
 public class UsuarioDaoImpl implements UsuarioDao {
+	
+	 @Autowired
+	 private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -59,6 +63,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void agregarUsuario(Usuario usuario) {
 		session = sessionFactory.getCurrentSession();
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		session.save(usuario);
 	}
 
@@ -92,6 +97,27 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		query = session.createQuery("SELECT count(u) from Usuario u");
 		Long count = (Long) query.uniqueResult();
 		return count;
+	}
+
+	@Override
+	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("UPDATE Usuario u SET usuarioCredencialesNoExpiradas = :usuarioCredencialesNoExpiradas WHERE soeid = :soeid");
+		query.setParameter("usuarioCredencialesNoExpiradas", estatusCredencialesExpiradas);
+		query.setParameter("soeid", soeid);
+		query.executeUpdate();
+	}
+
+	@Override
+	public void renovarCredenciales(String passwordActual, String passwordNuevo, String fechaTransaccion, String soeid) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("UPDATE Usuario u SET password = :password, usuarioContrasenaAnterior = :usuarioContrasenaAnterior, usuarioCredencialesNoExpiradas = :usuarioCredencialesNoExpiradas, usuarioFechaExpiracionContrasena = :usuarioFechaExpiracionContrasena WHERE soeid = :soeid");
+		query.setParameter("password", passwordNuevo);
+		query.setParameter("usuarioContrasenaAnterior", passwordActual);
+		query.setParameter("soeid", soeid);
+		query.setParameter("usuarioCredencialesNoExpiradas", true);
+		query.setParameter("usuarioFechaExpiracionContrasena", fechaTransaccion);
+		query.executeUpdate();
 	}
 
 }

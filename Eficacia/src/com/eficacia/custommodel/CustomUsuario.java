@@ -8,17 +8,18 @@ public class CustomUsuario extends org.springframework.security.core.userdetails
 	
     private String nombre;
     private String apellidoPaterno;
+    private boolean credencialesNoExpiradas;
 	
     public CustomUsuario(String username, 
     					 String password, 
     					 boolean enabled, 
     					 boolean accountNonExpired,
-    					 boolean credentialsNonExpired, 
+    					 boolean credencialesExpiradas, 
     					 boolean accountNonLocked,
     					 Collection<? extends GrantedAuthority> authorities, 
     					 String nombre, 
     					 String apellidoPaterno) {
-    				super(username, password, enabled, accountNonExpired, credentialsNonExpired,
+    				super(username, password, enabled, accountNonExpired, credencialesExpiradas,
     				accountNonLocked, authorities);
 
 		this.setNombre(nombre);
@@ -39,6 +40,14 @@ public class CustomUsuario extends org.springframework.security.core.userdetails
 
 	public void setApellidoPaterno(String apellidoPaterno) {
 		this.apellidoPaterno = apellidoPaterno;
+	}
+
+	public boolean isCredencialesNoExpiradas() {
+		return credencialesNoExpiradas;
+	}
+
+	public void setCredencialesNoExpiradas(boolean credencialesNoExpiradas) {
+		this.credencialesNoExpiradas = credencialesNoExpiradas;
 	}
 	
 	

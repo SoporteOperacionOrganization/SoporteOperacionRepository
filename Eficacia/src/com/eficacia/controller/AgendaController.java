@@ -68,6 +68,7 @@ public class AgendaController {
 	@RequestMapping(value = "/filtrarAgendas", method = RequestMethod.GET)
 	public String filtrarAgendas(Model model, @RequestParam("razonSocial") String razonSocial){
 		List<Agenda> agendas = agendaService.filtrarAgendas(razonSocial);
+		model.addAttribute("count", agendaService.contarRegistros());
 		model.addAttribute("agendas", agendas);
 		return "agendas/listarAgendas";
 	}
