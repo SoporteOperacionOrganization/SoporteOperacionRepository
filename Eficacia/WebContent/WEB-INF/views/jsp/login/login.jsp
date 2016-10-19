@@ -65,7 +65,7 @@
 
                                     <div class="col-sm-12 controls">
                                       <!-- <a id="btn-login" class="btn btn-success">Login  </a> -->
-                                      <input type="submit" class="btn btn-success" value="Ingresar"/>
+                                      <input type="submit" class="btn btn-success" value="IngresarPrueba"/>
                                       
 
                                     </div>
