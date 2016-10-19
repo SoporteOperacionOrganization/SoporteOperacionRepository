@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 /com/
+=======
+/files/
+/application.properties
+/WebContent/WEB-INF/spring-excel-views.xml
+>>>>>>> branch 'master' of https://github.com/SoporteOperacionOrganization/SoporteOperacionRepository.git
