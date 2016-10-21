@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -15,51 +14,29 @@
 <script src="${datepickerJs}"></script>
 <script>
 $( document ).ready(function() {
-	var date = new Date();
-	var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-	$('.datepicker').datepicker({ 
-    	format: 'yyyy/mm/dd',
-		startDate: '2016/10/13',
-		minDate: '2016/10/14',
-		autoclose: true
-	});
-});
-
-/*$( document ).ready(function() {
     $('.datepicker').datepicker({
     	format: 'dd/mm/yyyy',
         startDate: '-3d'
     });
-});*/
+});
 </script>
+<jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-<jsp:include page="../fragments/header.jsp" />
-
-	<div class="well lead tituloPagina">REGISTRAR AGENDA</div>
-	<div class="contenidoAgendas">
+<div class="container"
+		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
+		<div style="text-align: center; font-weight: bold;font-size: 20px">REGISTRAR AGENDA</div>
+		<br>
+	<div class="contenidoUsuarios">
 	<div class="contenedorFormulario">
 	<div class="generic-container">
     
     <form:form method="POST" modelAttribute="agenda" class="form-horizontal">
         <form:input type="hidden" path="id" id="id"/>
         
-        <!-- <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="codigoTransaccion">Código transacción</label>
-                <div class="col-md-7">
-                    <form:input type="text" path="codigoTransaccion" id="codigoTransaccion" class="form-control input-sm"/>
-                    <div class="has-error errores">
-                        <form:errors path="codigoTransaccion" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="fechaTransaccion">Fecha transacción</label>
+                <label class="col-md-3 control-lable" for="fechaTransaccion" >Fecha transacción</label>
                 <div class="col-md-7">
                     <form:input type="text" path="fechaTransaccion" id="fechaTransaccion" value="${fechaTransaccion}" class="form-control input-sm" readonly="true" />
                     <div class="has-error errores">
@@ -76,6 +53,7 @@ $( document ).ready(function() {
                     <form:input type="text" path="fechaCierre" id="fechaCierre" class="form-control input-sm datepicker"/>
                     <div class="has-error errores">
                         <form:errors path="fechaCierre" class="help-inline"/>
+                        
                     </div>
                 </div>
             </div>
@@ -119,7 +97,7 @@ $( document ).ready(function() {
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="numeroTelefono">Teléfono</label>
+                <label class="col-md-3 control-lable" for="numeroTelefono">Telefono</label>
                 <div class="col-md-7">
                     <form:input type="text" path="numeroTelefono" id="numeroTelefono" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -178,7 +156,12 @@ $( document ).ready(function() {
                         <input type="submit" value="Modificar" class="btn btn-primary custom-width"/> o <a href="<c:url value='/listarAgendas' />">Cancelar</a>
                     </c:when>
                     <c:otherwise>
-                        <input type="submit" value="Agregar" class="btn btn-primary custom-width"/> o <a href="<c:url value='/listarAgendas' />">Cancelar</a>
+                    <input type="submit" value="Agregar"
+											class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
+											
+												<a href="<c:url value='/listarAgendas' />"
+										class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>
+						
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -190,5 +173,6 @@ $( document ).ready(function() {
     </div>
 
 <jsp:include page="../fragments/footer.jsp" />
+</div>
 </body>
 </html>

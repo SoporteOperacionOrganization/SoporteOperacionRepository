@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -13,10 +12,14 @@
 <spring:url value="resources/js/bootstrap-filestyle.min.js" var="fileStyleMinJs" />
 <script src="${fileStyleJs}"></script>
 <script src="${fileStyleMinJs}"></script>
+<jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-<jsp:include page="../fragments/header.jsp" />
-<div class="well lead tituloPagina">CARGA MASIVA</div>
+
+<div class="container"
+		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
+		<div style="text-align: center; font-weight: bold;font-size: 20px">CARGA MASIVA</div>
+<br>
 
 <div class="contenidoUsuarios">
 	<div class="generic-container">
@@ -29,11 +32,16 @@
 			<br/><br/>
 			<input type="submit" class="btn btn-primary" value="Cargar archivo">
 		</form:form>
-		<form:form modelAttribute="file" method="GET" enctype="multipart/form-data"> 
-		<div>
-			<a href="<c:url value='/descargarArchivo/1' />">Descargar Layout</a>
-		</div>
-		</form:form>
+		
+		
+		 <form:form modelAttribute="file" method="GET" enctype="multipart/form-data"> 
+             <div>
+                    <a href="<c:url value='/descargarArchivo/1' />">Descargar Layout</a>
+             </div>
+             </form:form>
+		
+		
+		
 		<div>
 			<c:if test="${not empty estatus}">
 	         <div style="color:red;margin:10px 0px;font-weight:bold;">
@@ -58,8 +66,9 @@
 	</div>
 </div>
 
-
-
-<jsp:include page="../fragments/footer.jsp" />
+</div>
 </body>
+<footer style="position: fixed; bottom: 0; width: 100%">
+<jsp:include page="../fragments/footer.jsp"  />	
+	</footer>
 </html>

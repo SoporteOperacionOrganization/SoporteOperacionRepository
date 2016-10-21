@@ -91,69 +91,67 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 	
 	@Override
-	public String validarExcel(MultipartFile excelFile) {
-		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-		String estatusCarga = "";
-		int i = 0;
-		try{
-			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-			
-			List<Agenda> agendas = new ArrayList<>();
-			
-			XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
-			XSSFSheet worksheet = workbook.getSheetAt(0);
-			while (i <= worksheet.getLastRowNum()) {
-				Agenda agenda = new Agenda();
-				XSSFRow row = worksheet.getRow(i++);
-				/*if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}*/
-				
-				if(validarCamposFecha(row,0)){agenda.setFechaTransaccion(df.format(row.getCell(0).getDateCellValue()));}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
-				
-				if(validarCamposFecha(row,1)){agenda.setFechaCierre(df.format(row.getCell(1).getDateCellValue()));}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}
-				
-				
-				if(validarCamposNumericos(row,2)){agenda.setNumeroCliente(row.getCell(2).getRawValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(2);break;}
-				
-				String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
-				String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
-				String noCliente = agenda.getNumeroCliente();
-				int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
-				String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
-				agenda.setCodigoTransaccion(codigoTransaccion);
-				
-				if(validarCamposNoNumericos(row,3)){agenda.setRazonSocial(row.getCell(3).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(3);break;}
-				
-				if(validarCamposNoNumericos(row,4)){agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(4);break;}
-				
-				
-				agenda.setNumeroTelefono(row.getCell(5).getRawValue());
-				
-				agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));
-				
-				if(validarCamposNoNumericos(row,7)){agenda.setEjecutivo(row.getCell(7).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(7);break;}
-				
-				if(validarCamposNoNumericos(row,8)){agenda.setSede(row.getCell(8).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(8);break;}
-				
-				
-				agendas.add(agenda);
-			}		
-			if(estatusCarga.equals("")){
-				agendaDao.cargaMasiva(agendas);
-			}
-				workbook.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return estatusCarga;
-	}
+    public String validarExcel(MultipartFile excelFile) {
+          List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+          String estatusCarga = "";
+          int i = 0;
+          try{
+                 DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+                 
+                 List<Agenda> agendas = new ArrayList<>();
+                 
+                 XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
+                 XSSFSheet worksheet = workbook.getSheetAt(0);
+                 while (i <= worksheet.getLastRowNum()) {
+                        Agenda agenda = new Agenda();
+                        XSSFRow row = worksheet.getRow(i++);
+                        /*if(validarCamposNumericos(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getRawValue());}
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}*/
+                        
+                        if(validarCamposFecha(row,0)){agenda.setFechaTransaccion(df.format(row.getCell(0).getDateCellValue()));}
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
+                        
+                        if(validarCamposFecha(row,1)){agenda.setFechaCierre(df.format(row.getCell(1).getDateCellValue()));}
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}
+                        
+                        
+                        if(validarCamposNumericos(row,2)){
+                               agenda.setNumeroCliente(row.getCell(2).getRawValue());
+                               System.out.println("dentroi de setNumeroCliente");
+                               }
+                        else{
+                               estatusCarga = "Error en linea " + i + " celda " + letras.get(2);
+                               break;
+                               }
+                        
+                        String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
+                        String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
+                        String noCliente = agenda.getNumeroCliente();
+                        int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
+                        String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
+                        agenda.setCodigoTransaccion(codigoTransaccion);
+                        
+                        agenda.setRazonSocial(row.getCell(3).getStringCellValue());
+                        agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());
+                        agenda.setNumeroTelefono(row.getCell(5).getRawValue());
+                        
+                        agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));
+                        
+                        agenda.setEjecutivo(row.getCell(7).getStringCellValue());
+                        agenda.setSede(row.getCell(8).getStringCellValue());
+                        
+                        agendas.add(agenda);
+                 }            
+                 if(estatusCarga.equals("")){
+                        agendaDao.cargaMasiva(agendas);
+                 }
+                        workbook.close();
+          } catch (Exception e) {
+                 e.printStackTrace();
+          }
+          return estatusCarga;
+    }
+
 	
 	public ArrayList<String> registrosNoEncontrados(MultipartFile excelFile){
 		ArrayList<String> noEncontrados= new ArrayList<>();

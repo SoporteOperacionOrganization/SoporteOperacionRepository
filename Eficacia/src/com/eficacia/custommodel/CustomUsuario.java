@@ -9,13 +9,14 @@ public class CustomUsuario extends org.springframework.security.core.userdetails
     private String nombre;
     private String apellidoPaterno;
     private boolean credencialesNoExpiradas;
-	
+    private String rol;
     public CustomUsuario(String username, 
     					 String password, 
     					 boolean enabled, 
     					 boolean accountNonExpired,
     					 boolean credencialesExpiradas, 
     					 boolean accountNonLocked,
+    					 String rol,
     					 Collection<? extends GrantedAuthority> authorities, 
     					 String nombre, 
     					 String apellidoPaterno) {
@@ -24,7 +25,8 @@ public class CustomUsuario extends org.springframework.security.core.userdetails
 
 		this.setNombre(nombre);
 		this.setApellidoPaterno(apellidoPaterno);
-		}
+		this.setRol(rol);
+    }
 
 	public String getNombre() {
 		return nombre;
@@ -50,7 +52,13 @@ public class CustomUsuario extends org.springframework.security.core.userdetails
 		this.credencialesNoExpiradas = credencialesNoExpiradas;
 	}
 	
+	public String getRol() {
+		return rol;
+	}
 	
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
     
     
     

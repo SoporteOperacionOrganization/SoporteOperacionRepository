@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -13,13 +13,16 @@
 <spring:url value="resources/js/bootstrap-strength-meter.js" var="strength" />
 <script src="${passwordScoreJs}"></script>
 <script src="${strength}"></script>
+<jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-<jsp:include page="../fragments/header.jsp" />
-	<div class="well lead tituloPagina">REGISTRAR USUARIO</div>
-	<div class="contenidoUsuarios">
-	<div class="contenedorFormulario">
-	<div class="generic-container">
+
+       <div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
+		<div style="text-align: center; font-weight: bold;font-size: 20px" >REGISTRAR USUARIO</div>
+		<br>
+       <div class="contenidoUsuarios">
+       <div class="contenedorFormulario">
+       <div class="generic-container">
     
     <form:form method="POST" modelAttribute="usuario" class="form-horizontal">
         <form:input type="hidden" path="id" id="id"/>
@@ -88,13 +91,15 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="password" id="example-getting-started-input" class="form-control input-sm"  data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>               
+                    <form:input type="password" path="password" id="example-getting-started-input"
+                     class="form-control input-sm"  data-toggle="tooltip" 
+                     title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>               
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
                     </div>
                 </div>
                 <div class="col-md-2" id="example-getting-started-text" style="display:inline;font-weight:bold;padding:6px 12px;">
-        		</div>
+                    </div>
             </div>
             
         </div>
@@ -115,16 +120,16 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="rol">Perfil</label>
                 <div class="col-md-7">
-                	<form:select path="rol" class="form-control input-sm">
-						<form:options itemValue="id" itemLabel="nombre"  items="${roles}"></form:options>
-					</form:select>
+                    <form:select path="rol" class="form-control input-sm">
+                                        <form:options itemValue="id" itemLabel="nombre"  items="${roles}"></form:options>
+                                  </form:select>
                 
                     <div class="has-error errores">
                         <form:errors path="rol" class="help-inline"/>
                     </div>
                 </div>
             </div>
-        </div> 	
+        </div>      
         
         <br/>
         
@@ -135,8 +140,16 @@
                         <input type="submit" value="Modificar" class="btn btn-primary btn-sm"/> o <a href="<c:url value='/listarUsuarios' />">Cancelar</a>
                     </c:when>
                     <c:otherwise>
-                        <input type="submit" value="Agregar" class="btn btn-primary custom-width"/> o <a href="<c:url value='/listarUsuarios' />">Cancelar</a>
+                                       <input type="submit" value="Agregar"
+											class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
+											
+												<a href="<c:url value='/listarUsuarios' />"
+										class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>
+						
                     </c:otherwise>
+                    
+                    
+                    
                 </c:choose>
             </div>
         </div>
@@ -145,7 +158,7 @@
     </div>
     </div>
     </div>
- 			
+                   
 <jsp:include page="../fragments/footer.jsp" />
 <script>
 $(document).ready(function(){
@@ -157,5 +170,6 @@ $(document).ready(function(){
     
 });
 </script>
+</div>
 </body>
 </html>

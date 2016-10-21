@@ -38,23 +38,28 @@ public class LoginController {
 	
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
 	public String inicio(Model model) throws ParseException{
-		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 		
-		boolean verificacionFechaUltimaModificacion = usuarioService.validarExpiracionContrasena(principal.getUsername());
-		if(!verificacionFechaUltimaModificacion){
+		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				boolean verificacionFechaUltimaModificacion = usuarioService.validarExpiracionContrasena(principal.getUsername());
+		if(!verificacionFechaUltimaModificacion ){
 			usuarioService.modificarCredencialesExpiradas(verificacionFechaUltimaModificacion, principal.getUsername());
 		}
-		
+	
 		Usuario usuario = usuarioService.obtenerUsuario(principal.getUsername());
 		if(!usuario.isUsuarioCredencialesNoExpiradas()){
-			//System.out.println("ESTATUS " + principal.isCredencialesNoExpiradas());
+		System.out.println("Prueba Rol "  + usuario.getRol().getNombre());
+			
+			System.out.println("Prueba Rol "  + usuario.getRol().getNombre());
 			return "redirect:/credencialesExpiradas";
 		}
 		
-		model.addAttribute("UsuarioSesion", principal);
-		return "login/inicio";
-	}
 	
+		model.addAttribute("UsuarioSesion", principal);
+		
+		return "login/inicio";
+		}
+	/*
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String forbidden(Model model){
 		return "errors/403";
@@ -64,7 +69,7 @@ public class LoginController {
 	public String recursoNoEncontrado(Model model){
 		return "errors/404";
 	}
-	
+	*/
 	@RequestMapping(value = "/credencialesExpiradas", method = RequestMethod.GET)
 	public String contrasenaExpirada(Model model){
 		return "login/credencialesExpiradas";

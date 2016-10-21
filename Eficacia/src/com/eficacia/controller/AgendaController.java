@@ -128,25 +128,26 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/cargarExcel", method = RequestMethod.POST)
-	public String cargarExcel(@RequestParam("archivo") MultipartFile excelfile, @Valid File file, BindingResult result, final RedirectAttributes redirectAttributes , Model model){
-		if(result.hasErrors()){
-			return "agendas/cargaMasiva";
-		}
-		String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
-		System.out.println("extsion " + extension);
-		if(!"xlsx".equals(extension)){
-			redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls.");
-		}else{
-			String estatus = agendaService.validarExcel(excelfile);
-			if("".equals(estatus)){
-				redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
-				
-				
-			}
-			redirectAttributes.addFlashAttribute("estatus", estatus);
-		}
-		return "redirect:/cargaMasiva";
-	}
+    public String cargarExcel(@RequestParam("archivo") MultipartFile excelfile, @Valid com.eficacia.model.File file, BindingResult result, final RedirectAttributes redirectAttributes , Model model){
+          if(result.hasErrors()){
+                 return "agendas/cargaMasiva";
+          }
+          String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
+          System.out.println("extsion " + extension);
+          if(!"xlsx".equals(extension) || !"xlsm".equals(extension) ){
+                 redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls. , xlsm");
+          }else{
+                 String estatus = agendaService.validarExcel(excelfile);
+                 if("".equals(estatus)){
+                        redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
+                        
+                        
+                 }
+                 redirectAttributes.addFlashAttribute("estatus", estatus);
+          }
+          return "redirect:/cargaMasiva";
+    }
+
 	
 	@RequestMapping(value = "/eliminacionMasiva", method = RequestMethod.GET)
 	public String eliminacionMasiva(Model model){
@@ -155,7 +156,7 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/cargarExcelEliminacion", method = RequestMethod.POST)
-	public String cargarExcelEliminacion(@RequestParam("archivo") MultipartFile excelfile,  @Valid File file, BindingResult result, Model model){
+	public String cargarExcelEliminacion(@RequestParam("archivo") MultipartFile excelfile,  @Valid com.eficacia.model.File file, BindingResult result, Model model){
 		if(result.hasErrors()){	
 			return "agendas/eliminacionMasiva";
 		}

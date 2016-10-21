@@ -87,36 +87,37 @@ public class AgendaDaoImpl implements AgendaDao {
 	}
 
 	@Override
-	public String cargaMasiva(List<Agenda> agendas) {
-		int tamano = agendas.size();
-		SQLQuery query;
-		for(Agenda age : agendas){
-			
-			session = sessionFactory.getCurrentSession();
-			session.save(age);
-			
-			/*session = sessionFactory.openSession();
-			query = session.createSQLQuery("INSERT INTO agenda(agendaCodigoTransaccion, agendaFechaTransaccion, agendaFechaCiere, agendaNumeroCliente, "
-					+ "agendaRazonSocial, agendaNombreRepresentante, agendaNumeroTelefono , agendaSoeid , agendaEjecutivo , agendaSede) values (?,?,?,?,?,?,?,?,?,?)");
-		    query.setParameter(0, age.getCodigoTransaccion());
-		    query.setParameter(1, age.getFechaTransaccion());
-		    query.setParameter(2, age.getFechaCierre());
-		    query.setParameter(3, age.getNumeroCliente());
-		    query.setParameter(4, age.getRazonSocial());
-		    query.setParameter(5, age.getNombreRepresentante());
-		    query.setParameter(6, age.getNumeroTelefono());
-		    query.setParameter(7, age.getSoeid());
-		    query.setParameter(8, age.getEjecutivo());
-		    query.setParameter(9, age.getSede());
-		    
-		    query.executeUpdate();
-			
-			session.flush();
-			session.clear();*/
-		}
-		
-		return "";
-	}
+    public String cargaMasiva(List<Agenda> agendas) {
+          int tamano = agendas.size();
+          SQLQuery query;
+          for(Agenda age : agendas){
+                 
+                 session = sessionFactory.getCurrentSession();
+                 session.save(age);
+                 
+                 /*session = sessionFactory.openSession();
+                 query = session.createSQLQuery("INSERT INTO agenda(agendaCodigoTransaccion, agendaFechaTransaccion, agendaFechaCiere, agendaNumeroCliente, "
+                               + "agendaRazonSocial, agendaNombreRepresentante, agendaNumeroTelefono , agendaSoeid , agendaEjecutivo , agendaSede) values (?,?,?,?,?,?,?,?,?,?)");
+              query.setParameter(0, age.getCodigoTransaccion());
+              query.setParameter(1, age.getFechaTransaccion());
+              query.setParameter(2, age.getFechaCierre());
+              query.setParameter(3, age.getNumeroCliente());
+              query.setParameter(4, age.getRazonSocial());
+              query.setParameter(5, age.getNombreRepresentante());
+              query.setParameter(6, age.getNumeroTelefono());
+              query.setParameter(7, age.getSoeid());
+              query.setParameter(8, age.getEjecutivo());
+              query.setParameter(9, age.getSede());
+              
+              query.executeUpdate();
+                 
+                 session.flush();
+                 session.clear();*/
+          }
+          
+          return "";
+    }
+
 	
 	@Override
 	public String eliminacionMasiva(List<Agenda> agendas){

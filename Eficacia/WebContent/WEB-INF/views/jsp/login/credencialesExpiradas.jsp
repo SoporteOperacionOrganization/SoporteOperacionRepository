@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib prefix="tag" uri="http://eficacia/paginacion.tld"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cambiar contraseña</title>
+<title>Usuarios</title>
 <jsp:include page="../fragments/resources.jsp" />
+<jsp:include page="../fragments/header.jsp"  />
 </head>
 <body>
-<jsp:include page="../fragments/header.jsp" />
-	
-	<div class="well lead tituloPagina">CAMBIAR CONTRASEÑA</div>
-	
+<div class="container" style="width: 100% ; margin-top: 8em; ; z-index:1; position: absolute  ;">
+		
 	<form action="contrasenaExpirada">
+	<div class="contenidoUsuarios">
 	<div style="margin-top:50px;auto;" class="container bootstrap snippet">
-    <div style="border:solid;margin: 0px auto;" >
+    <div  >
         <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
             <div style="border-color: #003478;" class="panel panel-info">
                 <div style="background:#003478;color:#FFFFFF;font-weight:bold;" class="panel-heading">
@@ -89,6 +91,7 @@
         </div>
     </div>
 </div>
+</div>
 	</form>
 	
 	
@@ -100,5 +103,6 @@ $(document).ready(function(){
     
 });
 </script>
+</div>
 </body>
 </html>
