@@ -19,7 +19,8 @@
 		GESTIONAR AGENDAS</div>
 	
 
-    <form class="navbar-form " role="search" action="filtrarAgendas" style="background-color: white;">
+    <form class="navbar-form " role="search" action="filtrarAgendas" 
+    style="background-color: white; text-align: right; margin: 0em 6em 0em 0em">
       <div style="margin-left:72px;" class="form-group">
         <input type="text" name="razonSocial" class="form-control" placeholder="Buscar por razón social">
       </div>      
@@ -27,6 +28,8 @@
     </form>
 	<br />
 	<div class="contenidoUsuarios">
+	<c:if test="${not empty agendas}">
+	
 		<table class="table table-default table-striped tabla" style="font-size: 14px; width: 100%">
 			<tr class="cabeceraTabla">
 				<th>Código transacción</th>
@@ -74,6 +77,7 @@
 			</tr>		
 			</c:forEach>
 		</table>
+		
 		<div class="paginacion">
               <div >
                     <tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
@@ -89,12 +93,14 @@
 			<!-- <a href="<c:url value='/exportarAgendas' />" class="btn btn-success custom-width">Exportar</a> -->
 		
 		</div>
-		
+		</c:if>
 	</div>
 	
-<jsp:include page="../fragments/footer.jsp" />
+
 	</div>
 	
 </body>
-
+<footer style="position: fixed; bottom: 0; width: 100%">
+<jsp:include page="../fragments/footer.jsp"  />	
+	</footer>
 </html>

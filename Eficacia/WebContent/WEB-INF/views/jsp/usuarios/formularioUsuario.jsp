@@ -14,6 +14,17 @@
 <script src="${passwordScoreJs}"></script>
 <script src="${strength}"></script>
 <jsp:include page="../fragments/header.jsp" />
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    
+    $('#example-getting-started-input').strengthMeter('text', {
+        container: $('#example-getting-started-text')
+    });
+    
+});
+</script>
 </head>
 <body>
 
@@ -158,18 +169,7 @@
     </div>
     </div>
     </div>
-                   
-<jsp:include page="../fragments/footer.jsp" />
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-    
-    $('#example-getting-started-input').strengthMeter('text', {
-        container: $('#example-getting-started-text')
-    });
-    
-});
-</script>
+<jsp:include page="../fragments/footer.jsp"  />	
 </div>
-</body>
+
 </html>

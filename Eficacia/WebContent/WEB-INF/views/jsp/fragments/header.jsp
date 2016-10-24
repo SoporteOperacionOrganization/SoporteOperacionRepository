@@ -7,23 +7,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<div style="background-image:url('resources/Images/Logo_CitiBanamex.png'); background-repeat:repeat-x; 
+	<div style="background-image:url('resources/Images/Logos/Logo_CitiBanamex.png'); background-repeat:repeat-x; 
 	top: 0%; ;	z-index:3 ; position: fixed; width: 100%; height: 100px">
 		
-		<table style="width: 100%; position: fixed; margin: 0%">
+		<table style="width: 100%; position: fixed;">
 			<tr>
 				<td  width="68%">
 					<h3
 						style="text-align: right; color: #D7D7D7">SISTEMA DE GESTION EFICASIA</h3>
 				</td>
-				<td style="text-align: right; width: 32%;"><br /> 
+				<td style="width: 32%; text-align: right;  margin: 0px 10px 0px 0px "> 
 				
 						<h4>
-							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px">
+							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px; margin: 0px 10px 0px 0px ">
 							<sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">Bienvenido:</sec:authorize></span>
 						</h4>
 						<h5>
-							<span style="color: #fff; text-align: left; font-size: 14px"> <c:if
+							<span style="color: #fff; text-align: left; font-size: 14px;  margin: 0px 10px 0px 0px"> <c:if
 									test="${UsuarioSesion != null}">
 									<span class="tranformarMayusculas"><sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
 									${UsuarioSesion.nombre} ${UsuarioSesion.apellidoPaterno}</sec:authorize> </span>
@@ -37,7 +37,7 @@
 		</table>
 		
 		<sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
-			<table style="width: 100%; margin-top: 5.1em; height: 2em;">
+			<table style="width: 100%; margin-top: 4.5em; height: 2em;">
 			<tr >
 					<td colspan="4" style="font-size: 14px">
 			<nav class="navbar-default " 
@@ -45,6 +45,8 @@
 							background-color:#013F7A ;border-color: #013F7A;
 							 border-radius: 0px 0px 0px 0px;">
 							<div class="container" style="width: 100%; height: 3.4em" >
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+								
 								<ul class="nav navbar-nav navbar-left" >
 									<li style=" height: 3.4em;" class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -56,6 +58,7 @@
 										
 										</li>
 								</ul>
+								</sec:authorize>
 								<ul class="nav navbar-nav navbar-left">
 									<li style=" height: 3.4em;" class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -66,7 +69,7 @@
 											<li role="separator" class="divider dividerColor"></li>
 											<li><a class="subtitulosDropDown"
 												style="color: #000; font-weight: bold; cursor: default;"
-												>Carga masiva</a></li>
+												>Carga masiva &nbsp;<span class="glyphicon glyphicon-upload"></span></a></li>
 											<li role="separator" class="divider"></li>
 											<li><a href="<c:url value='/cargaMasiva' />">Agregar</a></li>
 											<li><a href="<c:url value='/eliminacionMasiva' />">Eliminar</a></li>

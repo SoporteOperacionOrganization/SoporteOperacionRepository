@@ -13,9 +13,9 @@
 <body>
 <jsp:include page="../fragments/header.jsp" />
 	<div class="container" style="position:fixed; width: 100% ; height: 100%" >
-	<div  style="margin-top: 4em;   width: 100% ; height: 83%; 
+	<div  style="margin-top: 6em;   width: 100% ; height: 83%; 
 	margin-left: 0%; background-color:#FBFDFC ;   border-radius: 1px;"  >
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style=" width: 30% ; height: 95% ; margin-left: 40%; ">
+		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style=" width: 20% ; height: 95% ; margin-left: 43%; ">
 			<form id="loginform" role="form" 
 				action="${pageContext.request.contextPath}/j_spring_security_check"
 				method="POST">
@@ -24,13 +24,13 @@
 		
 				<div style="display: none" id="login-alert"
 					class="alert alert-danger col-sm-12"></div>
-				<div style="margin-bottom: 20px; width: 65%" class="input-group">
+				<div style="margin-bottom: 20px; width: 100%" class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-user"></i></span> <input id="login-username"
 						type="text" class="form-control" name="soeid" value=""
 						placeholder="Soeid" required="required">
 				</div>
-				<div style="margin-bottom: 20px; width: 65%" class="input-group">
+				<div style="margin-bottom: 20px; width: 100%" class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
 						type="password" class="form-control" name="contrasena"
