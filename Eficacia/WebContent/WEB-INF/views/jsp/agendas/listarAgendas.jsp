@@ -19,14 +19,17 @@
 		GESTIONAR AGENDAS</div>
 	
 
-    <form class="navbar-form " role="search" action="filtrarAgendas" style="background-color: white;">
+    <form class="navbar-form " role="search" action="filtrarAgendas" 
+    style="background-color: white; text-align: right; margin: 0em 6em 0em 0em">
       <div style="margin-left:72px;" class="form-group">
         <input type="text" name="razonSocial" class="form-control" placeholder="Buscar por razón social">
       </div>      
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
     </form>
 	<br />
+
 	<div class="contenidoAgendas">
+	<c:if test="${not empty agendas}">
 		<table class="table table-striped table-hover tabla" style="font-size: 14px; width: 100%">
 		<thead>
 			<tr class="cabeceraTabla">
@@ -78,7 +81,12 @@
 			</c:forEach>
 			</tbody>
 		</table>
+
 		<!-- <div class="paginacion">
+=======
+		
+		<div class="paginacion">
+>>>>>>> branch 'master' of https://github.com/SoporteOperacionOrganization/SoporteOperacionRepository.git
               <div >
                     <tag:paginate limite="5" offset="${offset}" conteo="${count}" razonSocial="${razonSocial}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     <span class="label label-primary">Total: ${count}</span>
@@ -112,12 +120,14 @@
 			<!-- <a href="<c:url value='/exportarAgendas' />" class="btn btn-success custom-width">Exportar</a> -->
 		
 		</div>
-		
+		</c:if>
 	</div>
 	
-<jsp:include page="../fragments/footer.jsp" />
+
 	</div>
 	
 </body>
-
+<footer style="position: fixed; bottom: 0; width: 100%">
+<jsp:include page="../fragments/footer.jsp"  />	
+	</footer>
 </html>

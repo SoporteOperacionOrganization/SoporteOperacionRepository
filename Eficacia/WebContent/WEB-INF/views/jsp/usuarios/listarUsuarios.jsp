@@ -4,23 +4,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	<%@ taglib prefix="tag" uri="http://eficacia/paginacion.tld"%>
+<%@ taglib prefix="tag" uri="http://eficacia/paginacion.tld"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Usuarios</title>
 <jsp:include page="../fragments/resources.jsp" />
-<jsp:include page="../fragments/header.jsp"  />
+<jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-<div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px" >CONSULTAR
-		USUARIOS</div>
-		
-		
-		<form class="navbar-form " style="background-color: white; text-align: right;" role="search"
-			action="filtrarUsuarios">
-			<div style="margin-left: 72px;" class="form-group">
+	<div class="container"
+		style="width: 100%; margin-top: 10em;; z-index: 1; position: absolute;">
+		<div style="text-align: center; font-weight: bold; font-size: 20px">CONSULTAR
+			USUARIOS</div>
+
+
+		<form class="navbar-form "
+			style="background-color: white; text-align: right; margin: 0em 11em 0em 0em"
+			role="search" action="filtrarUsuarios">
+			<div class="form-group">
 				<input type="text" name="soeid" class="form-control"
 					placeholder="Buscar por soeid">
 			</div>
@@ -30,6 +32,7 @@
 		</form>
 	<br />
 	<div class="contenidoUsuarios">
+	<c:if test="${not empty usuarios}">
 		<table class="table table-striped table-hover tabla" style="font-size: 14px">
 			<thead>
 			<tr class="cabeceraTabla">
@@ -50,12 +53,12 @@
 			<c:forEach items="${usuarios}" var="usuario" varStatus="indice" >
 				<tr>
 				<td class="negrita">${indice.index + 1}</td>
-					<td>${usuario.soeid}</td>
-					<td>${usuario.nombre}</td>
-					<td>${usuario.apellidoPaterno}</td>
-					<td>${usuario.apellidoMaterno}</td>
-					<td>${usuario.telefono}</td>
-					<td>${usuario.rol.nombre}</td>
+					<td >${usuario.soeid}</td>
+					<td >${usuario.nombre}</td>
+					<td >${usuario.apellidoPaterno}</td>
+					<td >${usuario.apellidoMaterno}</td>
+					<td >${usuario.telefono}</td>
+					<td >${usuario.rol.nombre}</td>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<td><c:choose>
 								<c:when
@@ -104,12 +107,12 @@
 			</c:otherwise>
 		</c:choose>
 
+		</c:if>
 	</div>
-	<jsp:include page="../fragments/footer.jsp" />
-	</div>
-	
-</body>
-<footer>
 
-</footer>
+
+</body>
+	<footer style="position: fixed; bottom: 0; width: 100%">
+<jsp:include page="../fragments/footer.jsp"  />	
+	</footer>
 </html>
