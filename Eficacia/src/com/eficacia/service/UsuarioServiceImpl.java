@@ -55,7 +55,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario entity = usuarioDao.obtenerUsuario(usuario.getSoeid());
 		if(entity != null){
 			entity.setSoeid(usuario.getSoeid());
-			entity.setPassword(usuario.getPassword());
+			if(usuario.getPassword().length() < 15){
+				entity.setPassword(passwordEncoder.encode(usuario.getPassword()));
+			}
 			entity.setNombre(usuario.getNombre());
 			entity.setApellidoPaterno(usuario.getApellidoPaterno());
 			entity.setApellidoMaterno(usuario.getApellidoMaterno());
@@ -71,13 +73,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> filtrarUsuarios(String soeid) {
-		return usuarioDao.filtrarUsuarios(soeid);
+	public List<Usuario> filtrarUsuarios(String soeid, Integer offset, Integer limite) {
+		return usuarioDao.filtrarUsuarios(soeid, offset, limite);
 	}
 
 	@Override
 	public Long contarRegistros() {
 		return usuarioDao.contarRegistros();
+	}
+	
+	@Override
+	public Long contarRegistrosCond(String soeid) {
+		return usuarioDao.contarRegistrosCond(soeid);
 	}
 
 	@Override

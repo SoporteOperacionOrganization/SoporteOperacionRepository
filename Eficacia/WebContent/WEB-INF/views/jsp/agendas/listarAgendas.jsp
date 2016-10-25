@@ -26,8 +26,9 @@
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
     </form>
 	<br />
-	<div class="contenidoUsuarios">
-		<table class="table table-default table-striped tabla" style="font-size: 14px; width: 100%">
+	<div class="contenidoAgendas">
+		<table class="table table-striped table-hover tabla" style="font-size: 14px; width: 100%">
+		<thead>
 			<tr class="cabeceraTabla">
 				<th>Código transacción</th>
 				<th>Fecha transacción</th>
@@ -43,6 +44,8 @@
 				<th colspan="2">Acciones</th>
 				</sec:authorize>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach items="${agendas}" var="agenda">
 			<tr>
 				<td>${agenda.codigoTransaccion}</td>
@@ -73,13 +76,33 @@
 			</sec:authorize>
 			</tr>		
 			</c:forEach>
+			</tbody>
 		</table>
-		<div class="paginacion">
+		<!-- <div class="paginacion">
               <div >
-                    <tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    <tag:paginate limite="5" offset="${offset}" conteo="${count}" razonSocial="${razonSocial}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     <span class="label label-primary">Total: ${count}</span>
              </div>
-</div>
+		</div>-->
+		
+		<c:choose>
+			<c:when test="${filtro == true}">
+				<div class="paginacion">
+              		<div>
+                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" razonSocial="${razonSocial}" uri="filtrarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<span class="label label-primary">Total: ${count}</span>
+             		</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="paginacion">
+              		<div>
+                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<span class="label label-primary">Total: ${count}</span>
+             		</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		
 		
 		

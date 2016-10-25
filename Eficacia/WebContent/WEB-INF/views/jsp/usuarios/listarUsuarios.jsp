@@ -30,7 +30,8 @@
 		</form>
 	<br />
 	<div class="contenidoUsuarios">
-		<table class="table table-default table-striped tabla" style="font-size: 14px">
+		<table class="table table-striped table-hover tabla" style="font-size: 14px">
+			<thead>
 			<tr class="cabeceraTabla">
 			<th>#</th>
 				<th>SOEID</th>
@@ -44,6 +45,8 @@
 				<th>Eliminar</th>
 				</sec:authorize>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach items="${usuarios}" var="usuario" varStatus="indice" >
 				<tr>
 				<td class="negrita">${indice.index + 1}</td>
@@ -79,15 +82,28 @@
 					</sec:authorize>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
-		<div class="paginacion">
+		
+		<c:choose>
+			<c:when test="${filtro == true}">
+				<div class="paginacion">
+                    <div >
+                           <tag:paginate limite="5" offset="${offset}" conteo="${count}" soeid="${soeid}" uri="filtrarUsuarios" siguiente="&raquo;" anterior="&laquo;" />
+                           <span class="label label-primary">Total: ${count}</span>
+                    </div>
+             	</div>
+			</c:when>
+			<c:otherwise>
+				<div class="paginacion">
                     <div >
                            <tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarUsuarios" siguiente="&raquo;" anterior="&laquo;" />
                            <span class="label label-primary">Total: ${count}</span>
                     </div>
-             </div>
+            	</div>
+			</c:otherwise>
+		</c:choose>
 
-		
 	</div>
 	<jsp:include page="../fragments/footer.jsp" />
 	</div>

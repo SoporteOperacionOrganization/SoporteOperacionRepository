@@ -32,15 +32,10 @@
 			<br/><br/>
 			<input type="submit" class="btn btn-primary" value="Cargar archivo">
 		</form:form>
-		
-		
-		 <form:form modelAttribute="file" method="GET" enctype="multipart/form-data"> 
-             <div>
-                    <a href="<c:url value='/descargarArchivo/1' />">Descargar Layout</a>
-             </div>
-             </form:form>
-		
-		
+		 
+        <div>
+        	<a href="<c:url value='/descargarArchivo/1' />">Descargar Layout</a>
+        </div>
 		
 		<div>
 			<c:if test="${not empty estatus}">

@@ -82,6 +82,10 @@
 	 text-transform: uppercase;
 }
 
+.negrita{
+	font-weight:bold;
+}
+
 /*Containers*/
 .xheadlogin {border-bottom:1px solid #0099FF; margin-top:10em; font-size:14px;}
 

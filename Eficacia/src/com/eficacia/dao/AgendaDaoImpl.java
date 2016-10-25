@@ -59,6 +59,15 @@ public class AgendaDaoImpl implements AgendaDao {
 		Long count = (Long) query.uniqueResult();
 		return count;
 	}
+	
+	@Override
+	public Long contarRegistrosPag(String razonSocial) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("SELECT count(a) from Agenda a WHERE a.razonSocial like :razonSocial");
+		query.setParameter("razonSocial", "%"+razonSocial+"%");
+		Long count = (Long) query.uniqueResult();
+		return count;
+	}
 
 	@Override
 	public void agregarAgenda(Agenda agenda) {
@@ -77,11 +86,13 @@ public class AgendaDaoImpl implements AgendaDao {
 	}
 	
 	@Override
-	public List<Agenda> filtrarAgendas(String razonSocial) {
+	public List<Agenda> filtrarAgendas(String razonSocial, Integer offset, Integer limite) {
 		List<Agenda> agendas;
 		session = sessionFactory.getCurrentSession();
 		query = session.createQuery("FROM Agenda a where a.razonSocial like :razonSocial");
 		query.setParameter("razonSocial", "%"+razonSocial+"%");
+		query.setFirstResult(offset!=null?offset:0);
+		query.setMaxResults(limite!=null?limite:5);
 		agendas = query.list();
 		return agendas;
 	}

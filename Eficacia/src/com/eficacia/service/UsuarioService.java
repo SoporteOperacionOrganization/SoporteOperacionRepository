@@ -12,7 +12,7 @@ public interface UsuarioService {
 	
 	public List<Usuario> obtenerUsuariosPaginacion(Integer offset, Integer limite);
 	
-	public List<Usuario> filtrarUsuarios(String soeid);
+	public List<Usuario> filtrarUsuarios(String soeid, Integer offset, Integer limite);
 	
 	public List<Usuario> obtenerUsuarios();
 		
@@ -23,6 +23,8 @@ public interface UsuarioService {
 	public void eliminarUsuario(String soeid);
 	
 	public Long contarRegistros();
+	
+	public Long contarRegistrosCond(String soeid);
 	
 	public boolean validarExpiracionContrasena(String soeid) throws ParseException;
 	

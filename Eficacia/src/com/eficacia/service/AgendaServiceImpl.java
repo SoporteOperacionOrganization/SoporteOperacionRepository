@@ -1,5 +1,7 @@
 package com.eficacia.service;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +49,11 @@ public class AgendaServiceImpl implements AgendaService {
 	public Long contarRegistros() {
 		return agendaDao.contarRegistros();
 	}
+	
+	@Override
+	public Long contarRegistrosPag(String razonSocial) {
+		return agendaDao.contarRegistrosPag(razonSocial);
+	}
 
 	@Override
 	public void agregarAgenda(Agenda agenda) {
@@ -61,8 +68,8 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 
 	@Override
-	public List<Agenda> filtrarAgendas(String razonSocial) {
-		return agendaDao.filtrarAgendas(razonSocial);
+	public List<Agenda> filtrarAgendas(String razonSocial, Integer offset, Integer limite) {
+		return agendaDao.filtrarAgendas(razonSocial, offset, limite);
 	}
 
 	@Override
@@ -99,8 +106,8 @@ public class AgendaServiceImpl implements AgendaService {
                  DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                  
                  List<Agenda> agendas = new ArrayList<>();
-                 
-                 XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
+                 //System.out.println("Excel File: " + excelFile.);
+                 XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());          
                  XSSFSheet worksheet = workbook.getSheetAt(0);
                  while (i <= worksheet.getLastRowNum()) {
                         Agenda agenda = new Agenda();
@@ -117,7 +124,6 @@ public class AgendaServiceImpl implements AgendaService {
                         
                         if(validarCamposNumericos(row,2)){
                                agenda.setNumeroCliente(row.getCell(2).getRawValue());
-                               System.out.println("dentroi de setNumeroCliente");
                                }
                         else{
                                estatusCarga = "Error en linea " + i + " celda " + letras.get(2);

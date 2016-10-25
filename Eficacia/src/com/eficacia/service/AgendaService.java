@@ -14,10 +14,12 @@ public interface AgendaService {
 	public List<Agenda> obtenerAgendas();
 
 	public Long contarRegistros();
+	
+	public Long contarRegistrosPag(String razonSocial);
 
 	public void agregarAgenda(Agenda agenda);
 	
-	public List<Agenda> filtrarAgendas(String razonSocial);
+	public List<Agenda> filtrarAgendas(String razonSocial, Integer offset, Integer limite);
 	
 	public String validarExcel(MultipartFile excelFile);
 	

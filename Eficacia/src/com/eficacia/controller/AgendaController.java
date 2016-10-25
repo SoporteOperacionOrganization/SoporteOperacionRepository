@@ -66,10 +66,13 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/filtrarAgendas", method = RequestMethod.GET)
-	public String filtrarAgendas(Model model, @RequestParam("razonSocial") String razonSocial){
-		List<Agenda> agendas = agendaService.filtrarAgendas(razonSocial);
-		model.addAttribute("count", agendaService.contarRegistros());
+	public String filtrarAgendas(Model model, String razonSocial,  Integer offset, Integer limite){
+		List<Agenda> agendas = agendaService.filtrarAgendas(razonSocial, offset, limite);
+		model.addAttribute("razonSocial", razonSocial);
+		model.addAttribute("count", agendaService.contarRegistrosPag(razonSocial));
 		model.addAttribute("agendas", agendas);
+		model.addAttribute("offset", offset);
+		model.addAttribute("filtro", true);
 		return "agendas/listarAgendas";
 	}
 	
@@ -134,7 +137,7 @@ public class AgendaController {
           }
           String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
           System.out.println("extsion " + extension);
-          if(!"xlsx".equals(extension) || !"xlsm".equals(extension) ){
+          if(!"xlsx".equals(extension) && !"xlsm".equals(extension) ){
                  redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls. , xlsm");
           }else{
                  String estatus = agendaService.validarExcel(excelfile);

@@ -81,11 +81,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public List<Usuario> filtrarUsuarios(String soeid) {
+	public List<Usuario> filtrarUsuarios(String soeid, Integer offset, Integer limite) {
 		session = sessionFactory.getCurrentSession();
 		List<Usuario> usuarios ;
 		query = session.createQuery("FROM Usuario u where u.soeid like :soeid");
 		query.setParameter("soeid", "%"+soeid+"%");
+		query.setFirstResult(offset!=null?offset:0);
+		query.setMaxResults(limite!=null?limite:5);
 		usuarios = query.list();
 		return usuarios;
 		
@@ -95,6 +97,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public Long contarRegistros() {
 		session = sessionFactory.getCurrentSession();
 		query = session.createQuery("SELECT count(u) from Usuario u");
+		Long count = (Long) query.uniqueResult();
+		return count;
+	}
+	
+	@Override
+	public Long contarRegistrosCond(String soeid) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("SELECT count(u) from Usuario u WHERE u.soeid like :soeid");
+		query.setParameter("soeid",  "%"+soeid+"%");
 		Long count = (Long) query.uniqueResult();
 		return count;
 	}

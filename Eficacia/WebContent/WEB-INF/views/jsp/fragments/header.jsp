@@ -19,13 +19,13 @@
 				<td style="text-align: right; width: 32%;"><br /> 
 				
 						<h4>
-							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px">
+							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px; margin-right:10px;'">
 							<sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">Bienvenido:</sec:authorize></span>
 						</h4>
 						<h5>
 							<span style="color: #fff; text-align: left; font-size: 14px"> <c:if
 									test="${UsuarioSesion != null}">
-									<span class="tranformarMayusculas"><sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
+									<span style="margin-right:30px;" class="tranformarMayusculas"><sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
 									${UsuarioSesion.nombre} ${UsuarioSesion.apellidoPaterno}</sec:authorize> </span>
 								</c:if>
 
@@ -64,9 +64,7 @@
 											<li><a href="<c:url value='/listarAgendas' />">Consultar</a></li>
 											<li><a href="<c:url value='/agregarAgenda' />">Agregar</a></li>
 											<li role="separator" class="divider dividerColor"></li>
-											<li><a class="subtitulosDropDown"
-												style="color: #000; font-weight: bold; cursor: default;"
-												>Carga masiva</a></li>
+											<li><a class="subtitulosDropDown" style="color: #000; font-weight: bold; cursor: default;">Carga masiva</a></li>
 											<li role="separator" class="divider"></li>
 											<li><a href="<c:url value='/cargaMasiva' />">Agregar</a></li>
 											<li><a href="<c:url value='/eliminacionMasiva' />">Eliminar</a></li>
@@ -74,9 +72,7 @@
 								</ul>
 
 								<ul  style="text-align: right; margin: 20px 0px 0px 0px">
-									<a style="color: white; font-weight: bold;"
-										href="<c:url value='/logout' />"><span
-											class="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a>
+									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a>
 								</ul>
 
 								

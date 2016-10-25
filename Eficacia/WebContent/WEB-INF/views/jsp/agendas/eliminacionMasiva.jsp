@@ -33,38 +33,33 @@
 		</form:form>
 		
 		 <div>
-                    <a href="<c:url value='/descargarArchivo/2' />">Descargar Layout</a>
-             </div>
+         	<a href="<c:url value='/descargarArchivo/2' />">Descargar Layout</a>
+         </div>
 		
 		
 		
 		<div>
 			<c:if test="${not empty estatus}">
-	         <div style="color:red;margin:10px 0px;font-weight:bold;">
+	         	<div style="color:red;margin:10px 0px;font-weight:bold;">
 	                Error en Layout!!!<br />
 	                ${estatus}<br/>
-	                Verifica que el campo no este vacio y que tenga el formato adecuado.
-	         </div>
+	            	Verifica que el campo no este vacio y que tenga el formato adecuado.
+	        	</div>
     		</c:if>
     		<c:if test="${not empty procesoCorrecto}">
-	         <div style="color:green;margin:10px 0px;font-weight:bold;">
+	         	<div style="color:green;margin:10px 0px;font-weight:bold;">
 	                ${procesoCorrecto}	            
-	         </div>
+	        	</div>
     		</c:if>
-		</div>
-		
-		 <div>
-                    <c:if test="${not empty noEncontrados}">
-                    <div style="color:blue;margin:10px 0px;font-weight:bold;">
-                       Los siguientes  Codigos de Transaccion, es probable que <br/>
-                       los eliminaron anteriormente o nunca hayan existido <br/> 
-                       <br/>
-                       ${noEncontrados}
-                             
-                    </div>
+             <c:if test="${not empty noEncontrados}">
+             	<div style="color:blue;margin:10px 0px;font-weight:bold;">
+                	Los siguientes  Codigos de Transaccion, es probable que <br/>
+                    los eliminaron anteriormente o nunca hayan existido <br/> 
+                    <br/>
+                    	${noEncontrados}     
+                </div>
              </c:if>
-             </div>
-		
+		</div>
 	</div>
 </div>
 

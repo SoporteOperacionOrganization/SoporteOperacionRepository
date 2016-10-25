@@ -15,6 +15,8 @@ public class PaginationTaglib extends SimpleTagSupport{
 	 private int steps = 5;
 	 private String anterior = "Anterior";
 	 private String siguiente = "Siguiente";
+	 private String soeid;
+	 private String razonSocial;
 	 
 	 private Writer getWriter() {
 	  JspWriter out = getJspContext().getOut();
@@ -65,7 +67,7 @@ public class PaginationTaglib extends SimpleTagSupport{
 		  if(disabled)
 		   link.append(">").append("<a href=\"#\">"+text+"</a></li>");
 		  else
-		   link.append(">").append("<a href=\""+uri+"?offset="+page + "\">"+text+"</a></li>");
+		   link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\">"+text+"</a></li>");
 		  return link.toString();
 		 }
 	 
@@ -124,5 +126,21 @@ public class PaginationTaglib extends SimpleTagSupport{
 		 public void setSteps(int steps) {
 		  this.steps = steps;
 		 }
+
+		public String getSoeid() {
+			return soeid;
+		}
+
+		public void setSoeid(String soeid) {
+			this.soeid = soeid;
+		}
+
+		public String getRazonSocial() {
+			return razonSocial;
+		}
+
+		public void setRazonSocial(String razonSocial) {
+			this.razonSocial = razonSocial;
+		}
 	
 }

@@ -18,7 +18,7 @@ public class UsuarioValidator implements Validator{
         Usuario usuario = (Usuario) obj;
              
         String patronContraseñaSegura =
-                "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%./_-]).{6,20})";
+                "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%./_-]).{6,100})";
         String patronSoloNumeros = "\\d+";
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuario.nombre");

@@ -13,11 +13,13 @@ public interface AgendaDao {
 	 
 	public Long contarRegistros();
 	
+	public Long contarRegistrosPag(String razonSocial);
+	
 	public void agregarAgenda(Agenda agenda);
 	
 	public void eliminarAgenda(String codigoTransaccion);
 	
-	public List<Agenda> filtrarAgendas(String razonSocial);
+	public List<Agenda> filtrarAgendas(String razonSocial, Integer offset, Integer limite);
 	 
 	public String cargaMasiva(List<Agenda> agendas);
 	

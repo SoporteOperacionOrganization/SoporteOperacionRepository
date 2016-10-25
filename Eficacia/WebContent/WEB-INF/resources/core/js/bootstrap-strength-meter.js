@@ -109,12 +109,12 @@
             var defaults = {
                 container: input.parent(),
                 hierarchy: {
-                    '0': ['text-danger', ''],
-                    '10': ['text-danger', 'muy debil'],
-                    '20': ['text-warning', 'debil'],
-                    '30': ['text-warning', 'buena'],
-                    '40': ['text-success', 'fuerte'],
-                    '50': ['text-success', 'muy fuerte']
+                    '50': ['text-danger', 'demasiado debil'],
+                    '150': ['text-danger', 'muy debil'],
+                    '200': ['text-warning', 'debil'],
+                    '250': ['text-warning', 'buena'],
+                    '300': ['text-success', 'fuerte'],
+                    '350': ['text-success', 'muy fuerte']
                 },
                 passwordScore: {
                     options: [],

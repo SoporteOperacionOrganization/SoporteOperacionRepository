@@ -8,7 +8,7 @@ public interface UsuarioDao {
 	
 	public Usuario obtenerUsuario(String Soeid);
 	
-	public List<Usuario> filtrarUsuarios(String soeid);
+	public List<Usuario> filtrarUsuarios(String soeid, Integer offset, Integer limite);
 
 	public List<Usuario> obtenerUsuarios();
 	
@@ -21,6 +21,8 @@ public interface UsuarioDao {
 	public void modificarUsuario(Usuario usuario);
 	
 	public Long contarRegistros();
+	
+	public Long contarRegistrosCond(String soeid);
 	
 	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid);
 	
