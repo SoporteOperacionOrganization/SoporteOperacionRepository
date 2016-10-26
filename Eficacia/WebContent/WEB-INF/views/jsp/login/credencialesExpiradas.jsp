@@ -81,9 +81,12 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6"></div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-sm-12"  style="text-align:left;">                        
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-sm-12"  style="margin:left;text-align:left;">                        
                            <!--  <a href="<c:url value='/contrasenaExpirada' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</a>-->
-                           <button type="submit" class="btn btn-success"><i style="height:19px;" class="glyphicon glyphicon-check"></i>&nbsp; Guardar</button> 
+                           <button type="submit" class="btn btn-success"><i style="height:19px;" class="glyphicon glyphicon-check"></i>&nbsp; Guardar</button>
+                           &nbsp;&nbsp;
+                           <a href="<c:url value='/logout' />"
+						   class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a> 
                         </div>
                     </div>
                 </div>

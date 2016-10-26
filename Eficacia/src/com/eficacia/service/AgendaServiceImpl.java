@@ -268,6 +268,7 @@ public class AgendaServiceImpl implements AgendaService {
 		}else if(!row.getCell(cell).getRawValue().matches("[0-9]+")){
 			estatus = false;
 		}
+		System.out.println("Clietne " + row.getCell(cell).getRawValue());
 		return estatus;
 	}
 	
