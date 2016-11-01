@@ -186,7 +186,7 @@ public class AgendaController {
 		String rutaArchivo = "";
 		switch(archivo){
         	case 1:
-        		rutaArchivo = "/WEB-INF/files/LayoutCargaMasiva.xlsm";
+        		rutaArchivo = "/WEB-INF/files/LayoutCargasMasivas.xlsm";
         	break;
         	
         	case 2:

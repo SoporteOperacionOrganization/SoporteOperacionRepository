@@ -12,9 +12,9 @@
 <jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-	<div class="container" style="position:fixed; margin-top: 12em; " >
+	<div class="container" style="position:fixed; margin-top: 10em; width: 100% ; text-align: center;" >
 
-<img style="margin-left: 30%;  height: 60%" alt="" src="resources/Images/Logos/Curso-Gestion-Personal-Online.jpg">
+<img class="inicioImages" src="resources/Images/Logos/Curso-Gestion-Personal-Online.jpg">
 
 </div>
 </body>

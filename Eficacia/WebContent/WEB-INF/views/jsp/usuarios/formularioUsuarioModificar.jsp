@@ -43,14 +43,14 @@ $(document).ready(function(){
 					<h3
 						style="text-align: right; color: #D7D7D7">SISTEMA DE GESTION EFICASIA</h3>
 				</td>
-				<td style="width: 32%; text-align: right;  margin: 0px 10px 0px 0px "> 
+				<td style="width: 32%; text-align: right;"> 
 				
 						<h4>
-							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px; margin: 0px 10px 0px 0px ">
+							<span style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px; margin: 0em 0.5em 0em 0em  ">
 							<sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">Bienvenido:</sec:authorize></span>
 						</h4>
 						<h5>
-							<span style="color: #fff; text-align: left; font-size: 14px;  margin: 0px 10px 0px 0px"> <c:if
+							<span style="color: #fff; text-align: left; font-size: 14px;  margin:  0em 0.7em 0em 0em "> <c:if
 									test="${UsuarioSesion != null}">
 									<span class="tranformarMayusculas"><sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
 									${UsuarioSesion.nombre} ${UsuarioSesion.apellidoPaterno}</sec:authorize> </span>
