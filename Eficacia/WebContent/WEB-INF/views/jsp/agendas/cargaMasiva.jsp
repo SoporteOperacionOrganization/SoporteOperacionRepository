@@ -34,7 +34,7 @@
 		</form:form>
 		 
         <div>
-        	<a href="<c:url value='/descargarArchivo/1' />">Descargar Layout</a>
+        	<a href="<c:url value='/descargarArchivo/1' />"><!-- Descargar Layout --></a>
         </div>
 		
 		<div>

@@ -13,18 +13,18 @@
 <jsp:include page="../fragments/header.jsp" />
 </head>
 <body>
-	<div class="container"
-		style="width: 100%; margin-top: 10em;; z-index: 1; position: absolute;">
-		<div style="text-align: center; font-weight: bold; font-size: 20px">CONSULTAR
+	<div class="container" 
+		style="width: 100%; margin-top: 8em;; z-index: 1; position: absolute;">
+		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">CONSULTAR
 			USUARIOS</div>
 
 
-		<form class="navbar-form "
-			style="background-color: white; text-align: right; margin: 0em 11em 0em 0em"
+		<form class="navbar-form "  
+			style="background-color: white; text-align: left; margin: 0em 0em 0em 10em"
 			role="search" action="filtrarUsuarios">
-			<div class="form-group">
+			<div class="form-group" >
 				<input type="text" name="soeid" class="form-control"
-					placeholder="Buscar por soeid">
+					placeholder="Buscar por soeid" >
 			</div>
 			<button type="submit" class="btn btn-primary">
 				<i style="height: 19px;" class="glyphicon glyphicon-search"></i>
@@ -79,7 +79,7 @@
 								</c:when>
 								<c:otherwise>
 									<a href="<c:url value='/eliminarUsuario/${usuario.soeid}' />"
-										class="btn glyphicon glyphicon-trash" style="font-size: 16px ; color: black;text-align: center;"></a>
+										class="btn glyphicon glyphicon-trash" style="font-size: 16px ; color: #941A26;text-align: center;"></a>
 								</c:otherwise>
 							</c:choose></td>
 					</sec:authorize>
@@ -110,9 +110,10 @@
 		</c:if>
 	</div>
 
-
+</div>
+<br><br>
 </body>
-	<footer style="position: fixed; bottom: 0; width: 100%">
+<footer style="position: fixed; bottom: 0; width: 100%">
 <jsp:include page="../fragments/footer.jsp"  />	
 	</footer>
 </html>

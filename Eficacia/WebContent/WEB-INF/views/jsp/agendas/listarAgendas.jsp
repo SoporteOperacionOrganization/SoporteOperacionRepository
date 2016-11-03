@@ -14,14 +14,14 @@
 </head>
 
 <body>
-<div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px" >
+<div class="container" style="width: 100% ; margin-top: 8em; ; z-index:1; position: absolute  ;">
+		<div style="text-align: center; font-weight: bold;font-size: 1.4em" >
 		GESTIONAR AGENDAS</div>
 	
 
     <form class="navbar-form " role="search" action="filtrarAgendas" 
-    style="background-color: white; text-align: right; margin: 0em 6em 0em 0em">
-      <div style="margin-left:72px;" class="form-group">
+   style="background-color: white; text-align: left; margin: 0em 0em 0em 5em">
+      <div  class="form-group">
         <input type="text" name="razonSocial" class="form-control" placeholder="Buscar por razón social">
       </div>      
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
@@ -82,16 +82,6 @@
 			</tbody>
 		</table>
 
-		<!-- <div class="paginacion">
-=======
-		
-		<div class="paginacion">
->>>>>>> branch 'master' of https://github.com/SoporteOperacionOrganization/SoporteOperacionRepository.git
-              <div >
-                    <tag:paginate limite="5" offset="${offset}" conteo="${count}" razonSocial="${razonSocial}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
-                    <span class="label label-primary">Total: ${count}</span>
-             </div>
-		</div>-->
 		
 		<c:choose>
 			<c:when test="${filtro == true}">
@@ -112,8 +102,6 @@
 			</c:otherwise>
 		</c:choose>
 		
-		
-		
 		<br>
 		<div class="exportacionExcel">
 			<a href="<c:url value='/exportarAgendas' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
@@ -121,9 +109,8 @@
 		
 		</div>
 		</c:if>
+		<br><br>
 	</div>
-	
-
 	</div>
 	
 </body>

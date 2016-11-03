@@ -98,9 +98,10 @@ public class AgendaServiceImpl implements AgendaService {
 	
 	@Override
     public String validarExcel(MultipartFile excelFile) {
+		  System.out.println("validarExcel");
           List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
           String estatusCarga = "";
-          int i = 0;
+          int i = 3;
           try{
                  DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                  
@@ -115,33 +116,42 @@ public class AgendaServiceImpl implements AgendaService {
                         else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}*/
                         
                         if(validarCamposFecha(row,0)){agenda.setFechaTransaccion(df.format(row.getCell(0).getDateCellValue()));}
-                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
+                        else{estatusCarga = "Error en linea " + i + " celsda " + letras.get(0);break;}
                         
                         if(validarCamposFecha(row,1)){agenda.setFechaCierre(df.format(row.getCell(1).getDateCellValue()));}
-                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}
-                        
-                        
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}          
+                        /*System.out.println("Antes del if  validarCamposNumericos");
                         if(validarCamposNumericos(row,2)){
-                               agenda.setNumeroCliente(row.getCell(2).getRawValue());
+                               //agenda.setNumeroCliente(row.getCell(2).getRawValue());
+                        	  //agenda.setNumeroCliente(row.getCell(2).getStringCellValue());
+                        		String cliente=row.getCell(2).getStringCellValue();
+                        		System.out.println("Cliente validarExcel: "+cliente);
+                                agenda.setNumeroCliente(cliente);
                                }
                         else{
                                estatusCarga = "Error en linea " + i + " celda " + letras.get(2);
                                break;
                                }
-                        
+                               */
+                        //System.out.println("return blank as null " +row.getCell(2, row.RETURN_BLANK_AS_NULL));
+                        String noCliente=row.getCell(2, row.RETURN_BLANK_AS_NULL).getStringCellValue();
+                        //System.out.println("No cliente convertido " +noCliente2);
+                        agenda.setNumeroCliente(noCliente);
+   
                         String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
                         String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
-                        String noCliente = agenda.getNumeroCliente();
+                        //String noCliente = agenda.getNumeroCliente();
+                        System.out.println("#Cliente: "+noCliente);
                         int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
                         String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
                         agenda.setCodigoTransaccion(codigoTransaccion);
-                        
+                        System.out.println("setCodigoTransaccion");
                         agenda.setRazonSocial(row.getCell(3).getStringCellValue());
                         agenda.setNombreRepresentante(row.getCell(4).getStringCellValue());
-                        agenda.setNumeroTelefono(row.getCell(5).getRawValue());
-                        
-                        agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));
-                        
+                        String noTelefono=row.getCell(5,row.RETURN_BLANK_AS_NULL).getStringCellValue();
+                        agenda.setNumeroTelefono(noTelefono);
+                        //agenda.setNumeroTelefono(row.getCell(5).getRawValue());                        
+                        agenda.setSoeid(String.valueOf(row.getCell(6).getStringCellValue()));                
                         agenda.setEjecutivo(row.getCell(7).getStringCellValue());
                         agenda.setSede(row.getCell(8).getStringCellValue());
                         
@@ -162,7 +172,7 @@ public class AgendaServiceImpl implements AgendaService {
 		ArrayList<String> noEncontrados= new ArrayList<>();
 		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 		String estatusCarga = "";
-		int i = 0;
+		int i = 3;
 		
 		try{
 			List<Agenda> agendas = new ArrayList<>();
@@ -194,7 +204,7 @@ public class AgendaServiceImpl implements AgendaService {
 	public String validarExcelEliminacion(MultipartFile excelFile) {
 		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 		String estatusCarga = "";
-		int i = 0;
+		int i = 3;
 		try{
 			List<Agenda> agendas = new ArrayList<>();
 			
@@ -240,7 +250,7 @@ public class AgendaServiceImpl implements AgendaService {
 	public boolean validarCamposFecha(XSSFRow row, int cell){
 		boolean estatus = true;
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-		System.out.println("NULO " +row.getCell(cell, row.RETURN_BLANK_AS_NULL));
+		System.out.println("Dato " +row.getCell(cell, row.RETURN_BLANK_AS_NULL));
 		if(row.getCell(cell) == null){
 			estatus = false;
 		}
@@ -255,19 +265,27 @@ public class AgendaServiceImpl implements AgendaService {
 
 	public boolean validarCamposNumericos(XSSFRow row, int cell){
 		boolean estatus = true;
-		//System.out.println(row.getCell(cell, row.RETURN_BLANK_AS_NULL));
+		System.out.println("Dato" +row.getCell(cell, row.RETURN_BLANK_AS_NULL));
+		
 		if(row.getCell(cell) == null){
+			System.out.println("Entro a validacion de nulos");
 			estatus = false;
 		}else if(row.getCell(cell).getCellType() == Cell.CELL_TYPE_BLANK){
+			System.out.println("Entro a validacion de celda vacia");
 			estatus = false;
-		}else if(row.getCell(cell).getRawValue().length() != 5){
-			estatus = false;
-		}else if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
-			estatus = false;
-		}else if(!row.getCell(cell).getRawValue().matches("[0-9]+")){
-			estatus = false;
-		}
-		System.out.println("Clietne " + row.getCell(cell).getRawValue());
+		}else //if(row.getCell(cell).getRawValue().length() != 5){
+			//System.out.println("Entro a validacion de longitud de 5 digitos");
+			//estatus = false;
+		//}else 
+			//if(row.getCell(cell).getCellType() != Cell.CELL_TYPE_NUMERIC){
+			//System.out.println("Entro a validacion de formato de celda numerica");
+			//estatus = false;
+		//}else 
+			//if(!row.getCell(cell).getRawValue().matches("[0-9]+")){
+			//System.out.println("Entro a validacion de solamente digitos");
+			//estatus = false;
+		//}
+		System.out.println("Clietne " + row.getCell(cell).getRawValue()+ "estatus:"+estatus);
 		return estatus;
 	}
 	

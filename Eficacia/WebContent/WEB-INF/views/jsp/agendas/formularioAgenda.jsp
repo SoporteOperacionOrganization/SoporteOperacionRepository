@@ -171,8 +171,9 @@ $( document ).ready(function() {
     </div>
     </div>
     </div>
-
+<div style="width: 100%">
 <jsp:include page="../fragments/footer.jsp" />
+</div>
 </div>
 </body>
 </html>

@@ -12,25 +12,24 @@
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp" />
-	<div class="container" style="position:fixed; width: 100% ; height: 100%" >
-	<div  style="margin-top: 6em;   width: 100% ; height: 83%; 
-	margin-left: 0%; background-color:#FBFDFC ;   border-radius: 1px;"  >
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style=" width: 20% ; height: 95% ; margin-left: 43%; ">
-			<form id="loginform" role="form" 
+	<div class="container  " style="position:fixed; height: 100%" >
+
+		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  " >
+			<form class="logueo" id="loginform" role="form" 
 				action="${pageContext.request.contextPath}/j_spring_security_check"
 				method="POST">
 				
-			<div style="border-bottom:1px solid #0099FF; margin: 27% 0% 5% 0%;">User <span style="color:#0099FF">Login</span></div>
+			<div style="border-bottom:1px solid #0099FF; margin-bottom: 3.5%;">User <span style="color:#0099FF">Login</span></div>
 		
 				<div style="display: none" id="login-alert"
 					class="alert alert-danger col-sm-12"></div>
-				<div style="margin-bottom: 20px; width: 100%" class="input-group">
+				<div style="margin-bottom: 5px; width: 100%; height: 3px"  class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-user"></i></span> <input id="login-username"
 						type="text" class="form-control" name="soeid" value=""
 						placeholder="Soeid" required="required">
 				</div>
-				<div style="margin-bottom: 20px; width: 100%" class="input-group">
+				<div style="margin-bottom: 5px; width: 100%" class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
 						type="password" class="form-control" name="contrasena"
@@ -62,7 +61,7 @@
 		
 		</div>
 	</div>
-</div>
+
 </body>
 	<footer style="position: fixed; bottom: 0; width: 100%">
 <jsp:include page="../fragments/footer.jsp"  />	
