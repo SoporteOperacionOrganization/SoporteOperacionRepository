@@ -62,6 +62,7 @@ public class AgendaController {
 		model.addAttribute("agendas", agendas);
 		model.addAttribute("count", agendaService.contarRegistros());
 		model.addAttribute("offset", offset);
+		System.out.println("Offset desde controlador " + offset);
 		return "agendas/listarAgendas";
 	}
 	

@@ -195,7 +195,7 @@ public class AgendaDaoImpl implements AgendaDao {
 		session = sessionFactory.getCurrentSession();
 		query = session.createQuery("FROM Agenda");
 		query.setFirstResult(offset!=null?offset:0);
-		query.setMaxResults(limite!=null?limite:5);
+		query.setMaxResults(limite!=null?limite:15);
 		List<Agenda> agendas = query.list();
 		return agendas;
 	}

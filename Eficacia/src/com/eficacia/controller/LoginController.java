@@ -59,12 +59,13 @@ public class LoginController {
 		
 		return "login/inicio";
 		}
-	/*
+	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String forbidden(Model model){
 		return "errors/403";
 	}
 	
+	/*
 	@RequestMapping(value = "/404", method = RequestMethod.GET)
 	public String recursoNoEncontrado(Model model){
 		return "errors/404";

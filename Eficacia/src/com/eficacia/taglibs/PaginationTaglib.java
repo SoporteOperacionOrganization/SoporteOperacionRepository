@@ -9,14 +9,15 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class PaginationTaglib extends SimpleTagSupport{
 
 	private String uri;
-	 private int offset;
+	 private int offset=0;
 	 private int conteo;
-	 private int limite = 5;
-	 private int steps = 5;
+	 private int limite;
+	 private int steps = 15;
 	 private String anterior = "Anterior";
 	 private String siguiente = "Siguiente";
 	 private String soeid;
 	 private String razonSocial;
+	 private int flag ;
 	 
 	 private Writer getWriter() {
 	  JspWriter out = getJspContext().getOut();
@@ -26,7 +27,6 @@ public class PaginationTaglib extends SimpleTagSupport{
 	 @Override
 	 public void doTag() throws JspException {
 	  Writer out = getWriter();
-	 
 	  try {
 	   out.write("<nav>");
 	   out.write("<ul class=\"pagination\">");
@@ -35,12 +35,33 @@ public class PaginationTaglib extends SimpleTagSupport{
 	    out.write(constructLink(1, anterior, "disabled", true));
 	   else
 	    out.write(constructLink(offset-steps, anterior, null, false));
-	    
-	   for(int itr=0;itr<conteo;itr+=steps) {
-	    if(offset==itr)
-	     out.write(constructLink((itr/5+1)-1 *steps, String.valueOf(itr/5+1), "active", true));
-	    else
-	     out.write(constructLink(itr/5*steps, String.valueOf(itr/5+1), null , false));
+	   
+	   int limit=0;
+	   if(flag == 0){
+		   limit = conteo / 4;
+	   }
+	  flag = 1;
+	   
+	   
+	   if(offset >= limit){
+		   System.out.println("La division es mayor " + limit);
+		   int adicion = limit / 2; 
+		   System.out.println("cuarto " + adicion);
+		   limit =  limit + adicion;
+	   }else{
+		   System.out.println("La division es menor " + limit);
+	   }
+	   
+	   System.out.println("El limit es  " + limit);
+	   
+	   for(int itr=offset;itr<conteo;itr+=steps) {
+	    if(offset==itr){
+	    	System.out.println("Offset " + offset);
+	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
+	    }else{
+	    	out.write(constructLink(itr/15*steps, String.valueOf(itr/15+1), null , false));
+	    }
+	   
 	   }
 	 
 	   if(offset+steps>=conteo)
@@ -58,16 +79,28 @@ public class PaginationTaglib extends SimpleTagSupport{
 	 
 	 
 	 private String constructLink(int page, String text, String className, boolean disabled) {
-		  StringBuilder link = new StringBuilder("<li");
+		 System.out.println("Pagina " + page);
+		 StringBuilder link = new StringBuilder("<li");
 		  if (className != null) {
 		   link.append(" class=\"");
 		   link.append(className);
 		   link.append("\"");
 		  }
-		  if(disabled)
+		  /*if(disabled && page == 1){
+			 link.append(">").append("<a href=\"#\">"+text+"</a></li>");  
+		  }else if(disabled){
 		   link.append(">").append("<a href=\"#\">"+text+"</a></li>");
-		  else
-		   link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\">"+text+"</a></li>");
+		  }else if(page > 20){
+			  link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\"><div onclick=\"aumentarNumeroPaginacion();\" class=\"numeroPaginacion\">"+text+"</div></a></li>");
+		  }else{
+			  link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\"><div id=\"numeroPaginacion"+page+"\" class=\"numeroPaginacion\">"+text+"</div></a></li>");
+		  }*/
+		  
+		  if(disabled)
+			   link.append(">").append("<a href=\"#\">"+text+"</a></li>");
+			  else
+			   link.append(">").append("<a href=\""+uri+"?offset="+page + "\">"+text+"</a></li>");
+		   
 		  return link.toString();
 		 }
 	 

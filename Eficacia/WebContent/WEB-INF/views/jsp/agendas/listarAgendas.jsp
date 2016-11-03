@@ -30,7 +30,7 @@
 
 	<div class="contenidoAgendas">
 	<c:if test="${not empty agendas}">
-		<table class="table table-striped table-hover tabla" style="font-size: 14px; width: 100%">
+		<table class="table table-striped table-hover table-sm tabla" style="font-size: 14px; width: 100%">
 		<thead>
 			<tr class="cabeceraTabla">
 				<th>Código transacción</th>
@@ -105,7 +105,7 @@
 			<c:otherwise>
 				<div class="paginacion">
               		<div>
-                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<tag:paginate limite="0" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     	<span class="label label-primary">Total: ${count}</span>
              		</div>
 				</div>

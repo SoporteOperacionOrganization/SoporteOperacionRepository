@@ -65,5 +65,6 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter{
         
                 
         http.sessionManagement().invalidSessionUrl("/login");
+        http.sessionManagement().maximumSessions(2);
 	}
 }
