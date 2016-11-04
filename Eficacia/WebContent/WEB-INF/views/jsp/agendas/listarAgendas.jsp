@@ -20,7 +20,7 @@
 	
 
     <form class="navbar-form " role="search" action="filtrarAgendas" 
-   style="background-color: white; text-align: left; margin: 0em 0em 0em 5em">
+   style="background-color: white; text-align: left;  margin: 0% 0% 0% 9%;">
       <div  class="form-group">
         <input type="text" name="razonSocial" class="form-control" placeholder="Buscar por razón social">
       </div>      
@@ -29,8 +29,17 @@
 	<br />
 
 	<div class="contenidoAgendas">
+	
+	<c:if test="${empty agendas}">
+	<div class="alert alert-warning">
+  <strong>No existe!</strong> La razón social que ingresaste no existe o ha sido eliminada.
+</div>
+	
+	</c:if>
+	
+	
 	<c:if test="${not empty agendas}">
-		<table class="table table-striped table-hover tabla" style="font-size: 14px; width: 100%">
+		<table class="table table-striped table-hover tabla" style="font-size: 12px; width: 100%">
 		<thead>
 			<tr class="cabeceraTabla">
 				<th>Código transacción</th>
