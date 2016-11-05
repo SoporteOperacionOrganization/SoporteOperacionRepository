@@ -184,9 +184,9 @@ public class AgendaServiceImpl implements AgendaService {
 				Agenda agenda = new Agenda();
 				XSSFRow row = worksheet.getRow(i++);
 				
-				if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
-			
+				//if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
+				//else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
+				agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());
 				agendas.add(agenda);
 			}		
 			if(estatusCarga.equals("")){
@@ -216,24 +216,9 @@ public class AgendaServiceImpl implements AgendaService {
 				XSSFRow row = worksheet.getRow(i++);
 				//agenda.setCodigoTransaccion(row.getCell(0).getRawValue());
 				
-				if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
-				else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
-								
-				
-				/*agenda.setRazonSocial(row.getCell(4).getStringCellValue());
-				agenda.setNombreRepresentante(row.getCell(5).getStringCellValue());
-				agenda.setNumeroTelefono(row.getCell(6).getRawValue());
-				agenda.setSoeid(row.getCell(7).getRawValue());
-				agenda.setEjecutivo(row.getCell(8).getStringCellValue());
-				agenda.setSede(row.getCell(9).getStringCellValue());*/
-				
-				
-				/*String pattern = "dd/MM/yyyy";
-			    SimpleDateFormat formatter = new SimpleDateFormat(pattern);*/
-				//Date date = formatter.parse(text);
-				//agenda.setFechaTransaccion(date);
-				// persist data into database in here
-			    //agendaService.agregarAgenda(agenda);
+				//if(validarCodigoTransaccion(row,0)){agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());}
+				//else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
+				agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());
 				agendas.add(agenda);
 			}		
 			if(estatusCarga.equals("")){
@@ -298,7 +283,7 @@ public class AgendaServiceImpl implements AgendaService {
 		return estatus;
 	}
 	
-	public boolean validarCodigoTransaccion(XSSFRow row, int cell){
+	/*public boolean validarCodigoTransaccion(XSSFRow row, int cell){
 		boolean estatus = true;
 		//System.out.println(row.getCell(cell, row.RETURN_BLANK_AS_NULL));
 		if(row.getCell(cell) == null){
@@ -311,7 +296,7 @@ public class AgendaServiceImpl implements AgendaService {
 		System.out.println("LONIG " + row.getCell(cell).getStringCellValue().length());
 		System.out.println("VALOR " + row.getCell(cell).getStringCellValue());
 		return estatus;
-	}
+	}*/
 
 	@Override
 	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite) {
