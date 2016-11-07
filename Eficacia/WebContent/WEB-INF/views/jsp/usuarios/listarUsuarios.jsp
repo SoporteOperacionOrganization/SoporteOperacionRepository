@@ -18,9 +18,8 @@
 		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">CONSULTAR
 			USUARIOS</div>
 
-
-		<form class="navbar-form "  
-			style="background-color: white; text-align: left; margin: 0em 0em 0em 10em"
+<form class="navbar-form"  
+			style="background-color: white; text-align: left; margin: 0% 0% 0% 9%; "
 			role="search" action="filtrarUsuarios">
 			<div class="form-group" >
 				<input type="text" name="soeid" class="form-control"
@@ -31,9 +30,18 @@
 			</button>
 		</form>
 	<br />
+	
 	<div class="contenidoUsuarios">
+		
+	<c:if test="${empty usuarios}">
+	<div class="alert alert-warning">
+  <strong>No existe!</strong> El soeid que ingresaste no existe o ha sido eliminado.
+</div>
+	
+	</c:if>
+	
 	<c:if test="${not empty usuarios}">
-		<table class="table table-striped table-hover tabla" style="font-size: 14px">
+		<table class="table table-striped table-hover tabla" style="font-size: 12px">
 			<thead>
 			<tr class="cabeceraTabla">
 			<th>#</th>

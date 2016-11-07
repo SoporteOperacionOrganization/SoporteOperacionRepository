@@ -12,12 +12,12 @@
 		
 		<table style="width: 100%; position: fixed;">
 			<tr > 
-			<td width="20%"></td>
-				<td  width="63%">
+			<td width="30%"></td>
+				<td  width="43%">
 					<h3 class="titleSize"
 						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTION EFICASIA</h3>
 				</td>
-				<td style="width: 32%; height: 100px;  text-align: right;"> 
+				<td style="width: 52%; height: 100px;  text-align: right;"> 
 				
 						<h4>
 

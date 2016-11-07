@@ -2043,7 +2043,7 @@ pre code {
 .inicioImages {
 	text-align: center;
 	width: 65%;
-	height: 60%;
+	height: 70%;
 }
 
 @media ( min-width : 900px) {
@@ -2060,8 +2060,8 @@ pre code {
 
 .logueo {
 	margin-top: 10em;
-	width: 12em;
-	margin-left: 20em;
+	width: 20%;
+	margin-left: 41%;
 }
 
 .container {
@@ -2079,13 +2079,13 @@ pre code {
 
 @media ( min-width : 992px) {
 	.container {
-		width: 970px;
+		width: 80%;
 	}
 }
 
 @media ( min-width : 1200px) {
 	.container {
-		width: 1170px;
+		width: 100%;
 	}
 }
 

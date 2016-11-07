@@ -30,7 +30,7 @@ public class EficaciaConfiguration extends WebMvcConfigurerAdapter{
 	     resolver.setLocation(new ServletContextResource(servletContext,"/WEB-INF/spring-excel-views.xml"));
 	     return resolver;
 	}
-	
+	//
 	@Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

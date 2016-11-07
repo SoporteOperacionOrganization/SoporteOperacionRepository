@@ -166,11 +166,11 @@ public class AgendaController {
 		}
 		
 		
-		
+		System.out.println("cargarExcelEliminacion");
 		ArrayList<String> noEncontrados =new ArrayList<>();
 		noEncontrados = agendaService.registrosNoEncontrados(excelfile);
 		model.addAttribute("noEncontrados", noEncontrados);
-		
+		System.out.println("cargarExcelEliminacion");
 		
 		String estatus = agendaService.validarExcelEliminacion(excelfile);
 		if(estatus.equals("")){
@@ -187,7 +187,7 @@ public class AgendaController {
 		String rutaArchivo = "";
 		switch(archivo){
         	case 1:
-        		rutaArchivo = "/WEB-INF/files/LayoutCargasMasivas.xlsm";
+        		rutaArchivo = "/WEB-INF/files/LayoutCargaMasiva.xlsm";
         	break;
         	
         	case 2:

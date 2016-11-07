@@ -8,17 +8,17 @@
 
 .contenidoUsuarios{
 	text-align:center;
-	margin:0 170px 0 170px;
+	margin: 0% 10% 0% 10%;
 }
 
 .contenidoAgendas{
 	text-align:center;
-	margin:0 170px 0 85px;
+	margin: 0% 10% 0% 10%;
 }
 
 .tabla{
 	overflow:hidden;
-	border-radius:15px 15px 0px 0px;
+	border-radius:6px 6px 0px 0px;
 	border-collapse: separate; 
 	border-spacing:0
 }
