@@ -136,7 +136,7 @@ public class AgendaController {
                  return "agendas/cargaMasiva";
           }
           String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
-          System.out.println("extsion " + extension);
+       
           if(!"xlsx".equals(extension) && !"xlsm".equals(extension) ){
                  redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls. , xlsm");
           }else{
@@ -164,12 +164,9 @@ public class AgendaController {
 			return "agendas/eliminacionMasiva";
 		}
 		
-		
-		System.out.println("cargarExcelEliminacion");
 		ArrayList<String> noEncontrados =new ArrayList<>();
 		noEncontrados = agendaService.registrosNoEncontrados(excelfile);
 		model.addAttribute("noEncontrados", noEncontrados);
-		System.out.println("cargarExcelEliminacion");
 		
 		String estatus = agendaService.validarExcelEliminacion(excelfile);
 		if(estatus.equals("")){
@@ -194,7 +191,7 @@ public class AgendaController {
         	break;
         }
        
-		System.out.println(rutaArchivo);
+		
 		
 		int BUFFER_SIZE = 4096;    
         ServletContext context = request.getServletContext();

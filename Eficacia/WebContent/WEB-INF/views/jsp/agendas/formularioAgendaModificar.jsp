@@ -124,7 +124,7 @@ $( document ).ready(function() {
 
 <!-- FIN CABECERA -->
 
-<div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
+<div class="container" style="width: 100% ; margin-top: 10em;  z-index:1; position: absolute  ;">
 		<div style="text-align: center; font-weight: bold;font-size: 20px" >Modificar agenda</div>
 		<br>
 	<div class="contenidoUsuarios">
@@ -276,7 +276,7 @@ $( document ).ready(function() {
     </div>
     </div>
     <br>
-         	<footer class="footerA" >
+         	<footer class="footerA" style="position: fixed; bottom: 0; width: 100%">
          <table style="width: 100%">
         <tbody><tr>
             <td align="left"><img src="${pageContext.request.contextPath}/resources/Images/Logos/banamex_logo_footer.gif" alt="">

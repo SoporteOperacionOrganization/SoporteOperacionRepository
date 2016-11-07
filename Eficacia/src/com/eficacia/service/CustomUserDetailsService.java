@@ -29,9 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String soeid) throws UsernameNotFoundException {
-		System.out.println("ID DE ROL: " + soeid);
 		com.eficacia.model.Usuario domainUser = usuarioService.obtenerUsuario(soeid);
-		System.out.println("ID DE ROL: " + domainUser.getRol().getId());
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 
@@ -45,7 +43,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities(Integer role, Boolean credentialsNonExpired) {
-		System.out.println("Expiradaaa " + credentialsNonExpired);
 		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role, credentialsNonExpired));
 		return authList;
 	}
