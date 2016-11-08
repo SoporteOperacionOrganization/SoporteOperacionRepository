@@ -38,7 +38,7 @@
 	$(document).ready(function() {
 		$('.datepicker').datepicker({
 			format : 'dd/mm/yyyy',
-			startDate : '-3d'
+			startDate : new Date()
 		});
 	});
 </script>
@@ -159,7 +159,7 @@
 
 						<div class="row">
 							<div class="form-group col-md-12">
-								<label class="col-md-3 control-lable" for="codigoTransaccion">Codigo
+								<label class="col-md-3 control-lable" for="codigoTransaccion">Código
 									transacción</label>
 								<div class="col-md-7">
 									<form:input type="text" path="codigoTransaccion"
@@ -193,7 +193,7 @@
 									cierre</label>
 								<div class="col-md-7">
 									<form:input type="text" path="fechaCierre" id="fechaCierre"
-										class="form-control input-sm datepicker" />
+										class="form-control input-sm datepicker" readonly="true" />
 									<div class="has-error errores">
 										<form:errors path="fechaCierre" class="help-inline" />
 									</div>
