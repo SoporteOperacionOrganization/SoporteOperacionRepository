@@ -40,14 +40,14 @@
 		<div>
 			<c:if test="${not empty estatus}">
 	         <div style="color:red;margin:10px 0px;font-weight:bold;">
-	                Error en Layout!!!<br />
+	                Error en Layout<br />
 	                ${estatus}<br/>
-	                Verifica que el campo no este vacio y que tenga el formato adecuado.
+	                Verifica que el campo no est&eacute; vac&iacute;o y que tenga el formato adecuado.
 	         </div>
     		</c:if>
     		<c:if test="${not empty extensionError}">
 	         <div style="color:red;margin:10px 0px;font-weight:bold;">
-	                Error en tipo de archivo!!!<br />
+	                Error en tipo de archivo<br />
 	                ${extensionError}<br/>	            
 	         </div>
     		</c:if>

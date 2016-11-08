@@ -41,9 +41,9 @@
 		<div>
 			<c:if test="${not empty estatus}">
 	         	<div style="color:red;margin:10px 0px;font-weight:bold;">
-	                Error en Layout!!!<br />
+	                Error en Layout<br />
 	                ${estatus}<br/>
-	            	Verifica que el campo no este vacio y que tenga el formato adecuado.
+	            	Verifica que el campo no est&eacute; vac&iacute;o y que tenga el formato adecuado.
 	        	</div>
     		</c:if>
     		<c:if test="${not empty procesoCorrecto}">
@@ -53,8 +53,8 @@
     		</c:if>
              <c:if test="${not empty noEncontrados}">
              	<div style="color:blue;margin:10px 0px;font-weight:bold;">
-                	Los siguientes  Codigos de Transaccion, es probable que <br/>
-                    los eliminaron anteriormente o nunca hayan existido <br/> 
+                	Los siguientes c&oacute;digos de transacci&oacute;n, es probable que <br/>
+                    hayan sido eliminados anteriormente o nunca hayan existido. <br/> 
                     <br/>
                     	${noEncontrados}     
                 </div>

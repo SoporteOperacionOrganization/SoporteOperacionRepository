@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sistema de Usuarios</title>
+<title>Sistema de usuarios</title>
 <jsp:include page="../fragments/resources.jsp" />
 </head>
 <body>
@@ -27,7 +27,7 @@
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-user"></i></span> <input id="login-username"
 						type="text" class="form-control" name="soeid" value=""
-						placeholder="Soeid" required="required">
+						placeholder="SOEID" required="required">
 				</div>
 				<div style="margin-bottom: 5px; width: 100%" class="input-group">
 					<span class="input-group-addon"><i
@@ -40,7 +40,7 @@
 					<c:if test="${param.error == 'true'}">
 						<div
 							style="text-align: center; font-weight: bold; color: red; margin: 10px 0px;">
-							Autenticación incorrecta!!!<br />
+							Autenticación incorrecta<br />
 							${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
 						</div>

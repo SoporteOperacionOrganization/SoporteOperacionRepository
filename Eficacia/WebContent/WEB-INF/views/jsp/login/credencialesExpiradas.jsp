@@ -24,7 +24,7 @@
                 <div style="background:#003478;color:#FFFFFF;font-weight:bold;" class="panel-heading">
                     <h3 class="panel-title">
                         <span style="font-weight:bold;" class="glyphicon glyphicon-th"></span>
-                        Cambiar password   
+                        Cambiar contraseña   
                     </h3>
                 </div>
                
@@ -40,7 +40,7 @@
 			                <label class="col-md-3 control-lable" for="passwordActual">Contraseña actual</label>
 			                <div class="input-group">
 			                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                              	<input class="form-control" name="passwordActual" id="passwordActual" type="password" placeholder="Contraseña Actual" value="${passActual}">
+                              	<input class="form-control" name="passwordActual" id="passwordActual" type="password" placeholder="Contraseña actual" value="${passActual}">
 			                </div>
 			            </div>
 			        </div>
@@ -50,7 +50,7 @@
 			                <label class="col-md-3 control-lable" for="passwordNuevo">Contraseña nueva</label>
 			                <div class="input-group">
 			                    <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
-                              	<input class="form-control" name="passwordNuevo" id="passwordNuevo" type="password" placeholder="Contraseña Nueva" value="${passNuevo}" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco">
+                              	<input class="form-control" name="passwordNuevo" id="passwordNuevo" type="password" placeholder="Contraseña nueva" value="${passNuevo}" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco">
 			                </div>
 			            </div>
 			        </div>
@@ -69,7 +69,7 @@
 			            <div class="form-group col-md-12">
 			                <c:if test="${not empty error}">
 						         <div style="text-align:center;color:red;margin:10px 0px;font-weight:bold;">
-						                Error!!!<br />
+						                Error<br />
 						                ${error}<br/>						            
 						         </div>
 				    		</c:if>			                

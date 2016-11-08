@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Lista de roles</title>
 </head>
 <body>
-<h1>LISTADO DE ROLES</h1>
+<h1>Lista de roles</h1>
 	<table>
 		<tr>
 			<th>ID</th>

@@ -16,7 +16,7 @@
 <body>
 <div class="container" style="width: 100% ; margin-top: 8em; ; z-index:1; position: absolute  ;">
 		<div style="text-align: center; font-weight: bold;font-size: 1.4em" >
-		GESTIONAR AGENDAS</div>
+		Gestionar agendas</div>
 	
 
     <form class="navbar-form " role="search" action="filtrarAgendas" 
@@ -39,8 +39,8 @@
 				<th>No. cliente</th>
 				<th>Razón social</th>
 				<th>Nombre representante</th>
-				<th>No. teléfono</th>
-				<th>Soeid</th>
+				<th>Teléfono</th>
+				<th>SOEID</th>
 				<th>Ejecutivo</th>
 				<th>Sede</th>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">

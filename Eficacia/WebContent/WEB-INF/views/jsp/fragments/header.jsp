@@ -84,7 +84,7 @@
 							      </li>
 							    </ul>
 							    <ul  style="text-align: right; margin: 17px 0px 0px 0px">
-									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a>
+									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Cerrar sesión</a>
 								</ul>
 						  </div>
 					</nav>
