@@ -15,15 +15,14 @@
 <body>
 	<div class="container" 
 		style="width: 100%; margin-top: 8em;; z-index: 1; position: absolute;">
-		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">CONSULTAR
-			USUARIOS</div>
+		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">Consultar usuarios</div>
 
 <form class="navbar-form"  
 			style="background-color: white; text-align: left; margin: 0% 0% 0% 9%; "
 			role="search" action="filtrarUsuarios">
 			<div class="form-group" >
 				<input type="text" name="soeid" class="form-control"
-					placeholder="Buscar por soeid" >
+					placeholder="Buscar por SOEID" >
 			</div>
 			<button type="submit" class="btn btn-primary">
 				<i style="height: 19px;" class="glyphicon glyphicon-search"></i>
@@ -46,9 +45,9 @@
 			<tr class="cabeceraTabla">
 			<th>#</th>
 				<th>SOEID</th>
-				<th>Nombre</th>
+				<th>Usuario</th>
 				<th>Apellido paterno</th>
-				<th>Apellido Materno</th>
+				<th>Apellido materno</th>
 				<th>Teléfono</th>
 				<th>Rol</th>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Usuarios</title>
 <jsp:include page="../fragments/resources.jsp" />
 <spring:url value="resources/js/password-score.js" var="passwordScoreJs" />
 <spring:url value="resources/js/bootstrap-strength-meter.js" var="strength" />
@@ -29,7 +29,7 @@ $(document).ready(function(){
 <body>
 
        <div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px" >REGISTRAR USUARIO</div>
+		<div style="text-align: center; font-weight: bold;font-size: 20px" >Registrar usuarios</div>
 		<br>
        <div class="contenidoUsuarios">
        <div class="contenedorFormulario">
@@ -40,7 +40,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="soeid">Soeid</label>
+                <label class="col-md-3 control-lable" for="soeid">SOEID</label>
                 <div class="col-md-7">
                     <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -52,7 +52,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="nombre">Nombre usuario</label>
+                <label class="col-md-3 control-lable" for="nombre">Nombre de usuario</label>
                 <div class="col-md-7">
                     <form:input type="text" path="nombre" id="nombre" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -104,7 +104,7 @@ $(document).ready(function(){
                 <div class="col-md-7">
                     <form:input type="password" path="password" id="example-getting-started-input"
                      class="form-control input-sm"  data-toggle="tooltip" 
-                     title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>               
+                     title="Debe contener al menos una letra mayúscula, una minúscula, un número, un caracter especial y sin espacios en blanco"/>               
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
                     </div>

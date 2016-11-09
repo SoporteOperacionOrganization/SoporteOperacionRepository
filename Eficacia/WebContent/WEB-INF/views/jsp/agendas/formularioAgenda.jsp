@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrar agenda</title>
 <jsp:include page="../fragments/resources.jsp" />
 <spring:url value="resources/css/datepicker.css" var="datepickerCss" />
 <spring:url value="resources/js/bootstrap-datepicker.js" var="datepickerJs" />
@@ -16,7 +16,7 @@
 $( document ).ready(function() {
     $('.datepicker').datepicker({
     	format: 'dd/mm/yyyy',
-        startDate: '-3d'
+        startDate: new Date()
     });
 });
 </script>
@@ -25,7 +25,7 @@ $( document ).ready(function() {
 <body>
 <div class="container"
 		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px">REGISTRAR AGENDA</div>
+		<div style="text-align: center; font-weight: bold;font-size: 20px">Registrar agenda</div>
 		<br>
 	<div class="contenidoUsuarios">
 	<div class="contenedorFormulario">
@@ -50,7 +50,7 @@ $( document ).ready(function() {
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="fechaCierre">Fecha cierre</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="fechaCierre" id="fechaCierre" class="form-control input-sm datepicker"/>
+                    <form:input type="text" path="fechaCierre" id="fechaCierre" class="form-control input-sm datepicker" readonly="true"/>
                     <div class="has-error errores">
                         <form:errors path="fechaCierre" class="help-inline"/>
                         
@@ -97,7 +97,7 @@ $( document ).ready(function() {
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="numeroTelefono">Telefono</label>
+                <label class="col-md-3 control-lable" for="numeroTelefono">Teléfono</label>
                 <div class="col-md-7">
                     <form:input type="text" path="numeroTelefono" id="numeroTelefono" class="form-control input-sm"/>
                     <div class="has-error errores">
@@ -109,7 +109,7 @@ $( document ).ready(function() {
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="soeid">Soeid</label>
+                <label class="col-md-3 control-lable" for="soeid">SOEID</label>
                 <div class="col-md-7">
                     <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"/>
                     <div class="has-error errores">
