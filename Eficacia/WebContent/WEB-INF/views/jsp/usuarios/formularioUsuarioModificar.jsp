@@ -273,7 +273,10 @@ $(document).ready(function(){
     </div>
     </div>
     </div>
-         	<footer class="footerA" >
+    
+
+    
+         	<footer class="footerA" style="position: fixed; bottom: 0; width: 100%">
          <table style="width: 100%">
         <tbody><tr>
             <td align="left"><img src="${pageContext.request.contextPath}/resources/Images/Logos/banamex_logo_footer.gif" alt="">
