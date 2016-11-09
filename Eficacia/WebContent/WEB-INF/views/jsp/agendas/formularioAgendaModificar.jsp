@@ -37,9 +37,13 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
+		var fechaTemp = $("#fechaTransaccion").val().split("-");
+		var fecha = new Date (fechaTemp[0], fechaTemp[1]-1, fechaTemp[2]);
 		$('.datepicker').datepicker({
-			format : 'dd/mm/yyyy',
-			startDate : new Date()
+			onRender : function(date) {
+				return date.valueOf() < fecha.valueOf() ? 'disabled' : '';
+			},
+			format : 'dd/mm/yyyy'
 		});
 	});
 </script>
