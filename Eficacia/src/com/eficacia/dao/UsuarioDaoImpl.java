@@ -31,9 +31,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		query.setParameter("soeid", soeid);
 		userList = query.list();
 		if(userList.size() > 0){
-			System.out.println("ID: " + userList.get(0).getId());
-			System.out.println("Soeid: " + userList.get(0).getSoeid());
-			System.out.println("Password: " + userList.get(0).getPassword());
+		
 			return userList.get(0);
 		}else{
 			return null;

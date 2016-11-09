@@ -48,8 +48,8 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable();
         http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout").permitAll();
-        http.authorizeRequests().antMatchers("/userInfo","/listarAgendas").access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
-        http.authorizeRequests().antMatchers("/admin","/listarUsuarios").access("hasRole('ROLE_ADMIN')" );
+        http.authorizeRequests().antMatchers("/userInfo","/listarAgendas" , "/inicio").access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
+        http.authorizeRequests().antMatchers("/admin","/listarUsuarios", "/editarAgenda/*" ).access("hasRole('ROLE_ADMIN')" );
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
         http.authorizeRequests().and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")

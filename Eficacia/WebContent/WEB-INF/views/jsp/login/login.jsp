@@ -11,59 +11,70 @@
 <jsp:include page="../fragments/resources.jsp" />
 </head>
 <body>
-<jsp:include page="../fragments/header.jsp" />
-	<div class="container  " style="position:fixed; height: 100%" >
+	<jsp:include page="../fragments/header.jsp" />
+	<div class="container  "
+		style="position: fixed; height: 100%; width: 100%">
 
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  " >
-			<form class="logueo" id="loginform" role="form" 
-				action="${pageContext.request.contextPath}/j_spring_security_check"
-				method="POST">
-				
-			<div style="border-bottom:1px solid #0099FF; margin-bottom: 3.5%;">User <span style="color:#0099FF">Login</span></div>
-		
-				<div style="display: none" id="login-alert"
-					class="alert alert-danger col-sm-12"></div>
-				<div style="margin-bottom: 5px; width: 100%; height: 3px"  class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <input id="login-username"
-						type="text" class="form-control" name="soeid" value=""
-						placeholder="SOEID" required="required">
-				</div>
-				<div style="margin-bottom: 5px; width: 100%" class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
-						type="password" class="form-control" name="contrasena"
-						placeholder="Contraseña" required="required">
-				</div>
-			
-				<div>
-					<c:if test="${param.error == 'true'}">
+		<form id="loginform" role="form"
+			action="${pageContext.request.contextPath}/j_spring_security_check"
+			method="POST">
+			<div style="margin-top: 10px; text-align: center;" class="form-group">
+				<!-- Button -->
+
+				<div class="col-sm-12 controls" style="margin-left: 0%">
+					<input type="submit" class="btn btn-primary"
+						style="width: 60px; height: 27px; font-size: 12px;"
+						value="Validar" />
+					<div class="logueo">
 						<div
-							style="text-align: center; font-weight: bold; color: red; margin: 10px 0px;">
-							Autenticación incorrecta<br />
-							${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+							style="border-bottom: 1px solid #0099FF; margin-bottom: 3.5%; text-align: left;">
+							User <span style="color: #0099FF">Login</span>
+						</div>
 
+						<div style="display: none" id="login-alert"
+							class="alert alert-danger col-sm-12"></div>
+						<div style="margin-bottom: 5px; width: 100%; height: 3px"
+							class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input id="login-username"
+								type="text" class="form-control" name="soeid" value=""
+								placeholder="Soeid" required="required">
+						</div>
+						<div style="margin-bottom: 5px; width: 100%" class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
+								type="password" class="form-control" name="contrasena"
+								placeholder="Contraseña" required="required">
+						</div>
+
+						<div></div>
+						<br>
+						<div style="margin-top: 10px; text-align: center;"
+							class="form-group">
+							<!-- Button -->
+
+							<div class="col-sm-12 controls" style="margin-left: 0%">
+								<input type="submit" class="btn btn-primary"
+									style="width: 60px; height: 27px; font-size: 12px;"
+									value="Validar" />
+							</div>
+						</div>
+						<br> <br> <br>
+					</div>
+					<c:if test="${param.error == 'true'}">
+						<div class="alert alert-danger" style="text-align: c">
+							<strong>Autenticación incorrecta!</strong> Usuario o contraseña
+							incorrectos.
 						</div>
 					</c:if>
 				</div>
-				<br>
-					<div style="margin-top: 10px; text-align: center;"
-					class="form-group">
-					<!-- Button -->
+			</div>
+		</form>
 
-					<div class="col-sm-12 controls" style=" margin-left: 0%">
-						<input type="submit" class="btn btn-primary"
-							style="width: 60px; height: 27px; font-size: 12px;"
-							value="Validar" />
-					</div>
-				</div>
-			</form>
-		
-		</div>
 	</div>
 
 </body>
-	<footer style="position: fixed; bottom: 0; width: 100%">
-<jsp:include page="../fragments/footer.jsp"  />	
-	</footer>
+<footer style="position: fixed; bottom: 0; width: 100%">
+	<jsp:include page="../fragments/footer.jsp" />
+</footer>
 </html>

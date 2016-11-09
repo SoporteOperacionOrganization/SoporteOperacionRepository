@@ -29,7 +29,7 @@ $(document).ready(function(){
 <body>
 
        <div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px" >REGISTRAR USUARIO</div>
+		<div style="text-align: center; font-weight: bold;font-size: 20px" >Registrar usuarios</div>
 		<br>
        <div class="contenidoUsuarios">
        <div class="contenedorFormulario">

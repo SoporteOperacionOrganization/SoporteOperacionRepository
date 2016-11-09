@@ -18,7 +18,7 @@
 
 <div class="container"
 		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px">ELIMINACIÓN MASIVA</div>
+		<div style="text-align: center; font-weight: bold;font-size: 20px">Eliminación masiva</div>
 <br>
 <div class="contenidoUsuarios">
 	<div class="generic-container">
@@ -33,7 +33,7 @@
 		</form:form>
 		
 		 <div>
-         	<a href="<c:url value='/descargarArchivo/2' />"><!-- Descargar Layout --></a>
+         	<a href="<c:url value='/descargarArchivo/2' />"> Descargar Layout </a>
          </div>
 		
 		

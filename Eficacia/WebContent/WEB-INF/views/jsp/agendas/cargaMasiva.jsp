@@ -18,7 +18,7 @@
 
 <div class="container"
 		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px">CARGA MASIVA</div>
+		<div style="text-align: center; font-weight: bold;font-size: 20px">Carga masiva</div>
 <br>
 
 <div class="contenidoUsuarios">
@@ -34,7 +34,7 @@
 		</form:form>
 		 
         <div>
-        	<a href="<c:url value='/descargarArchivo/1' />"><!-- Descargar Layout --></a>
+        	<a href="<c:url value='/descargarArchivo/1' />"> Descargar Layout </a>
         </div>
 		
 		<div>

@@ -48,36 +48,35 @@
 	<div
 		style="background-image:url('${pageContext.request.contextPath}/resources/Images/Logos/Logo_CitiBanamex.png'); background-repeat:repeat-x; 
 	top: 0%; ;	z-index:3 ; position: fixed; width: 100%; height: 100px">
-
 		<table style="width: 100%; position: fixed;">
 			<tr>
-				<td width="68%">
-					<h3 style="text-align: right; color: #D7D7D7">SISTEMA DE
-						GESTIÓN EFICASIA</h3>
+				<td width="30%"></td>
+				<td width="43%">
+					<h3 class="titleSize" style="color: #D7D7D7; margin-top: 0.0em">SISTEMA
+						DE GESTION EFICASIA</h3>
 				</td>
-				<td style="width: 32%; text-align: right;">
+				<td style="width: 52%; height: 100px; text-align: right;">
 
 					<h4>
-						<span
-							style="color: #C01722; font-size: 16px; font-weight: bold; letter-spacing: 1px; margin: 0em 0.5em 0em 0em">
+
+						<span class="headerText"
+							style="color: #C01722; font-weight: bold; letter-spacing: 1px; margin: 0.6em 0.5em 0em 0em">
 							<sec:authorize
 								access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">Bienvenido:</sec:authorize>
 						</span>
 					</h4>
 					<h5>
-						<span
-							style="color: #fff; font-size: 14px; margin: 0em 0.7em 0em 0em">
-							<c:if test="${UsuarioSesion != null}">
+						<span class="headerText"
+							style="color: #fff; margin: 0em 0.7em 0em 0em"> <c:if
+								test="${UsuarioSesion != null}">
 								<span class="tranformarMayusculas"><sec:authorize
 										access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
 									${UsuarioSesion.nombre} ${UsuarioSesion.apellidoPaterno}</sec:authorize> </span>
 							</c:if>
-
 						</span>
 					</h5>
 				</td>
 				<td></td>
-
 			</tr>
 		</table>
 
@@ -136,16 +135,12 @@
 			</table>
 
 		</sec:authorize>
-
-
-
 	</div>
 	<br>
 
 	<!-- FIN CABECERA -->
-
 	<div class="container"
-		style="width: 100%; margin-top: 10em;; z-index: 1; position: absolute;">
+		style="width: 100%; margin-top: 10em; z-index: 1; position: absolute;">
 		<div style="text-align: center; font-weight: bold; font-size: 20px">Modificar
 			agenda</div>
 		<br>
@@ -328,8 +323,8 @@
 							style="font-size: 11px">http://intranet.banamex.com/</a> <span
 							style="font-size: 11px">v 1.0.1.1</span></td>
 						<td align="right"><img
-							src="../resources/Images/Logos/logo_citibanamex_footer.png" alt="">
-							<br>
+							src="../resources/Images/Logos/logo_citibanamex_footer.png"
+							alt=""> <br>
 							<div class="FontFooterLinkBlue" style="font-size: 11px">Copyright
 								© Citibanamex 2016. Todos los derechos reservados.</div></td>
 					</tr>
