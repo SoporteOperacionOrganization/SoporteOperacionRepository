@@ -8,13 +8,13 @@ import org.springframework.validation.Validator;
 import com.eficacia.model.Usuario;
 
 @Component
-public class UsuarioValidator implements Validator{
+public class UsuarioUpdateValidator implements Validator{
 
 	public boolean supports(Class<?> clazz) {
         return Usuario.class.isAssignableFrom(clazz);
     }
- 
-    public void validate(Object obj, Errors errors) {
+
+	public void validate(Object obj, Errors errors) {
         Usuario usuario = (Usuario) obj;
              
         String patronContraseñaSegura =
@@ -57,8 +57,8 @@ public class UsuarioValidator implements Validator{
         }
         
     }
-    
-    public boolean tieneEspaciosEnBlanco(String password){
+	
+	public boolean tieneEspaciosEnBlanco(String password){
     	boolean validacion = true;
     	int tamanoCadena = password.length();
         for (int i = 0; i < tamanoCadena; i++) {
@@ -94,5 +94,5 @@ public class UsuarioValidator implements Validator{
         }
         return charBlock;
       }
-
+	
 }

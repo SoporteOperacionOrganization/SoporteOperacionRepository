@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,7 @@ import com.eficacia.propertyeditors.RolPropertyEditor;
 import com.eficacia.service.RolService;
 import com.eficacia.service.UsuarioService;
 import com.eficacia.validator.UsuarioValidator;
+import com.eficacia.validator.UsuarioUpdateValidator;
 
 
 @Controller
@@ -47,14 +49,20 @@ public class UsuariosController {
 	@Autowired
 	private RolPropertyEditor rolPropertyEditor;
 	
-	@Autowired
-	private UsuarioValidator usuarioValidator;
+	/*@Autowired
+	private UsuarioValidator usuarioValidator;*/
 	
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder){
 		webDataBinder.registerCustomEditor(Rol.class, rolPropertyEditor);
-		webDataBinder.setValidator(usuarioValidator);
+		//webDataBinder.setValidator(usuarioValidator);
 	}
+	
+	@Inject
+    private UsuarioValidator usuarioValidation;
+	
+	@Inject
+    private UsuarioUpdateValidator usuarioUpdateValidation;
 	
 	@RequestMapping(value = "/listarRoles", method = RequestMethod.GET)
 	public String test(Model model){
@@ -95,6 +103,7 @@ public class UsuariosController {
 	
 	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
 	public String registrarUsuario(Model model, @Valid Usuario usuario, BindingResult result){
+		usuarioValidation.validate(usuario, result);
 		if(result.hasErrors()){
 			List<Rol> roles = rolService.obtenerRoles();
 			model.addAttribute("roles",roles);
@@ -111,12 +120,15 @@ public class UsuariosController {
 		model.addAttribute("edit", true);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("roles",roles);
-		model.addAttribute("passwordConfirmation", usuario.getPassword());
+		usuario.setPassword("");
+		//model.addAttribute("password", usuario.setPassword(""));
+		//model.addAttribute("passwordConfirmation", usuario.getPassword());
 		return "usuarios/formularioUsuarioModificar";
 	}
 	
 	@RequestMapping(value = "/editarUsuario/{soeid1}", method = RequestMethod.POST)
 	public String modificarUsuario(Model model,  @Valid Usuario usuario, BindingResult result){
+		usuarioUpdateValidation.validate(usuario, result);
 		if(result.hasErrors()){
 			List<Rol> roles = rolService.obtenerRoles();
 			model.addAttribute("roles",roles);

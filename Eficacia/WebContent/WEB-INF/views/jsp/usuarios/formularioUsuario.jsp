@@ -103,8 +103,8 @@ $(document).ready(function(){
                 <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
                     <form:input type="password" path="password" id="example-getting-started-input"
-                     class="form-control input-sm"  data-toggle="tooltip" 
-                     title="Debe contener al menos una letra mayúscula, una minúscula, un número, un caracter especial y sin espacios en blanco"/>               
+                     class="form-control input-sm"  data-toggle="tooltip" data-html="true"
+                     title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva" />               
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
                     </div>
@@ -119,7 +119,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" class="form-control input-sm" data-toggle="tooltip" title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"/>
+                    <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" class="form-control input-sm" data-toggle="tooltip" data-html="true" title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula, <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva"/>
                     <div class="has-error errores">
                         <form:errors path="passwordConfirmation" class="help-inline"/>
                     </div>

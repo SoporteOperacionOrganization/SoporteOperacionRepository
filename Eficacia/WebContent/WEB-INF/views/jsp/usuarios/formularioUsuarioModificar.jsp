@@ -252,7 +252,8 @@
 								<div class="col-md-7">
 									<form:input type="password" path="password" id="password"
 										class="form-control input-sm" data-toggle="tooltip"
-										title="Debe contener al menos una letra mayúscula, una minúscula, un número, un caracter especial y sin espacios en blanco" />
+										title="Debe contener al menos una letra mayúscula,<br/> una minúscula, un número, un caracter especial y sin espacios en blanco" 
+										value="${password}"/>
 									<div class="has-error errores">
 										<form:errors path="password" class="help-inline" />
 									</div>
@@ -273,9 +274,9 @@
 
 									<form:input type="password" path="passwordConfirmation"
 										id="passwordConfirmation" data-toggle="tooltip"
-										title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"
+										title="Debe contener al menos una letra mayúscula, minúsculas,<br/>  al menos un número, al menos un caracter especial y no debe contener espacios en blanco"
 										name="passwordConfirmation" class="form-control input-sm"
-										value="${passwordConfirmation}" />
+										 />
 									<div class="has-error errores">
 										<form:errors path="passwordConfirmation" class="help-inline" />
 									</div>
@@ -441,8 +442,8 @@
 								<label class="col-md-3 control-lable" for="password">Password</label>
 								<div class="col-md-7">
 									<form:input type="password" path="password" id="password"
-										class="form-control input-sm" data-toggle="tooltip"
-										title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco" />
+										class="form-control input-sm" data-toggle="tooltip" data-html="true"
+										title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva" />
 									<div class="has-error errores">
 										<form:errors path="password" class="help-inline" />
 									</div>
@@ -462,8 +463,8 @@
 									<!-- <div class="col-md-2" id="example-getting-started-text" style="display:inline;font-weight:bold;padding:6px 12px;"> -->
 
 									<form:input type="password" path="passwordConfirmation"
-										id="passwordConfirmation" data-toggle="tooltip"
-										title="Debe contener al menos una letra mayúscula, minúsculas, al menos un número, al menos un caracter especial y no debe contener espacios en blanco"
+										id="passwordConfirmation" data-toggle="tooltip" data-html="true"
+										title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva"
 										name="passwordConfirmation" class="form-control input-sm"
 										value="${passwordConfirmation}" />
 									<div class="has-error errores">

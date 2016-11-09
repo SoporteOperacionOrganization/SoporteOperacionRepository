@@ -55,7 +55,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario entity = usuarioDao.obtenerUsuario(usuario.getSoeid());
 		if(entity != null){
 			entity.setSoeid(usuario.getSoeid());
-			if(usuario.getPassword().length() < 15){
+			if(!usuario.getPassword().equals("")){
 				entity.setPassword(passwordEncoder.encode(usuario.getPassword()));
 			}
 			entity.setNombre(usuario.getNombre());
