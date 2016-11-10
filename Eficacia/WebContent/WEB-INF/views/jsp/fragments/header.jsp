@@ -4,6 +4,7 @@
 
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body  style="width: 100%">
@@ -21,11 +22,11 @@
 				
 						<h4>
 
-							<span  class="headerText" style=" color: #C01722; font-weight: bold; letter-spacing: 1px; margin: 0.6em 0.5em 0em 0em ">
+							<span  class="headerText" style=" color: #C01722; font-weight: bold; letter-spacing: 1px; margin: 0em 1.2em 0em 0em ">
 							<sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">Bienvenido:</sec:authorize></span>
 						</h4>
 						<h5>
-							<span class="headerText"  style="color: #fff;   margin:  0em 0.7em 0em 0em "> <c:if
+							<span class="headerText"  style="color: #fff;   margin:  0em 1.2em 0em 0em "> <c:if
 									test="${UsuarioSesion != null}">
 									<span class="tranformarMayusculas"><sec:authorize	access="hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')">
 									${UsuarioSesion.nombre} ${UsuarioSesion.apellidoPaterno}</sec:authorize> </span>
@@ -83,7 +84,7 @@
 							        </ul>
 							      </li>
 							    </ul>
-							    <ul  style="text-align: right; margin: 17px 0px 0px 0px">
+							    <ul  style="text-align: right; margin: 17px 5px 0px 0px">
 									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Cerrar sesión</a>
 								</ul>
 						  </div>

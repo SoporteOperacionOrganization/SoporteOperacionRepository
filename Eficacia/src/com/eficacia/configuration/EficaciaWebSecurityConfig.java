@@ -49,7 +49,7 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
-        http.authorizeRequests().antMatchers("/listarAgendas" , "/eliminacionMasiva" , "/cargarExcelEliminacion", "/filtrarAgendas" , "/agregarAgenda", "/exportarAgendas", "/cargaMasiva", "/cargarExcel" ,"/inicio").access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
+        http.authorizeRequests().antMatchers("/listarAgendas" , "/eliminacionMasiva" , "/cargarExcelEliminacion", "/filtrarAgendas" , "/agregarAgenda", "/exportarAgendas", "/cargaMasiva", "/cargarExcel" ).access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
         http.authorizeRequests().antMatchers("/listarUsuarios", "/agregarUsuario", "/filtrarUsuarios", "/editarUsuario/{\\d+}", "/eliminarUsuario", "/editarAgenda/{\\d+}", "/eliminarAgenda").access("hasRole('ROLE_ADMIN')" );
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");

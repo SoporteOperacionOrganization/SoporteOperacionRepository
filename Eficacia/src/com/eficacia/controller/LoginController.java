@@ -38,7 +38,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
 	public String inicio(Model model) throws ParseException{
-	
 		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				boolean verificacionFechaUltimaModificacion = usuarioService.validarExpiracionContrasena(principal.getUsername());
 		if(!verificacionFechaUltimaModificacion ){
@@ -47,8 +46,6 @@ public class LoginController {
 	
 		Usuario usuario = usuarioService.obtenerUsuario(principal.getUsername());
 		if(!usuario.isUsuarioCredencialesNoExpiradas()){
-		
-			
 		
 			return "redirect:/credencialesExpiradas";
 		}

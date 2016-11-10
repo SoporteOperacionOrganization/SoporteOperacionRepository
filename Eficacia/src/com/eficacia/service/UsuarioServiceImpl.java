@@ -120,6 +120,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	        }
 	    } while (startCal.getTimeInMillis() < endCal.getTimeInMillis()); //excluding end date
 	  
+	    System.out.println("DIFERENCIA DIAS: " + diferencia);
 		if(diferencia > 15){
 			validacion = false;
 		}
@@ -140,23 +141,70 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public int validarCambioContraseña(CustomUsuario principal, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo) {
 		int validacion = 0;
-		String patronContraseñaSegura = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%./_-]).{6,20})";
+		String patronContraseñaSegura = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";
 		Calendar fecha = new GregorianCalendar();
 		String fechaTransaccion= fecha.get(Calendar.DAY_OF_MONTH)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.YEAR);
 		
 		Usuario usuario = usuarioDao.obtenerUsuario(principal.getUsername());
 		if(!passwordEncoder.matches(passwordActual,usuario.getPassword())){
 			validacion = 1;
-		}else if(!passwordNuevo.equals(confirmacionPasswordNuevo)){
-			validacion = 2;
 		}else if(passwordNuevo.equals(passwordActual)){
 			validacion = 3;
-		}else if(!passwordNuevo.matches(patronContraseñaSegura)){
+		}else if(passwordNuevo.length() != 8){
+        	validacion = 4;
+        }else if(!tieneEspaciosEnBlanco(passwordNuevo)){
+        	validacion = 4;
+        }else if(tieneCaracteresConsecutivos(passwordNuevo) >= 3){
+        	validacion = 4;
+        }else if(passwordNuevo.contains("Banamex") || usuario.getPassword().contains("Citi") || usuario.getPassword().contains("CitiBanamex")){
+        	validacion = 4;
+        }else if(passwordNuevo.charAt(0) == '0'){
+        	validacion = 4;
+        }else if(!passwordNuevo.matches(patronContraseñaSegura)){
 			validacion = 4;
+		}else if(!passwordNuevo.equals(confirmacionPasswordNuevo)){
+			validacion = 2;
 		}else{
 			usuarioDao.renovarCredenciales(passwordEncoder.encode(passwordActual), passwordEncoder.encode(passwordNuevo), fechaTransaccion, principal.getUsername());
 		}
 		return validacion;
 	}
+	
+	public boolean tieneEspaciosEnBlanco(String password){
+    	boolean validacion = true;
+    	int tamanoCadena = password.length();
+        for (int i = 0; i < tamanoCadena; i++) {
+          if (Character.isWhitespace(password.charAt(i))) {
+            validacion = false;
+          }
+        }
+    	return validacion;
+    }
 
+	public int tieneCaracteresConsecutivos(String password) {
+        int charBlock = 0;
+        int holder = 1;
+        if(password.length() == 0){ 
+           charBlock = 0;
+        } else if(password.length() == 1){
+           charBlock = 1;
+        } else {
+            for(int i=0; i < password.length()-1; i++){   
+                if((password.length() == 2) && (password.charAt(i) != password.charAt(i+1))){ 
+                    charBlock =1; 
+                }   
+                else if((password.length() == 3) && (password.charAt(i) != password.charAt(i+1))){
+                   charBlock = 1; 
+                } 
+                else if (password.charAt(i) == password.charAt(i+1)){
+                   holder = holder + 1; 
+                     if(holder > charBlock){
+                       charBlock = holder;
+                       }
+               } else holder = 1; 
+            }
+        }
+        return charBlock;
+      }
+	
 }

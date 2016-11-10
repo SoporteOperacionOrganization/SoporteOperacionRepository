@@ -36,27 +36,16 @@ public class PaginationTaglib extends SimpleTagSupport{
 	   else
 	    out.write(constructLink(offset-steps, anterior, null, false));
 	   
-	   int limit=0;
-	   if(flag == 0){
-		   limit = conteo / 4;
+	   int limite=0;
+	   int cuarto = conteo/4;
+	   if(offset > cuarto){
+		   if(offset <= conteo){
+			   limite = limite + cuarto;
+		   }
 	   }
-	  flag = 1;
-	   
-	   
-	   if(offset >= limit){
-		   System.out.println("La division es mayor " + limit);
-		   int adicion = limit / 2; 
-		   System.out.println("cuarto " + adicion);
-		   limit =  limit + adicion;
-	   }else{
-		   System.out.println("La division es menor " + limit);
-	   }
-	   
-	   System.out.println("El limit es  " + limit);
 	   
 	   for(int itr=offset;itr<conteo;itr+=steps) {
 	    if(offset==itr){
-	    	System.out.println("Offset " + offset);
 	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
 	    }else{
 	    	out.write(constructLink(itr/15*steps, String.valueOf(itr/15+1), null , false));
@@ -79,7 +68,6 @@ public class PaginationTaglib extends SimpleTagSupport{
 	 
 	 
 	 private String constructLink(int page, String text, String className, boolean disabled) {
-		 System.out.println("Pagina " + page);
 		 StringBuilder link = new StringBuilder("<li");
 		  if (className != null) {
 		   link.append(" class=\"");

@@ -6,6 +6,7 @@
 
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sistema de usuarios</title>
 <jsp:include page="../fragments/resources.jsp" />

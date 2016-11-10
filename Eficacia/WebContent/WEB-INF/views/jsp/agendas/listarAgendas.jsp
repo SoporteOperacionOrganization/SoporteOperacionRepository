@@ -7,6 +7,7 @@
 	<%@ taglib prefix="tag" uri="http://eficacia/paginacion.tld"%>
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Agendas</title>
 <jsp:include page="../fragments/resources.jsp" />
@@ -104,7 +105,7 @@
 			<c:otherwise>
 				<div class="paginacion">
               		<div>
-                    	<tag:paginate limite="0" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<tag:paginate limite="${limite}" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     	<span class="label label-primary">Total: ${count}</span>
              		</div>
 				</div>

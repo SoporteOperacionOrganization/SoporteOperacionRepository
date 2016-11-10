@@ -6,8 +6,9 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Usuarios</title>
+<title>Registrar Usuario</title>
 <jsp:include page="../fragments/resources.jsp" />
 <spring:url value="resources/js/password-score.js" var="passwordScoreJs" />
 <spring:url value="resources/js/bootstrap-strength-meter.js" var="strength" />
@@ -29,8 +30,8 @@ $(document).ready(function(){
 <body>
 
        <div class="container" style="width: 100% ; margin-top: 10em; ; z-index:1; position: absolute  ;">
-		<div style="text-align: center; font-weight: bold;font-size: 20px" >Registrar usuarios</div>
-		<br>
+             <div style="text-align: center; font-weight: bold;font-size: 20px" >Registrar usuarios</div>
+             <br>
        <div class="contenidoUsuarios">
        <div class="contenedorFormulario">
        <div class="generic-container">
@@ -98,7 +99,7 @@ $(document).ready(function(){
             </div>
         </div>
         
-        <div class="row">
+         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="password">Contraseña</label>
                 <div class="col-md-7">
@@ -152,11 +153,11 @@ $(document).ready(function(){
                     </c:when>
                     <c:otherwise>
                                        <input type="submit" value="Agregar"
-											class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
-											
-												<a href="<c:url value='/listarUsuarios' />"
-										class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>
-						
+                                                                          class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
+                                                                          
+                                                                                 <a href="<c:url value='/listarUsuarios' />"
+                                                                   class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>
+                                        
                     </c:otherwise>
                     
                     
@@ -169,7 +170,7 @@ $(document).ready(function(){
     </div>
     </div>
     </div>
-<jsp:include page="../fragments/footer.jsp"  />	
+<jsp:include page="../fragments/footer.jsp"  />       
 </div>
 
 </html>
