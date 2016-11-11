@@ -120,7 +120,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	        }
 	    } while (startCal.getTimeInMillis() < endCal.getTimeInMillis()); //excluding end date
 	  
-	    System.out.println("DIFERENCIA DIAS: " + diferencia);
 		if(diferencia > 15){
 			validacion = false;
 		}

@@ -36,15 +36,18 @@ public class PaginationTaglib extends SimpleTagSupport{
 	   else
 	    out.write(constructLink(offset-steps, anterior, null, false));
 	   
+	   
 	   int limite=0;
-	   int cuarto = conteo/4;
-	   if(offset > cuarto){
-		   if(offset <= conteo){
-			   limite = limite + cuarto;
-		   }
+	   if(offset + 30 > conteo){
+		   limite = offset + 15;
+		   System.out.println("Mas 15 offset " + offset + " limite "+ limite);
+	   }else{
+		   limite = offset + 30;
+		   System.out.println("Mas 30 offset " + offset + " limite "+ limite);
 	   }
 	   
-	   for(int itr=offset;itr<conteo;itr+=steps) {
+	   
+	   for(int itr=offset;itr<limite;itr+=steps) {
 	    if(offset==itr){
 	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
 	    }else{

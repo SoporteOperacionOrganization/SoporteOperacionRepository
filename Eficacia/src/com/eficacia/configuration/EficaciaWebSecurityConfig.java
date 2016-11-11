@@ -12,11 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.eficacia.security.*;
 
 @Configuration
 @EnableWebSecurity
 public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
 	@Autowired
 	@Qualifier("customUserDetailsService")
 	UserDetailsService userDetailsService;
@@ -46,12 +47,9 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-
-        http.sessionManagement().invalidSessionUrl("/login");
-        http.sessionManagement().maximumSessions(2);
-
+		
 		http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout").permitAll();
-		http.authorizeRequests().antMatchers("/userInfo", "/listarAgendas", "/inicio",
+		http.authorizeRequests().antMatchers("/userInfo", "/listarAgendas",
 				"/cargaMasiva", "/eliminacionMasiva", "/agregarAgenda")
 				.access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
 		http.authorizeRequests().antMatchers("/admin", "/listarUsuarios", "/agregarUsuario", 
@@ -61,9 +59,10 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")
 				.defaultSuccessUrl("/inicio").failureUrl("/login?error=true").usernameParameter("soeid")
 				.passwordParameter("contrasena")
-
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 
+		//http.authorizeRequests().anyRequest().authenticated().
+		
 		http.sessionManagement().invalidSessionUrl("/login");
 		http.sessionManagement().maximumSessions(2);
 	}
