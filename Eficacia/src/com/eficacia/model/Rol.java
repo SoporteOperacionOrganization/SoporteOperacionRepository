@@ -17,6 +17,16 @@ public class Rol {
 	@Column(name = "rolnombre")
 	private String nombre;
 	
+	public Rol(){
+		
+		
+	}
+    public Rol(int id, String nombre ){
+    	this.nombre = nombre;
+    	this.id = id;
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

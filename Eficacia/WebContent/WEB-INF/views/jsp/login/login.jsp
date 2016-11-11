@@ -44,6 +44,7 @@
 						<div style="margin-bottom: 5px; width: 100%" class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
+								maxlength="8"
 								type="password" class="form-control" name="contrasena"
 								placeholder="Contraseña" required="required">
 						</div>
