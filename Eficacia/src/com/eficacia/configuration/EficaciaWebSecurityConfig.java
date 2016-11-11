@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.eficacia.security.CustomAuthenticationSuccessHandler;
+
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +22,7 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	@Qualifier("customAuthenticationSuccessHandler")
-	CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+	private CustomAuthenticationSuccessHandler authenticationSuccessHandler;
 	
 	@Autowired
 	@Qualifier("customUserDetailsService")
@@ -57,7 +59,7 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/cargaMasiva", "/eliminacionMasiva", "/agregarAgenda", "/inicio")
 				.access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
 		http.authorizeRequests().antMatchers("/listarUsuarios", "/agregarUsuario", 
-				"/editarUsuario/*" ,"/editarAgenda/*", "/inicio")
+				"/editarUsuario/*" ,"/editarAgenda/*")
 				.access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")
