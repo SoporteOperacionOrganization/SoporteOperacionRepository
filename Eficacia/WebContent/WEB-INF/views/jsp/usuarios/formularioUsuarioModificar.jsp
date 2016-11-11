@@ -43,7 +43,7 @@ $(document).ready(function(){
 			<td width="30%"></td>
 				<td  width="43%">
 					<h3 class="titleSize"
-						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTION EFICASIA</h3>
+						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTIÓN EFICASIA</h3>
 				</td>
 				<td style="width: 52%; height: 100px;  text-align: right;"> 
 				
@@ -200,7 +200,8 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="password">Password</label>
                 <div class="col-md-7">
-                    <form:input type="password" path="password" id="password" class="form-control input-sm" data-toggle="tooltip" data-html="true"
+                    <form:input type="password" path="password" id="password" class="form-control input-sm" data-toggle="tooltip"
+                     data-html="true"  maxlength="8"
                       title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva"/>
                     <div class="has-error errores">
                         <form:errors path="password" class="help-inline"/>
@@ -216,16 +217,15 @@ $(document).ready(function(){
                 <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
                 <div class="col-md-7">
                 
-                <!-- <div class="col-md-2" id="example-getting-started-text" style="display:inline;font-weight:bold;padding:6px 12px;"> -->
                    
                     <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" 
-                    data-toggle="tooltip" data-html="true"
+                    data-toggle="tooltip" data-html="true"  maxlength="8"
                      title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva"
                     name="passwordConfirmation" class="form-control input-sm" value="${passwordConfirmation}"/>
                     <div class="has-error errores">
                         <form:errors path="passwordConfirmation" class="help-inline"/>
                     </div>
-                     <!-- </div> -->
+                   
                 </div>
             </div>
         </div>

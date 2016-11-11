@@ -43,7 +43,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="soeid">SOEID</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"/>
+                    <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"   maxlength="7"/>
                     <div class="has-error errores">
                         <form:errors path="soeid" class="help-inline"/>
                     </div>

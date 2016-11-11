@@ -16,7 +16,7 @@
 			<td width="30%"></td>
 				<td  width="43%">
 					<h3 class="titleSize"
-						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTION EFICASIA</h3>
+						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTIÓN EFICASIA</h3>
 				</td>
 				<td style="width: 52%; height: 100px;  text-align: right;"> 
 				

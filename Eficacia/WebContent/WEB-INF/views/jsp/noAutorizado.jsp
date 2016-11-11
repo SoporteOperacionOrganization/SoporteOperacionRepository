@@ -16,7 +16,7 @@
 	<div class="container" style="position:fixed; margin-top: 10em; width: 100% ; text-align: center;" >
 		<h1>ACCESO DENEGADO</h1>
 			<img style="width: 8%; height: 18%" class="inicioImages" src="resources/Images/Logos/seguridad.png">
-			<h5>No cuentas con los permisos necesrios para visualizar esta pagina</h5>
+			<h5>No cuentas con los permisos necesarios para visualizar esta página</h5>
 	</div>
 
 </body>
