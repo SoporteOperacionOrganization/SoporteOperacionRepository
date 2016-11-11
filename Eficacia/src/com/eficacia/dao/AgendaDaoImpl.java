@@ -92,7 +92,7 @@ public class AgendaDaoImpl implements AgendaDao {
 		query = session.createQuery("FROM Agenda a where a.razonSocial like :razonSocial");
 		query.setParameter("razonSocial", "%"+razonSocial+"%");
 		query.setFirstResult(offset!=null?offset:0);
-		query.setMaxResults(limite!=null?limite:5);
+		query.setMaxResults(limite!=null?limite:15);
 		agendas = query.list();
 		return agendas;
 	}

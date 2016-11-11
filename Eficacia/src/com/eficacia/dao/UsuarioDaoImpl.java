@@ -85,7 +85,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		query = session.createQuery("FROM Usuario u where u.soeid like :soeid");
 		query.setParameter("soeid", "%"+soeid+"%");
 		query.setFirstResult(offset!=null?offset:0);
-		query.setMaxResults(limite!=null?limite:5);
+		query.setMaxResults(limite!=null?limite:15);
 		usuarios = query.list();
 		return usuarios;
 		
