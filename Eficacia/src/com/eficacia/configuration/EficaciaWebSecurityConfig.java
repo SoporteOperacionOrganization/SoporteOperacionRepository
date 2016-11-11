@@ -19,6 +19,10 @@ import com.eficacia.security.*;
 public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
+	@Qualifier("customAuthenticationSuccessHandler")
+	CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+	
+	@Autowired
 	@Qualifier("customUserDetailsService")
 	UserDetailsService userDetailsService;
 
@@ -48,12 +52,12 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		
-		http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout").permitAll();
-		http.authorizeRequests().antMatchers("/userInfo", "/listarAgendas",
-				"/cargaMasiva", "/eliminacionMasiva", "/agregarAgenda")
+		http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+		http.authorizeRequests().antMatchers("/listarAgendas",
+				"/cargaMasiva", "/eliminacionMasiva", "/agregarAgenda", "/inicio")
 				.access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
-		http.authorizeRequests().antMatchers("/admin", "/listarUsuarios", "/agregarUsuario", 
-				"/editarUsuario/*" ,"/editarAgenda/*")
+		http.authorizeRequests().antMatchers("/listarUsuarios", "/agregarUsuario", 
+				"/editarUsuario/*" ,"/editarAgenda/*", "/inicio")
 				.access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")
@@ -61,8 +65,7 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.passwordParameter("contrasena")
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 
-		//http.authorizeRequests().anyRequest().authenticated().
-		
+		http.authorizeRequests().and().formLogin().successHandler(authenticationSuccessHandler);
 		http.sessionManagement().invalidSessionUrl("/login");
 		http.sessionManagement().maximumSessions(2);
 	}

@@ -36,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		boolean accountNonLocked = true;
 
 		return new CustomUsuario(domainUser.getSoeid(), domainUser.getPassword(), enabled, accountNonExpired,
-				credentialsNonExpired, accountNonLocked, domainUser.getRol().getNombre(),
+				true, accountNonLocked, domainUser.getRol().getNombre(),
 				getAuthorities(domainUser.getRol().getId(), domainUser.isUsuarioCredencialesNoExpiradas()),
 				domainUser.getNombre(), domainUser.getApellidoPaterno());
 
@@ -56,6 +56,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 			} else if (role.intValue() == 2) {
 				roles.add("ROLE_EJECUTIVO");
 			}
+		}else{
+			roles.add("ROLE_EXPIREDCREDENTIALS");
 		}
 		return roles;
 	}
