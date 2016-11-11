@@ -55,6 +55,9 @@ public class UsuarioUpdateValidator implements Validator{
         if(!usuario.getPassword().equals(usuario.getPasswordConfirmation())){
         	 errors.rejectValue("passwordConfirmation", "notmatch.usuario.password");
         }
+        if(usuario.getRol() == null){
+            errors.rejectValue("rol", "NotEmpty.usuario.rol");
+       }
         
     }
 	

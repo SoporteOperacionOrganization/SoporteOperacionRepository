@@ -97,6 +97,7 @@ public class UsuariosController {
 	public String agregarUsuario(Model model){
 		List<Rol> roles = rolService.obtenerRoles();
 		model.addAttribute("usuario", new Usuario());
+		
 		model.addAttribute("roles",roles);
 		return "usuarios/formularioUsuario";
 	}

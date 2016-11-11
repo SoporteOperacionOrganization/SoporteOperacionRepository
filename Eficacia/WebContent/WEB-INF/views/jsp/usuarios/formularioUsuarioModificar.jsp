@@ -188,7 +188,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="telefono">Telefono</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="telefono" id="telefono" class="form-control input-sm"/>
+                    <form:input type="text" path="telefono" id="telefono" class="form-control input-sm" maxlength="15"/>
                     <div class="has-error errores">
                         <form:errors path="telefono" class="help-inline"/>
                     </div>

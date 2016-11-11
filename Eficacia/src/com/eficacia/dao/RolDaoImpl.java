@@ -26,6 +26,10 @@ public class RolDaoImpl implements RolDao{
 		List<Rol> roles = new ArrayList<Rol>();
 		query = session.createQuery("FROM Rol");
 		roles = query.list();
+		Rol select = new Rol(0,"---Selecciona---");
+		roles.add(0, select);
+
+		
 		return roles;
 	}
 

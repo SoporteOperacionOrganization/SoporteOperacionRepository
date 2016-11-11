@@ -33,7 +33,7 @@
 	
 	<c:if test="${empty agendas}">
 	<div class="alert alert-warning">
-  <strong>No existe!</strong> La razón social que ingresaste no existe o ha sido eliminada.
+  No hay registros para mostrar.
 </div>
 	
 	</c:if>
