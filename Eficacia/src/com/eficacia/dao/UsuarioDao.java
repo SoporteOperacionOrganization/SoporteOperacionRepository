@@ -22,6 +22,8 @@ public interface UsuarioDao {
 	
 	public Long contarRegistros();
 	
+	public Long validarExistenciaUsuario(String soeid);
+	
 	public Long contarRegistrosCond(String soeid);
 	
 	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid);

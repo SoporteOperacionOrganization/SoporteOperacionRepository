@@ -53,7 +53,7 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
         Row header = sheet.createRow(0);
         
          
-        header.createCell(0).setCellValue("CODIGO TRANSACCION");
+        header.createCell(0).setCellValue("CÓDIGO TRANSACCION");
         header.getCell(0).setCellStyle(style);
         
         header.createCell(1).setCellValue("FECHA TRANSACCION");
@@ -62,16 +62,16 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
         header.createCell(2).setCellValue("FECHA CIERRE");
         header.getCell(2).setCellStyle(style);
          
-        header.createCell(3).setCellValue("NUMERO CLIENTE");
+        header.createCell(3).setCellValue("NÚMERO CLIENTE");
         header.getCell(3).setCellStyle(style);
          
-        header.createCell(4).setCellValue("RAZON SOCIAL");
+        header.createCell(4).setCellValue("RAZÓN SOCIAL");
         header.getCell(4).setCellStyle(style);
         
         header.createCell(5).setCellValue("NOMBRE REPRESENTANTE");
         header.getCell(5).setCellStyle(style);
         
-        header.createCell(6).setCellValue("NUMERO DE TELEFONO");
+        header.createCell(6).setCellValue("NÚMERO DE TELÉFONO");
         header.getCell(6).setCellStyle(style);
         
         header.createCell(7).setCellValue("SOEID");

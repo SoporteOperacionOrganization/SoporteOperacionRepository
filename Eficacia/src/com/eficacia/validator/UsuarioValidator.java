@@ -1,5 +1,6 @@
 package com.eficacia.validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -7,9 +8,14 @@ import org.springframework.validation.Validator;
 
 import com.eficacia.model.Usuario;
 
+import com.eficacia.service.UsuarioService;
+
 @Component
 public class UsuarioValidator implements Validator{
 
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	public boolean supports(Class<?> clazz) {
         return Usuario.class.isAssignableFrom(clazz);
     }
@@ -58,7 +64,11 @@ public class UsuarioValidator implements Validator{
 
         if(usuario.getRol() == null){
                      errors.rejectValue("rol", "NotEmpty.usuario.rol");
-                }
+        }
+        
+        if(validarExistenciaUsuario(usuario.getSoeid()) != 0){
+        	errors.rejectValue("soeid", "ExistingRow.usuario.soeid");
+        }
     }
     
     public boolean tieneEspaciosEnBlanco(String password){
@@ -98,7 +108,11 @@ public class UsuarioValidator implements Validator{
         return charBlock;
       }
     
-    
+    public Long validarExistenciaUsuario(String soeid){
+    	Long usuarioExiste;
+    	usuarioExiste = usuarioService.validarExistenciaUsuario(soeid);
+    	return usuarioExiste;
+    }
 
 
 

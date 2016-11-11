@@ -85,7 +85,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		query = session.createQuery("FROM Usuario u where u.soeid like :soeid");
 		query.setParameter("soeid", "%"+soeid+"%");
 		query.setFirstResult(offset!=null?offset:0);
-		query.setMaxResults(limite!=null?limite:5);
+		query.setMaxResults(limite!=null?limite:15);
 		usuarios = query.list();
 		return usuarios;
 		
@@ -104,6 +104,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		session = sessionFactory.getCurrentSession();
 		query = session.createQuery("SELECT count(u) from Usuario u WHERE u.soeid like :soeid");
 		query.setParameter("soeid",  "%"+soeid+"%");
+		Long count = (Long) query.uniqueResult();
+		return count;
+	}
+	
+	@Override
+	public Long validarExistenciaUsuario(String soeid) {
+		session = sessionFactory.getCurrentSession();
+		query = session.createQuery("SELECT count(u) from Usuario u WHERE u.soeid = :soeid");
+		query.setParameter("soeid", soeid);
 		Long count = (Long) query.uniqueResult();
 		return count;
 	}

@@ -86,6 +86,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Long contarRegistrosCond(String soeid) {
 		return usuarioDao.contarRegistrosCond(soeid);
 	}
+	
+	@Override
+	public Long validarExistenciaUsuario(String soeid){
+		return usuarioDao.validarExistenciaUsuario(soeid);
+	}
 
 	@Override
 	public boolean validarExpiracionContrasena(String soeid) throws ParseException {

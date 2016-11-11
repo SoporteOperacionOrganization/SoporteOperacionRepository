@@ -26,6 +26,8 @@ public interface UsuarioService {
 	
 	public Long contarRegistrosCond(String soeid);
 	
+	public Long validarExistenciaUsuario(String soeid);
+	
 	public boolean validarExpiracionContrasena(String soeid) throws ParseException;
 	
 	public void modificarCredencialesExpiradas(boolean estatusCredencialesExpiradas, String soeid);

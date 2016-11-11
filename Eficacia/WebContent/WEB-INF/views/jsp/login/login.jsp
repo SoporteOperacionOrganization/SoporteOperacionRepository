@@ -64,7 +64,7 @@
 						<br> <br> <br>
 					</div>
 					<c:if test="${param.error == 'true'}">
-						<div class="alert alert-danger" style="text-align: c">
+						<div class="alert alert-danger">
 							<strong>Autenticación incorrecta!</strong> Usuario o contraseña
 							incorrectos.
 						</div>
