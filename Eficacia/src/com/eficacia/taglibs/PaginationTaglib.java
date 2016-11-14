@@ -11,7 +11,7 @@ public class PaginationTaglib extends SimpleTagSupport{
 	private String uri;
 	 private int offset=0;
 	 private int conteo;
-	 private int limite;
+	 private int limite=75;
 	 private int steps = 15;
 	 private String anterior = "Anterior";
 	 private String siguiente = "Siguiente";
@@ -31,37 +31,46 @@ public class PaginationTaglib extends SimpleTagSupport{
 	   out.write("<nav>");
 	   out.write("<ul class=\"pagination\">");
 	    
-	   if(offset<steps)
-	    out.write(constructLink(1, anterior, "disabled", true));
-	   else
-	    out.write(constructLink(offset-steps, anterior, null, false));
 	   
 	   
-	   int limite=0;
-	   if(offset + 30 > conteo){
-		   limite = offset + 15;
-		   System.out.println("Mas 15 offset " + offset + " limite "+ limite);
+	   if(offset<steps){
+		   out.write(constructLink(0, "<", "disabled", true));
+		   out.write(constructLink(1, anterior, "disabled", true));
 	   }else{
-		   limite = offset + 30;
-		   System.out.println("Mas 30 offset " + offset + " limite "+ limite);
+		   out.write(constructLink(0, "<", null, false));
+		   out.write(constructLink(offset-steps, anterior, null, false));
 	   }
 	   
 	   
-	   for(int itr=offset;itr<limite;itr+=steps) {
+	   if(offset + 75 > conteo){
+		   if(offset + 45 > conteo){
+			   flag = offset + 15;
+		   }else{
+			   flag = offset + 45;
+		   }
+	   }
+	   else{
+		   flag = offset + 75;
+	   }
+	   
+	   for(int itr=offset;itr<flag;itr+=steps) {
 	    if(offset==itr){
 	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
 	    }else{
 	    	out.write(constructLink(itr/15*steps, String.valueOf(itr/15+1), null , false));
 	    }
-	   
 	   }
 	 
-	   if(offset+steps>=conteo)
-	    out.write(constructLink(offset+steps, siguiente, "disabled", true));
-	   else
-	    out.write(constructLink(offset+steps, siguiente, null , false));
+	   if(offset+steps>=conteo){ 
+		   out.write(constructLink(offset+steps, siguiente, "disabled", true));
+		   out.write(constructLink(conteo - 15, ">", "disabled", true));
+	   }else{
+		   out.write(constructLink(offset+steps, siguiente, null , false));
+		   out.write(constructLink(conteo - 15, ">", null, false));
+	   }
+	   
 	    
-	    
+	   
 	   out.write("</ul>");
 	   out.write("</nav>");
 	  } catch (java.io.IOException ex) {
@@ -77,15 +86,6 @@ public class PaginationTaglib extends SimpleTagSupport{
 		   link.append(className);
 		   link.append("\"");
 		  }
-		  /*if(disabled && page == 1){
-			 link.append(">").append("<a href=\"#\">"+text+"</a></li>");  
-		  }else if(disabled){
-		   link.append(">").append("<a href=\"#\">"+text+"</a></li>");
-		  }else if(page > 20){
-			  link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\"><div onclick=\"aumentarNumeroPaginacion();\" class=\"numeroPaginacion\">"+text+"</div></a></li>");
-		  }else{
-			  link.append(">").append("<a href=\""+uri+"?offset="+page + "&soeid=" + soeid + "&razonSocial=" + razonSocial +  "\"><div id=\"numeroPaginacion"+page+"\" class=\"numeroPaginacion\">"+text+"</div></a></li>");
-		  }*/
 		  
 		  if(disabled)
 			   link.append(">").append("<a href=\"#\">"+text+"</a></li>");

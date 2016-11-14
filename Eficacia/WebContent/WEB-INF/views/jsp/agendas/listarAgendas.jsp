@@ -105,7 +105,7 @@
 			<c:otherwise>
 				<div class="paginacion">
               		<div>
-                    	<tag:paginate limite="${limite}" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     	<span class="label label-primary">Total: ${count}</span>
              		</div>
 				</div>

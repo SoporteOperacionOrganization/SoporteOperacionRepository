@@ -62,7 +62,6 @@ public class AgendaController {
 		model.addAttribute("agendas", agendas);
 		model.addAttribute("count", agendaService.contarRegistros());
 		model.addAttribute("offset", offset);
-		model.addAttribute("limite", limite);
 		return "agendas/listarAgendas";
 	}
 	

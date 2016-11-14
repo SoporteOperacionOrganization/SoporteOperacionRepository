@@ -64,10 +64,16 @@
 						<br> <br> <br>
 					</div>
 					<c:if test="${param.error == 'true'}">
-						<div class="alert alert-danger">
+					<div class="container-fluid">
+    					<div class="row">
+        				<div class="col-md-5 col-md-offset-4">
+						<div class="alert alert-danger alert-dismissible fade in text-center">
 							<strong>Autenticación incorrecta!</strong> Usuario o contraseña
 							incorrectos.
 						</div>
+						</div>
+						</div>
+					</div>
 					</c:if>
 				</div>
 			</div>
