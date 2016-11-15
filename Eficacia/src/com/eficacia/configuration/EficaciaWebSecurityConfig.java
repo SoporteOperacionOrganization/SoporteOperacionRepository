@@ -59,7 +59,7 @@ public class EficaciaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/cargaMasiva", "/eliminacionMasiva", "/agregarAgenda", "/inicio")
 				.access("hasAnyRole('ROLE_ADMIN', 'ROLE_EJECUTIVO')");
 		http.authorizeRequests().antMatchers("/listarUsuarios", "/agregarUsuario", 
-				"/editarUsuario/*" ,"/editarAgenda/*")
+				"/editarUsuario/*" ,"/editarAgenda/*" , "/resetPassword")
 				.access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")

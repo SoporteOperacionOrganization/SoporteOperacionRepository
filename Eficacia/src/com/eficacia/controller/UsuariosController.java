@@ -65,98 +65,124 @@ public class UsuariosController {
        
        @Inject
     private UsuarioUpdateValidator usuarioUpdateValidation;
+
        
-       @RequestMapping(value = "/listarRoles", method = RequestMethod.GET)
-       public String test(Model model){
-             List<Rol> roles = rolService.obtenerRoles();
-             model.addAttribute("roles", roles);
-             return "roles/listarRoles";
-       }
-       
-       @RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET)
-       public String listarUsuariosPag(Model model, Integer offset, Integer limite){
-             List<Usuario> usuarios = usuarioService.obtenerUsuariosPaginacion(offset, limite);
-             model.addAttribute("count", usuarioService.contarRegistros());
-             model.addAttribute("usuarios", usuarios);
-             model.addAttribute("offset", offset);
-             return "usuarios/listarUsuarios";
-       }
-       
-       @RequestMapping(value = "/filtrarUsuarios", method = RequestMethod.GET)
-       public String filtrarUsuarios(Model model, String criterio, Integer offset, Integer limite){
-             List<Usuario> usuarios;
-             usuarios = usuarioService.filtrarUsuarios(criterio, offset, limite);
-             
-             model.addAttribute("criterio", criterio);
-             model.addAttribute("count", usuarioService.contarRegistrosCond(criterio));
-             model.addAttribute("usuarios", usuarios);
-             model.addAttribute("offset", offset);
-             model.addAttribute("filtro", true);
-             return "usuarios/listarUsuarios";
-       }
-       
-       @RequestMapping(value = "/agregarUsuario", method = RequestMethod.GET)
-       public String agregarUsuario(Model model){
-             List<Rol> roles = rolService.obtenerRoles();
-             model.addAttribute("usuario", new Usuario());
-             
-             model.addAttribute("roles",roles);
-             return "usuarios/formularioUsuario";
-       }
-       
-       @RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
-       public String registrarUsuario(Model model, @Valid Usuario usuario, BindingResult result){
-             usuarioValidation.validate(usuario, result);
-             if(result.hasErrors()){
-                    List<Rol> roles = rolService.obtenerRoles();
-                    model.addAttribute("roles",roles);
-                    return "usuarios/formularioUsuario";
-             }
-             usuarioService.agregarUsuario(usuario);
-             return "redirect:/listarUsuarios";
-       }
-       
-       @RequestMapping(value = "/editarUsuario/{soeid}", method = RequestMethod.GET)
-       public String editarUsuario(Model model, @PathVariable("soeid") String soeid){
-             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-           String soeidSesion = auth.getName();
-           soeidSesion.toUpperCase();
-           if(soeidSesion.equals(soeid.toUpperCase())){
-              return "redirect:/403";
-           }
-             Usuario usuario = usuarioService.obtenerUsuario(soeid);
-             List<Rol> roles = rolService.obtenerRoles();
-             model.addAttribute("edit", true);
-             model.addAttribute("usuario", usuario);
-             model.addAttribute("roles",roles);
-             usuario.setPassword("");
-             //model.addAttribute("password", usuario.setPassword(""));
-             //model.addAttribute("passwordConfirmation", usuario.getPassword());
-             return "usuarios/formularioUsuarioModificar";
-       }
-       
-       @RequestMapping(value = "/editarUsuario/{soeid1}", method = RequestMethod.POST)
-       public String modificarUsuario(Model model,  @Valid Usuario usuario, BindingResult result){
-             usuarioUpdateValidation.validate(usuario, result);
-             if(result.hasErrors()){
-                    List<Rol> roles = rolService.obtenerRoles();
-                    model.addAttribute("roles",roles);
-                    return "usuarios/formularioUsuarioModificar";
-             }
-             usuarioService.modificarUsuario(usuario);
-             return "redirect:/listarUsuarios";
-       }
-       
-       @RequestMapping(value = "/eliminarUsuario/{soeid}", method = RequestMethod.GET)
-       public String eliminarUsuario(Model model, @PathVariable String soeid){
-             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-           String soeidSesion = auth.getName();
-           soeidSesion.toUpperCase();
-           if(soeidSesion.equals(soeid.toUpperCase())){
-              return "redirect:/403";
-           }
-             usuarioService.eliminarUsuario(soeid);
-             return "redirect:/listarUsuarios";
-       }
-       
+   
+
+	
+	@RequestMapping(value = "/listarRoles", method = RequestMethod.GET)
+	public String test(Model model){
+		List<Rol> roles = rolService.obtenerRoles();
+		model.addAttribute("roles", roles);
+		return "roles/listarRoles";
+	}
+	
+	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET)
+	public String listarUsuariosPag(Model model, Integer offset, Integer limite){
+		List<Usuario> usuarios = usuarioService.obtenerUsuariosPaginacion(offset, limite);
+		model.addAttribute("count", usuarioService.contarRegistros());
+		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("offset", offset);
+		return "usuarios/listarUsuarios";
+	}
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+	public String resetPassword(Model model, Integer offset, Integer limite){
+		List<Usuario> usuarios = usuarioService.obtenerUsuariosPaginacion(offset, limite);
+		model.addAttribute("count", usuarioService.contarRegistros());
+		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("offset", offset);
+		return "login/resetPassword";
+	}
+	
+	@RequestMapping(value = "/filtrarUsuarios", method = RequestMethod.GET)
+	public String filtrarUsuarios(Model model, String criterio, Integer offset, Integer limite){
+		List<Usuario> usuarios;
+		usuarios = usuarioService.filtrarUsuarios(criterio, offset, limite);
+		
+		model.addAttribute("criterio", criterio);
+		model.addAttribute("count", usuarioService.contarRegistrosCond(criterio));
+		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("offset", offset);
+		model.addAttribute("filtro", true);
+		return "usuarios/listarUsuarios";
+	}
+	
+	@RequestMapping(value = "/filtrarReset", method = RequestMethod.GET)
+	public String filtrarReset(Model model, String criterio, Integer offset, Integer limite){
+		List<Usuario> usuarios;
+		usuarios = usuarioService.filtrarUsuarios(criterio, offset, limite);
+		
+		model.addAttribute("criterio", criterio);
+		model.addAttribute("count", usuarioService.contarRegistrosCond(criterio));
+		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("offset", offset);
+		model.addAttribute("filtro", true);
+		return "login/resetPassword";
+	}
+	
+	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.GET)
+	public String agregarUsuario(Model model){
+		List<Rol> roles = rolService.obtenerRoles();
+		model.addAttribute("usuario", new Usuario());
+		
+		model.addAttribute("roles",roles);
+		return "usuarios/formularioUsuario";
+	}
+	
+	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
+	public String registrarUsuario(Model model, @Valid Usuario usuario, BindingResult result){
+		usuarioValidation.validate(usuario, result);
+		if(result.hasErrors()){
+			List<Rol> roles = rolService.obtenerRoles();
+			model.addAttribute("roles",roles);
+			return "usuarios/formularioUsuario";
+		}
+		usuarioService.agregarUsuario(usuario);
+		return "redirect:/listarUsuarios";
+	}
+	
+	@RequestMapping(value = "/editarUsuario/{soeid}", method = RequestMethod.GET)
+	public String editarUsuario(Model model, @PathVariable("soeid") String soeid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String soeidSesion = auth.getName();
+	    soeidSesion.toUpperCase();
+	    if(soeidSesion.equals(soeid.toUpperCase())){
+	    	return "redirect:/403";
+	    }
+		Usuario usuario = usuarioService.obtenerUsuario(soeid);
+		List<Rol> roles = rolService.obtenerRoles();
+		model.addAttribute("edit", true);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("roles",roles);
+		usuario.setPassword("");
+		//model.addAttribute("password", usuario.setPassword(""));
+		//model.addAttribute("passwordConfirmation", usuario.getPassword());
+		return "usuarios/formularioUsuarioModificar";
+	}
+	
+	@RequestMapping(value = "/editarUsuario/{soeid1}", method = RequestMethod.POST)
+	public String modificarUsuario(Model model,  @Valid Usuario usuario, BindingResult result){
+		usuarioUpdateValidation.validate(usuario, result);
+		if(result.hasErrors()){
+			List<Rol> roles = rolService.obtenerRoles();
+			model.addAttribute("roles",roles);
+			return "usuarios/formularioUsuarioModificar";
+		}
+		usuarioService.modificarUsuario(usuario);
+		return "redirect:/listarUsuarios";
+	}
+	
+	@RequestMapping(value = "/eliminarUsuario/{soeid}", method = RequestMethod.GET)
+	public String eliminarUsuario(Model model, @PathVariable String soeid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String soeidSesion = auth.getName();
+	    soeidSesion.toUpperCase();
+	    if(soeidSesion.equals(soeid.toUpperCase())){
+	    	return "redirect:/403";
+	    }
+		usuarioService.eliminarUsuario(soeid);
+		return "redirect:/listarUsuarios";
+	}
+
 }
