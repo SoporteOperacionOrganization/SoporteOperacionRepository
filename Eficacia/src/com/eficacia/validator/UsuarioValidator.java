@@ -79,7 +79,7 @@ public class UsuarioValidator implements Validator{
         	 errors.rejectValue("passwordConfirmation", "notmatch.usuario.password");
         }
 
-        if(usuario.getRol() == null){
+        if(usuario.getRol().getId() == 0){
                      errors.rejectValue("rol", "NotEmpty.usuario.rol");
         }
         
