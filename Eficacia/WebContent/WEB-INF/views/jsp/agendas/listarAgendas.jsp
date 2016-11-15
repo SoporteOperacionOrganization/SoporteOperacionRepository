@@ -23,7 +23,7 @@
     <form class="navbar-form " role="search" action="filtrarAgendas" 
    style="background-color: white; text-align: left;  margin: 0% 0% 0% 9%;">
       <div  class="form-group">
-        <input type="text" name="razonSocial" class="form-control" placeholder="Buscar por razón social">
+        <input type="text" name="criterio" class="form-control" placeholder="Buscar por razón social">
       </div>      
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
     </form>
@@ -97,7 +97,7 @@
 			<c:when test="${filtro == true}">
 				<div class="paginacion">
               		<div>
-                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" razonSocial="${razonSocial}" uri="filtrarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<tag:paginate limite="${limite}" offset="${offset}" conteo="${count}" criterio="${criterio}" uri="filtrarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     	<span class="label label-primary">Total: ${count}</span>
              		</div>
 				</div>
@@ -105,7 +105,7 @@
 			<c:otherwise>
 				<div class="paginacion">
               		<div>
-                    	<tag:paginate limite="5" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
+                    	<tag:paginate limite="15" offset="${offset}" conteo="${count}" uri="listarAgendas" siguiente="&raquo;" anterior="&laquo;" />
                     	<span class="label label-primary">Total: ${count}</span>
              		</div>
 				</div>

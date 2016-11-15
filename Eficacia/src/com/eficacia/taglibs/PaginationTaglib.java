@@ -11,12 +11,12 @@ public class PaginationTaglib extends SimpleTagSupport{
 	private String uri;
 	 private int offset=0;
 	 private int conteo;
-	 private int limite=75;
+	 private int limite;
 	 private int steps = 15;
 	 private String anterior = "Anterior";
 	 private String siguiente = "Siguiente";
 	 private String soeid;
-	 private String razonSocial;
+	 private String criterio;
 	 private int flag ;
 	 
 	 private Writer getWriter() {
@@ -53,7 +53,7 @@ public class PaginationTaglib extends SimpleTagSupport{
 		   flag = offset + 75;
 	   }
 	   
-	   for(int itr=offset;itr<flag;itr+=steps) {
+	   for(int itr=offset;itr<conteo;itr+=steps) {
 	    if(offset==itr){
 	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
 	    }else{
@@ -63,10 +63,10 @@ public class PaginationTaglib extends SimpleTagSupport{
 	 
 	   if(offset+steps>=conteo){ 
 		   out.write(constructLink(offset+steps, siguiente, "disabled", true));
-		   out.write(constructLink(conteo - 15, ">", "disabled", true));
+		   out.write(constructLink(conteo-15, ">", "disabled", true));
 	   }else{
 		   out.write(constructLink(offset+steps, siguiente, null , false));
-		   out.write(constructLink(conteo - 15, ">", null, false));
+		   out.write(constructLink(conteo-15, ">", null, false));
 	   }
 	   
 	    
@@ -90,7 +90,7 @@ public class PaginationTaglib extends SimpleTagSupport{
 		  if(disabled)
 			   link.append(">").append("<a href=\"#\">"+text+"</a></li>");
 			  else
-			   link.append(">").append("<a href=\""+uri+"?offset="+page + "\">"+text+"</a></li>");
+			   link.append(">").append("<a href=\""+uri+"?offset="+page + "&criterio=" + criterio + "\">"+text+"</a></li>");
 		   
 		  return link.toString();
 		 }
@@ -159,12 +159,12 @@ public class PaginationTaglib extends SimpleTagSupport{
 			this.soeid = soeid;
 		}
 
-		public String getRazonSocial() {
-			return razonSocial;
+		public String getCriterio() {
+			return criterio;
 		}
 
-		public void setRazonSocial(String razonSocial) {
-			this.razonSocial = razonSocial;
+		public void setCriterio(String criterio) {
+			this.criterio = criterio;
 		}
 	
 }

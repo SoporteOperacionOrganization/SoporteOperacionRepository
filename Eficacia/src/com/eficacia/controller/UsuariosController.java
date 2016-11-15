@@ -81,12 +81,12 @@ public class UsuariosController {
 	}
 	
 	@RequestMapping(value = "/filtrarUsuarios", method = RequestMethod.GET)
-	public String filtrarUsuarios(Model model, String soeid, Integer offset, Integer limite){
+	public String filtrarUsuarios(Model model, String criterio, Integer offset, Integer limite){
 		List<Usuario> usuarios;
-		usuarios = usuarioService.filtrarUsuarios(soeid, offset, limite);
+		usuarios = usuarioService.filtrarUsuarios(criterio, offset, limite);
 		
-		model.addAttribute("soeid", soeid);
-		model.addAttribute("count", usuarioService.contarRegistrosCond(soeid));
+		model.addAttribute("criterio", criterio);
+		model.addAttribute("count", usuarioService.contarRegistrosCond(criterio));
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("offset", offset);
 		model.addAttribute("filtro", true);

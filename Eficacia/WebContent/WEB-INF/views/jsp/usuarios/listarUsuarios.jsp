@@ -22,7 +22,7 @@
 			style="background-color: white; text-align: left; margin: 0% 0% 0% 9%; "
 			role="search" action="filtrarUsuarios">
 			<div class="form-group" >
-				<input type="text" name="soeid" class="form-control"
+				<input type="text" name="criterio" class="form-control"
 					placeholder="Buscar por SOEID" >
 			</div>
 			<button type="submit" class="btn btn-primary">
@@ -100,7 +100,7 @@
 			<c:when test="${filtro == true}">
 				<div class="paginacion">
                     <div >
-                           <tag:paginate limite="5" offset="${offset}" conteo="${count}" soeid="${soeid}" uri="filtrarUsuarios" siguiente="&raquo;" anterior="&laquo;" />
+                           <tag:paginate limite="5" offset="${offset}" conteo="${count}" criterio="${criterio}" uri="filtrarUsuarios" siguiente="&raquo;" anterior="&laquo;" />
                            <span class="label label-primary">Total: ${count}</span>
                     </div>
              	</div>

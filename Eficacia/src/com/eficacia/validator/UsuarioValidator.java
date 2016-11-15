@@ -26,13 +26,30 @@ public class UsuarioValidator implements Validator{
         String patronContraseñaSegura =
                 "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";
         String patronSoloNumeros = "\\d+";
-        
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuario.nombre");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellidoPaterno", "NotEmpty.usuario.apellidoPaterno");
+        String patronSoloLetras = "^[\\p{L} .'-]+$";
         
         if(usuario.getSoeid().length() != 7){
         	errors.rejectValue("soeid", "NotLenght.usuario.soeid");
+        }else if(!usuario.getSoeid().substring(0, 2).matches(patronSoloLetras) || !usuario.getSoeid().substring(2, 7).matches(patronSoloNumeros) ){
+        	errors.rejectValue("soeid", "NotPattern.usuario.soeid");
         }
+        
+        if(usuario.getNombre().equals("")){
+        	errors.rejectValue("nombre", "NotEmpty.usuario.nombre");
+        }else if(!usuario.getNombre().matches(patronSoloLetras)){
+        	errors.rejectValue("nombre", "NotMatch.usuario.soloLetras");
+        }
+        
+        if(usuario.getApellidoPaterno().equals("")){
+        	errors.rejectValue("apellidoPaterno", "NotEmpty.usuario.apellidoPaterno");
+        }else if(!usuario.getApellidoPaterno().matches(patronSoloLetras)){
+        	errors.rejectValue("apellidoPaterno", "NotMatch.usuario.soloLetras");
+        }
+        
+        if(!usuario.getApellidoMaterno().equals(""))
+        	if(!usuario.getApellidoMaterno().matches(patronSoloLetras)){
+        		errors.rejectValue("apellidoMaterno", "NotMatch.usuario.soloLetras");
+        	}
         
         if(usuario.getTelefono().equals("")){
         	errors.rejectValue("telefono", "NotEmpty.usuario.telefono");

@@ -12,6 +12,7 @@ import com.eficacia.model.Usuario;
 public class AgendaValidator implements Validator{
 
 	String patronSoloNumeros = "\\d+";
+	String patronSoloLetras = "^[\\p{L} .'-]+$";
 	
 	public boolean supports(Class<?> clazz) {
         return Agenda.class.isAssignableFrom(clazz);
@@ -23,8 +24,6 @@ public class AgendaValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaTransaccion", "NotEmpty.agenda.fechaTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaCierre", "NotEmpty.agenda.fechaCierre");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "razonSocial", "NotEmpty.agenda.razonSocial");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreRepresentante", "NotEmpty.agenda.nombreRepresentante");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ejecutivo", "NotEmpty.agenda.ejecutivo");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sede", "NotEmpty.agenda.sede");
         
         if(agenda.getNumeroCliente().length() != 5){
@@ -39,10 +38,23 @@ public class AgendaValidator implements Validator{
         	errors.rejectValue("numeroTelefono", "NotNumber.agenda.notnumber");
         }
         
-        if(agenda.getSoeid().length() != 7){
-        	errors.rejectValue("soeid", "NotLenght.agenda.soeid");
+        if(agenda.getNombreRepresentante().equals("")){
+        	errors.rejectValue("nombreRepresentante", "NotEmpty.agenda.nombreRepresentante");
+        }else if(!agenda.getNombreRepresentante().matches(patronSoloLetras)){
+        	errors.rejectValue("nombreRepresentante", "NotMatch.agenda.soloLetras");
         }
         
+        if(agenda.getSoeid().length() != 7){
+        	errors.rejectValue("soeid", "NotLenght.agenda.soeid");
+        }else if(!agenda.getSoeid().substring(0, 2).matches(patronSoloLetras) || !agenda.getSoeid().substring(2, 7).matches(patronSoloNumeros) ){
+        	errors.rejectValue("soeid", "NotPattern.agenda.soeid");
+        }
+        
+        if(agenda.getEjecutivo().equals("")){
+        	errors.rejectValue("ejecutivo", "NotEmpty.agenda.ejecutivo");
+        }else if(!agenda.getEjecutivo().matches(patronSoloLetras)){
+        	errors.rejectValue("ejecutivo", "NotMatch.agenda.soloLetras");
+        }
         
         
     }

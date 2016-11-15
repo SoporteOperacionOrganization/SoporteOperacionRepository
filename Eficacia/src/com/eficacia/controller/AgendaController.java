@@ -66,13 +66,14 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/filtrarAgendas", method = RequestMethod.GET)
-	public String filtrarAgendas(Model model, String razonSocial,  Integer offset, Integer limite){
-		List<Agenda> agendas = agendaService.filtrarAgendas(razonSocial, offset, limite);
-		model.addAttribute("razonSocial", razonSocial);
-		model.addAttribute("count", agendaService.contarRegistrosPag(razonSocial));
+	public String filtrarAgendas(Model model, String criterio,  Integer offset, Integer limite){
+		List<Agenda> agendas = agendaService.filtrarAgendas(criterio, offset, limite);
+		model.addAttribute("criterio", criterio);
+		model.addAttribute("count", agendaService.contarRegistrosPag(criterio));
 		model.addAttribute("agendas", agendas);
 		model.addAttribute("offset", offset);
 		model.addAttribute("filtro", true);
+		model.addAttribute("limite", limite);
 		return "agendas/listarAgendas";
 	}
 	
