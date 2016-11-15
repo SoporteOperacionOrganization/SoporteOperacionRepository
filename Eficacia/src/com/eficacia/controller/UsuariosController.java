@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -116,6 +118,12 @@ public class UsuariosController {
 	
 	@RequestMapping(value = "/editarUsuario/{soeid}", method = RequestMethod.GET)
 	public String editarUsuario(Model model, @PathVariable("soeid") String soeid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String soeidSesion = auth.getName();
+	    soeidSesion.toUpperCase();
+	    if(soeidSesion.equals(soeid.toUpperCase())){
+	    	return "redirect:/403";
+	    }
 		Usuario usuario = usuarioService.obtenerUsuario(soeid);
 		List<Rol> roles = rolService.obtenerRoles();
 		model.addAttribute("edit", true);
@@ -141,6 +149,12 @@ public class UsuariosController {
 	
 	@RequestMapping(value = "/eliminarUsuario/{soeid}", method = RequestMethod.GET)
 	public String eliminarUsuario(Model model, @PathVariable String soeid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String soeidSesion = auth.getName();
+	    soeidSesion.toUpperCase();
+	    if(soeidSesion.equals(soeid.toUpperCase())){
+	    	return "redirect:/403";
+	    }
 		usuarioService.eliminarUsuario(soeid);
 		return "redirect:/listarUsuarios";
 	}

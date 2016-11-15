@@ -123,7 +123,7 @@
 		<div class="container" style="width: 100% ; margin-top: 10em;  z-index:1; position: absolute; text-align: center;">
 		<img style="width: 5%; height: 16%" class="inicioImages" src="${pageContext.request.contextPath}/resources/Images/Logos/seguridad.png">
 			<h1>ACCESO DENEGADO</h1>
-			<h5>No cuentas con los permisos necesrios para visualizar esta pagina</h5>
+			<h5>No cuentas con los permisos necesarios para visualizar esta página</h5>
 	</div>
 
 
