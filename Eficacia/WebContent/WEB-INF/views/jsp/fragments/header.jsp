@@ -63,7 +63,7 @@
 							        <ul class="dropdown-menu">
 							          <li><a href="<c:url value='/listarUsuarios' />">Consultar</a></li>
 									  <li><a href="<c:url value='/agregarUsuario' />">Agregar</a></li>
-									  <li><a href="<c:url value='/resetPassword' />">Resetear</a></li>
+									  <!-- <li><a href="<c:url value='/resetPassword' />">Resetear</a></li> -->
 							        </ul>
 							      </li>
 							      </sec:authorize>
