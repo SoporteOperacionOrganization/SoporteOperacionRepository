@@ -53,7 +53,7 @@ public class PaginationTaglib extends SimpleTagSupport{
 		   flag = offset + 75;
 	   }
 	   
-	   for(int itr=offset;itr<conteo;itr+=steps) {
+	   for(int itr=offset;itr<flag;itr+=steps) {
 	    if(offset==itr){
 	    	out.write(constructLink((itr/15+1)-1 *steps, String.valueOf(itr/15+1), "active", true));
 	    }else{

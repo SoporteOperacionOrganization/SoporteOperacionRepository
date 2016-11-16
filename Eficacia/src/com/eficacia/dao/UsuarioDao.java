@@ -30,4 +30,6 @@ public interface UsuarioDao {
 	
 	public void renovarCredenciales(String passwordActual, String passwordNuevo, String fechaTransaccion, String soeid);
 	
+	//public void modificarContraseñaReset(String soeid);
+	
 }

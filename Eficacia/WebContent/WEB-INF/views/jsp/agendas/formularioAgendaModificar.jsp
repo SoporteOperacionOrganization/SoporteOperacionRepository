@@ -259,7 +259,7 @@
 								<label class="col-md-3 control-lable" for="soeid">SOEID</label>
 								<div class="col-md-7">
 									<form:input type="text" path="soeid" id="soeid"
-										class="form-control input-sm"  maxlength="8"/>
+										class="form-control input-sm"  maxlength="7" style="text-transform:uppercase"/>
 									<div class="has-error errores">
 										<form:errors path="soeid" class="help-inline" />
 									</div>

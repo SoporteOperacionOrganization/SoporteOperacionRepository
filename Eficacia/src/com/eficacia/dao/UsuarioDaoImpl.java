@@ -138,4 +138,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		query.executeUpdate();
 	}
 
+	/*@Override
+	public void modificarContraseñaReset(String soeid) {
+		session = sessionFactory.getCurrentSession();
+	}*/
+
 }

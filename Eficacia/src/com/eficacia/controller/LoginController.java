@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,6 +94,50 @@ public class LoginController {
 			redirect.addFlashAttribute("passNuevo", passwordNuevo);
 			redirect.addFlashAttribute("confirmacionPasswordNuevo", confirmacionPasswordNuevo);
 			return "redirect:/credencialesExpiradas";
+		}
+		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/modificarContrasenaReseteo/{soeid}")
+	public String modificarFraseContraseña(Model model, @PathVariable("soeid") String soeid, RedirectAttributes redirectAttributes){
+		usuarioService.modificarContraseñaReset(soeid);
+		redirectAttributes.addFlashAttribute("message", "La contraseña del usuario " + soeid + " ha sido cambiada para que éste la reestablesca en su proximo inicio de sesión. ");
+		return "redirect:/success";
+	}
+	
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public String operacionExitosa(Model model){
+		return "success/success";
+	}
+	
+	@RequestMapping(value = "/editarContrasena", method = RequestMethod.GET)
+	public String editarContraseña(Model model){
+		return "login/cambiarContrasena";
+	}
+	
+	@RequestMapping(value = "/cambiarContrasena", method = RequestMethod.GET)
+	public String cambiarContraseña(Model model, @RequestParam("passwordActual") String passwordActual,  @RequestParam("passwordNuevo") String passwordNuevo, @RequestParam("confirmacionPasswordNuevo") String confirmacionPasswordNuevo, RedirectAttributes redirect){
+		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int validacion = usuarioService.validarCambioContraseña(principal, passwordActual, passwordNuevo, confirmacionPasswordNuevo);
+		switch(validacion){
+			case 1:
+				redirect.addFlashAttribute("error", "La contraseña actual no coincide");
+			break;
+			case 2:
+				redirect.addFlashAttribute("error", "Las nuevas contraseñas deben coindidir");
+			break;
+			case 3:
+				redirect.addFlashAttribute("error", "La contraseña nueva debe ser diferente a la anterior");
+			break;
+			case 4:
+				redirect.addFlashAttribute("error", "La contraseña nueva debe cumplir con patrón de seguridad");
+			break;
+		}
+		if(validacion != 0){
+			redirect.addFlashAttribute("passActual", passwordActual);
+			redirect.addFlashAttribute("passNuevo", passwordNuevo);
+			redirect.addFlashAttribute("confirmacionPasswordNuevo", confirmacionPasswordNuevo);
+			return "redirect:/editarContrasena";
 		}
 		return "redirect:/login";
 	}

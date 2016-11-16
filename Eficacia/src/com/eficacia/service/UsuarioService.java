@@ -36,4 +36,6 @@ public interface UsuarioService {
 	
 	public int validarCambioContraseña(CustomUsuario usuario, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo);
 	
+	public void modificarContraseñaReset(String soeid);
+	
 }

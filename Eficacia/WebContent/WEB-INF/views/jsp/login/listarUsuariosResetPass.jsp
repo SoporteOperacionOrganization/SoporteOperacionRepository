@@ -62,11 +62,11 @@
 						<td><c:choose>
 								<c:when
 									test="${pageContext.request.userPrincipal.name == usuario.soeid}">
-									<a href="<c:url value='/resetUsuario/${usuario.soeid}' />"
+									<a href="<c:url value='/modificarContrasenaReseteo/${usuario.soeid}' />"
 										class="btn glyphicon-refresh disabled" style="font-size: 16px; text-align: center; color: gray;"></a>
 								</c:when>
 								<c:otherwise>
-									<a href="<c:url value='/resetUsuario/${usuario.soeid}' />"
+									<a href="<c:url value='/modificarContrasenaReseteo/${usuario.soeid}' />"
 										class="btn glyphicon glyphicon-refresh" style="font-size: 16px ; color: black;text-align: center;"></a>
 								</c:otherwise>
 							</c:choose></td>

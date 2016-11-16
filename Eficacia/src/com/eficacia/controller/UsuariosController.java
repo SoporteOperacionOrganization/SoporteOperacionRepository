@@ -92,7 +92,7 @@ public class UsuariosController {
 		model.addAttribute("count", usuarioService.contarRegistros());
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("offset", offset);
-		return "login/resetPassword";
+		return "login/listarUsuariosResetPass";
 	}
 	
 	@RequestMapping(value = "/filtrarUsuarios", method = RequestMethod.GET)
@@ -118,7 +118,7 @@ public class UsuariosController {
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("offset", offset);
 		model.addAttribute("filtro", true);
-		return "login/resetPassword";
+		return "login/listarUsuariosResetPass";
 	}
 	
 	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.GET)

@@ -39,6 +39,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	        boolean isUser = false;
 	        //boolean isAdmin = false;
 	        boolean isCredentialsExpired = false;
+	        boolean isChangePassword = false;
 	        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 	        for (GrantedAuthority grantedAuthority : authorities) {
 	            if(grantedAuthority.getAuthority().equals("ROLE_ADMIN") || grantedAuthority.getAuthority().equals("ROLE_EJECUTIVO")){
@@ -46,6 +47,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	                break;
 	            }else if(grantedAuthority.getAuthority().equals("ROLE_EXPIREDCREDENTIALS")){
 	            	isCredentialsExpired = true;
+	            }else if(grantedAuthority.getAuthority().equals("ROLE_CHANGEPASSWORD")){
+	            	isChangePassword = true;
 	            }
 	        }
 	 
@@ -53,7 +56,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	            return "/inicio";
 	        }else if(isCredentialsExpired){
 	        	return "/credencialesExpiradas";
-	        }else {
+	        }else if(isChangePassword){
+	        	return "/editarContrasena";
+	        }
+	        else {
 	            throw new IllegalStateException();
 	        }
 	    }

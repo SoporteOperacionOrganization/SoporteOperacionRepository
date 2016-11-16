@@ -15,13 +15,12 @@
 <body>
 <div class="container" style="width: 100% ; margin-top: 6em; z-index:1; position: absolute;">
              
-       <form action="contrasenaExpirada">
+       <form action="cambiarContrasena">
        <div style="width: 33%; margin-left: 35%;">
        <div class="bootstrap snippet">
     <div >
         <div  >
             <div style="border-color: #084B8A 1px;"  class="panel panel-info" >
-               
                
                <div class="panel-heading" style="background-color:#F2F2F2;color:#000;border-bottom:solid 1px #E6E6E6;">
                     <h3 class="panel-title">
@@ -31,11 +30,10 @@
                 </div>
                
                 <div class="panel-body" style="text-align:left;">
-                    <div style="text-align:center;">
-                    
-                    	<i style="font-size:30px; color: black;"   class="glyphicon glyphicon-transfer"></i>
-                    	<h3 class="text-center">Tu contraseña expiró</h3>                     
-                       	<p  style="color: #0F1A25;">Puedes cambiar tu contraseña aquí.</p>
+                    <div style="text-align:center;">                
+                           <i style="font-size:30px; color: black;"   class="glyphicon glyphicon-refresh"></i>   
+                           <h3 class="text-center">Solicitaste cambio de contraseña</h3>                    
+                           <p  style="color: #0F1A25;">Puedes cambiarla aquí.</p>                  
                     </div>
                     <br/><br/>
                     <div class="row">
@@ -80,24 +78,22 @@
                             </div>
 
                 </div>
-                
-                <div class="panel-footer">
-	                <div style="text-align:center ;">                        
-	                  <button type="submit" class="btn btn-primary" style="background-color: #013F7A;"><i style="height:19px;" class="glyphicon glyphicon-check"></i>&nbsp; Guardar</button>
-	                   &nbsp;&nbsp;
-	                   <a href="<c:url value='/logout' />"
-	                                   class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a> 
-	                </div>
-                </div>
-                
-                
+                	<div class="panel-footer">
+                        <div style="text-align:center ;">                        
+                          <button type="submit" class="btn btn-primary" style="background-color: #013F7A;"><i style="height:19px;" class="glyphicon glyphicon-check"></i>&nbsp; Guardar</button>
+                           &nbsp;&nbsp;
+                           <a href="<c:url value='/logout' />"
+                                           class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a> 
+                        </div>
+                        </div>
+                     
         </div>
         </div>
     </div>
 </div>
 </div>
 
-       </form>      
+       </form>     
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 

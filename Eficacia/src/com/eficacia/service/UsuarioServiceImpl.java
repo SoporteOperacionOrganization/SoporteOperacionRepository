@@ -210,5 +210,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         return charBlock;
       }
+
+	@Override
+	public void modificarContraseñaReset(String soeid) {
+		Usuario entity = usuarioDao.obtenerUsuario(soeid);
+		if(entity != null){
+			entity.setPassword(passwordEncoder.encode(soeid));
+		}
+	}
 	
 }
