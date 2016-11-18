@@ -74,22 +74,9 @@ public class LoginController {
 	@RequestMapping(value = "/contrasenaExpirada", method = RequestMethod.GET)
 	public String contrasenaExpirada(Model model,  @RequestParam("passwordActual") String passwordActual,  @RequestParam("passwordNuevo") String passwordNuevo, @RequestParam("confirmacionPasswordNuevo") String confirmacionPasswordNuevo, RedirectAttributes redirect){
 		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		int validacion = usuarioService.validarCambioContraseña(principal, passwordActual, passwordNuevo, confirmacionPasswordNuevo);
-		switch(validacion){
-			case 1:
-				redirect.addFlashAttribute("error", "La contraseña actual no coincide");
-			break;
-			case 2:
-				redirect.addFlashAttribute("error", "Las nuevas contraseñas deben coindidir");
-			break;
-			case 3:
-				redirect.addFlashAttribute("error", "La contraseña nueva debe ser diferente a la anterior");
-			break;
-			case 4:
-				redirect.addFlashAttribute("error", "La contraseña nueva debe cumplir con patrón de seguridad");
-			break;
-		}
-		if(validacion != 0){
+		String validacion = usuarioService.validarCambioContraseña(principal, passwordActual, passwordNuevo, confirmacionPasswordNuevo);
+		if(!validacion.equals("")){
+			redirect.addFlashAttribute("error", validacion);
 			redirect.addFlashAttribute("passActual", passwordActual);
 			redirect.addFlashAttribute("passNuevo", passwordNuevo);
 			redirect.addFlashAttribute("confirmacionPasswordNuevo", confirmacionPasswordNuevo);
@@ -118,22 +105,9 @@ public class LoginController {
 	@RequestMapping(value = "/cambiarContrasena", method = RequestMethod.GET)
 	public String cambiarContraseña(Model model, @RequestParam("passwordActual") String passwordActual,  @RequestParam("passwordNuevo") String passwordNuevo, @RequestParam("confirmacionPasswordNuevo") String confirmacionPasswordNuevo, RedirectAttributes redirect){
 		CustomUsuario principal = (CustomUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		int validacion = usuarioService.validarCambioContraseña(principal, passwordActual, passwordNuevo, confirmacionPasswordNuevo);
-		switch(validacion){
-			case 1:
-				redirect.addFlashAttribute("error", "La contraseña actual no coincide");
-			break;
-			case 2:
-				redirect.addFlashAttribute("error", "Las nuevas contraseñas deben coindidir");
-			break;
-			case 3:
-				redirect.addFlashAttribute("error", "La contraseña nueva debe ser diferente a la anterior");
-			break;
-			case 4:
-				redirect.addFlashAttribute("error", "La contraseña nueva debe cumplir con patrón de seguridad");
-			break;
-		}
-		if(validacion != 0){
+		String validacion = usuarioService.validarCambioContraseña(principal, passwordActual, passwordNuevo, confirmacionPasswordNuevo);
+		if(!validacion.equals("")){
+			redirect.addFlashAttribute("error", validacion);
 			redirect.addFlashAttribute("passActual", passwordActual);
 			redirect.addFlashAttribute("passNuevo", passwordNuevo);
 			redirect.addFlashAttribute("confirmacionPasswordNuevo", confirmacionPasswordNuevo);

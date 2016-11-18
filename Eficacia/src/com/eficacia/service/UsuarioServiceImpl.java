@@ -143,35 +143,36 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public int validarCambioContraseña(CustomUsuario principal, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo) {
-		int validacion = 0;
-		String patronContraseñaSegura = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";
+	public String validarCambioContraseña(CustomUsuario principal, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo) {
+		String msg = "";
+		//String patronContraseñaSegura = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";
+		String patronContraseñaSegura = "^[a-zA-Z0-9]*$";
 		Calendar fecha = new GregorianCalendar();
 		String fechaTransaccion= fecha.get(Calendar.DAY_OF_MONTH)+"/"+(fecha.get(Calendar.MONTH)+1)+"/"+fecha.get(Calendar.YEAR);
 		
 		Usuario usuario = usuarioDao.obtenerUsuario(principal.getUsername());
 		if(!passwordEncoder.matches(passwordActual,usuario.getPassword())){
-			validacion = 1;
+			msg = "La contraseña actual no coincide";
 		}else if(passwordNuevo.equals(passwordActual)){
-			validacion = 3;
+			msg = "La contraseña nueva debe ser diferente a la anterior";
 		}else if(passwordNuevo.length() != 8){
-        	validacion = 4;
+			msg = "La contraseña debe tener 8 caracteres";
         }else if(!tieneEspaciosEnBlanco(passwordNuevo)){
-        	validacion = 4;
+        	msg = "No debe contener espacios en blanco";
         }else if(tieneCaracteresConsecutivos(passwordNuevo) >= 3){
-        	validacion = 4;
+        	msg = "No deben repetirse caracteres mas de dos veces consecutivas";
         }else if(passwordNuevo.contains("Banamex") || usuario.getPassword().contains("Citi") || usuario.getPassword().contains("CitiBanamex")){
-        	validacion = 4;
+        	msg = "No debe contener palabras Banamex o Citi";
         }else if(passwordNuevo.charAt(0) == '0'){
-        	validacion = 4;
+        	msg = "No debe iniciar con cero";
         }else if(!passwordNuevo.matches(patronContraseñaSegura)){
-			validacion = 4;
+        	msg = "Debe contener mayúsculas, minúsculas y números";
 		}else if(!passwordNuevo.equals(confirmacionPasswordNuevo)){
-			validacion = 2;
+			msg = "Las nuevas contraseñas deben coindidir";
 		}else{
 			usuarioDao.renovarCredenciales(passwordEncoder.encode(passwordActual), passwordEncoder.encode(passwordNuevo), fechaTransaccion, principal.getUsername());
 		}
-		return validacion;
+		return msg;
 	}
 	
 	public boolean tieneEspaciosEnBlanco(String password){

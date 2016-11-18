@@ -95,18 +95,20 @@ public class AgendaServiceImpl implements AgendaService {
                         XSSFRow row = worksheet.getRow(i++);
                        
                         if(validarCamposFecha(row,0)){agenda.setFechaTransaccion(df.format(row.getCell(0).getDateCellValue()));}
-                        else{estatusCarga = "Error en linea " + i + " celsda " + letras.get(0);break;}
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(0);break;}
                         
                         if(validarCamposFecha(row,1)){agenda.setFechaCierre(df.format(row.getCell(1).getDateCellValue()));}
-                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}          
+                        else{estatusCarga = "Error en linea " + i + " celda " + letras.get(1);break;}                                             
+                        
                         String noCliente=row.getCell(2, row.RETURN_BLANK_AS_NULL).getStringCellValue();
-                       agenda.setNumeroCliente(noCliente);
+                        agenda.setNumeroCliente(noCliente);
    
                         String fecha = date.get(Calendar.YEAR) + "" + (date.get(Calendar.MONTH)+1) + "" + date.get(Calendar.DAY_OF_MONTH);
                         String hora = String.format("%02d%02d%02d", date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), date.get(Calendar.SECOND));
                       
                         int cadenaVerificadora = randomGenerator.nextInt(900) + 100;
                         String codigoTransaccion = fecha + hora + noCliente + cadenaVerificadora;
+                 
                         agenda.setCodigoTransaccion(codigoTransaccion);
                        
                         agenda.setRazonSocial(row.getCell(3).getStringCellValue());

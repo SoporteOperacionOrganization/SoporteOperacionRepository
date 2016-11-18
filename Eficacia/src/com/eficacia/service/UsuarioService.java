@@ -34,7 +34,7 @@ public interface UsuarioService {
 	
 	public void renovarCredenciales(String passwordActual, String passwordNuevo, String fechaTransaccion, String soeid);
 	
-	public int validarCambioContraseña(CustomUsuario usuario, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo);
+	public String validarCambioContraseña(CustomUsuario usuario, String  passwordActual, String passwordNuevo, String confirmacionPasswordNuevo);
 	
 	public void modificarContraseñaReset(String soeid);
 	

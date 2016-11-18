@@ -139,7 +139,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="soeid">Soeid</label>
+                <label class="col-md-3 control-lable" for="soeid">Soeid *</label>
                 <div class="col-md-7">
                     <form:input type="text" path="soeid" id="soeid" class="form-control input-sm" readonly="true"/>
                     <div class="has-error errores">
@@ -150,9 +150,9 @@ $(document).ready(function(){
         </div>
                 <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="nombre">Nombre usuario</label>
+                <label class="col-md-3 control-lable" for="nombre">Nombre usuario *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="nombre" id="nombre" class="form-control input-sm"/>
+                    <form:input type="text" path="nombre" id="nombre" class="form-control input-sm" maxlength="40"/>
                     <div class="has-error errores">
                         <form:errors path="nombre" class="help-inline"/>
                     </div>
@@ -162,9 +162,9 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno</label>
+                <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm"/>
+                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoPaterno" class="help-inline"/>
                     </div>
@@ -176,7 +176,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="apellidoMaterno">Apellido materno</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm"/>
+                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoMaterno" class="help-inline"/>
                     </div>
@@ -186,7 +186,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="telefono">Teléfono</label>
+                <label class="col-md-3 control-lable" for="telefono">Teléfono *</label>
                 <div class="col-md-7">
                     <form:input type="text" path="telefono" id="telefono" class="form-control input-sm" maxlength="15"/>
                     <div class="has-error errores">
@@ -232,7 +232,7 @@ $(document).ready(function(){
       
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="rol">Perfil</label>
+                <label class="col-md-3 control-lable" for="rol">Perfil *</label>
                 <div class="col-md-7">
                 	
                 	<form:select path="rol.id" class="form-control input-sm">

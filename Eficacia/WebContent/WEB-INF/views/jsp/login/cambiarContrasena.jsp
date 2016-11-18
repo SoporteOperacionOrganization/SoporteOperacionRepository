@@ -41,7 +41,7 @@
                                     <label style="width: 11em"class="col-md-3 control-lable" for="passwordActual">Contraseña actual</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                  <input style="width: 12em" class="form-control" name="passwordActual" id="passwordActual" type="password" placeholder="Contraseña Actual" value="${passActual}">
+                                  <input style="width: 12em" class="form-control" name="passwordActual" id="passwordActual" type="password" placeholder="Contraseña Actual" value="${passActual}" maxlength="8">
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                     <label style="width: 11em" class="col-md-3 control-lable" for="passwordNuevo">Contraseña nueva</label>
                                     <div class="input-group">
                                         <div  class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
-                                  <input style="width: 12em" class="form-control" name="passwordNuevo" id="passwordNuevo" type="password" placeholder="Contraseña Nueva" value="${passNuevo}" data-toggle="tooltip" data-html="true" title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva">
+                                  <input style="width: 12em" class="form-control" name="passwordNuevo" id="passwordNuevo" type="password" placeholder="Contraseña Nueva" value="${passNuevo}" data-toggle="tooltip" data-html="true" title="1- Debe contener 8 caracteres <br> 2- No debe contener nombre ni apellido de usuario <br> 3- Al menos un caracter númerico <br> 4- Al menos una mayúscula <br> 5- Contener minúsculas <br> 6- No debe comenzar en cero <br>7- No debe contener palabras Banamex o Citi <br>8- No debe contener espacios en blanco <br>9- No debe repetirse mas de dos veces algún caracter de forma consecutiva" maxlength="8">
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                     <label style="width: 11em" class="col-md-3 control-lable" for="confirmacionPasswordNuevo">Confirmar contraseña</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
-                                  <input style="width: 12em"  class="form-control" name="confirmacionPasswordNuevo" id="confirmacionPasswordNuevo" type="password" placeholder="Confirmar contraseña" value="${confirmacionPasswordNuevo}">
+                                  <input style="width: 12em"  class="form-control" name="confirmacionPasswordNuevo" id="confirmacionPasswordNuevo" type="password" placeholder="Confirmar contraseña" value="${confirmacionPasswordNuevo}" maxlength="8">
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                           <button type="submit" class="btn btn-primary" style="background-color: #013F7A;"><i style="height:19px;" class="glyphicon glyphicon-check"></i>&nbsp; Guardar</button>
                            &nbsp;&nbsp;
                            <a href="<c:url value='/logout' />"
-                                           class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a> 
+                                           class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Salir</a> 
                         </div>
                         </div>
                      

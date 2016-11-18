@@ -60,7 +60,7 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="fechaCierre">Fecha
-									cierre</label>
+									cierre *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="fechaCierre" id="fechaCierre"
 										class="form-control input-sm datepicker" readonly="true" />
@@ -75,7 +75,7 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="numeroCliente">No.
-									cliente</label>
+									cliente *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="numeroCliente" id="numeroCliente"
 										class="form-control input-sm"  maxlength="5" />
@@ -89,10 +89,10 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="razonSocial">Razón
-									social</label>
+									social *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="razonSocial" id="razonSocial"
-										class="form-control input-sm" />
+										class="form-control input-sm" maxlength="60"/>
 									<div class="has-error errores">
 										<form:errors path="razonSocial" class="help-inline" />
 									</div>
@@ -103,10 +103,10 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="nombreRepresentante">Nombre
-									representante</label>
+									representante *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="nombreRepresentante"
-										id="nombreRepresentante" class="form-control input-sm" />
+										id="nombreRepresentante" class="form-control input-sm" maxlength="40"/>
 									<div class="has-error errores">
 										<form:errors path="nombreRepresentante" class="help-inline" />
 									</div>
@@ -116,7 +116,7 @@
 
 						<div class="row">
 							<div class="form-group col-md-12">
-								<label class="col-md-3 control-lable" for="numeroTelefono">Teléfono</label>
+								<label class="col-md-3 control-lable" for="numeroTelefono">Teléfono *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="numeroTelefono"
 										id="numeroTelefono" class="form-control input-sm"  maxlength="15"/>
@@ -129,7 +129,7 @@
 
 						<div class="row">
 							<div class="form-group col-md-12">
-								<label class="col-md-3 control-lable" for="soeid">SOEID</label>
+								<label class="col-md-3 control-lable" for="soeid">SOEID *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="soeid" id="soeid"
 										class="form-control input-sm"  maxlength="7" style="text-transform:uppercase"/>
@@ -142,10 +142,10 @@
 
 						<div class="row">
 							<div class="form-group col-md-12">
-								<label class="col-md-3 control-lable" for="ejecutivo">Ejecutivo</label>
+								<label class="col-md-3 control-lable" for="ejecutivo">Ejecutivo *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="ejecutivo" id="ejecutivo"
-										class="form-control input-sm" />
+										class="form-control input-sm" maxlength="40"/>
 									<div class="has-error errores">
 										<form:errors path="ejecutivo" class="help-inline" />
 									</div>
@@ -155,7 +155,7 @@
 
 						<div class="row">
 							<div class="form-group col-md-12">
-								<label class="col-md-3 control-lable" for="sede">Sede</label>
+								<label class="col-md-3 control-lable" for="sede">Sede *</label>
 								<div class="col-md-7">
 									<form:select path="sede" class="form-control input-sm">
 										<form:option label="--- Selecciona---" value="" />

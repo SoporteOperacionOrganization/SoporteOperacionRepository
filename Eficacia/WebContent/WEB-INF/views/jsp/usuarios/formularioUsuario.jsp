@@ -41,7 +41,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="soeid">SOEID</label>
+                <label class="col-md-3 control-lable" for="soeid">SOEID *</label>
                 <div class="col-md-7">
                     <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"   maxlength="7" style="text-transform:uppercase"/>
                     <div class="has-error errores">
@@ -53,9 +53,9 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="nombre">Nombre de usuario</label>
+                <label class="col-md-3 control-lable" for="nombre">Nombre de usuario *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="nombre" id="nombre" class="form-control input-sm"/>
+                    <form:input type="text" path="nombre" id="nombre" class="form-control input-sm" maxlength="40"/>
                     <div class="has-error errores">
                         <form:errors path="nombre" class="help-inline"/>
                     </div>
@@ -65,9 +65,9 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno</label>
+                <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm"/>
+                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoPaterno" class="help-inline"/>
                     </div>
@@ -79,7 +79,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="apellidoMaterno">Apellido materno</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm"/>
+                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoMaterno" class="help-inline"/>
                     </div>
@@ -89,7 +89,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="telefono">Teléfono</label>
+                <label class="col-md-3 control-lable" for="telefono">Teléfono *</label>
                 <div class="col-md-7">
                     <form:input type="text" path="telefono" id="telefono" class="form-control input-sm" maxlength="15" />
                     <div class="has-error errores">
@@ -101,7 +101,7 @@ $(document).ready(function(){
         
          <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="password">Contraseña</label>
+                <label class="col-md-3 control-lable" for="password">Contraseña *</label>
                 <div class="col-md-7">
                     <form:input type="password" path="password" id="example-getting-started-input" maxlength="8" 
                      class="form-control input-sm"  data-toggle="tooltip" data-html="true"
@@ -118,7 +118,7 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña</label>
+                <label class="col-md-3 control-lable" for="passwordConfirmation">Confirmación de contraseña *</label>
                 <div class="col-md-7">
                     <form:input type="password" path="passwordConfirmation" id="passwordConfirmation" 
                     class="form-control input-sm" maxlength="8" 
@@ -132,7 +132,7 @@ $(document).ready(function(){
       
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="rol">Perfil</label>
+                <label class="col-md-3 control-lable" for="rol">Perfil *</label>
                 <div class="col-md-7">
                     <form:select path="rol.id" class="form-control input-sm">
                                         <form:options itemValue="id" itemLabel="nombre"  items="${roles}"></form:options>

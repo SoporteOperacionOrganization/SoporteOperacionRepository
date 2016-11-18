@@ -10,9 +10,6 @@ import com.eficacia.model.Usuario;
 
 @Component
 public class AgendaValidator implements Validator{
-
-	String patronSoloNumeros = "\\d+";
-	String patronSoloLetras = "^[\\p{L} .'-]+$";
 	
 	public boolean supports(Class<?> clazz) {
         return Agenda.class.isAssignableFrom(clazz);
@@ -20,11 +17,20 @@ public class AgendaValidator implements Validator{
  
     public void validate(Object obj, Errors errors) {
         Agenda agenda = (Agenda) obj;
+        
+        String patronSoloNumeros = "\\d+";
+    	String patronSoloLetras = "^[\\p{L} .'-]+$";
+    	String patronLetrasYCaracteres = "[a-zA-Z . ]+";
              
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaTransaccion", "NotEmpty.agenda.fechaTransaccion");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fechaCierre", "NotEmpty.agenda.fechaCierre");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "razonSocial", "NotEmpty.agenda.razonSocial");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sede", "NotEmpty.agenda.sede");
+        
+        if(agenda.getRazonSocial().equals("")){
+        	errors.rejectValue("razonSocial", "NotEmpty.agenda.razonSocial");
+        }else if(!agenda.getRazonSocial().matches(patronLetrasYCaracteres)){
+        	errors.rejectValue("razonSocial", "NotFormat.agenda.razonSocial");
+        }
         
         if(agenda.getNumeroCliente().length() != 5){
         	errors.rejectValue("numeroCliente", "NotLenght.agenda.numeroCliente");

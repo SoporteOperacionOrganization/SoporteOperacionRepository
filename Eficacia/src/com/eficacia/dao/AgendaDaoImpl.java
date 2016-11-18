@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -99,12 +100,31 @@ public class AgendaDaoImpl implements AgendaDao {
 
 	@Override
     public String cargaMasiva(List<Agenda> agendas) {
-          int tamano = agendas.size();
-          SQLQuery query;
-          for(Agenda age : agendas){
+          //int tamano = agendas.size();
+          //SQLQuery query;
+          
+	/*for(Agenda age : agendas){
                  
-                 session = sessionFactory.getCurrentSession();
-                 session.save(age);
+        	  session = sessionFactory.getCurrentSession();
+              session.save(age);
+          
+          }*/
+		
+		int tamano = agendas.size();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		for(int i = 0; i < tamano; i++){
+			session.save(agendas.get(i));
+			if(i % 50 == 0){
+				session.flush();
+				session.clear();
+			}
+		}
+		tx.commit();
+		session.close();
+		
+		
+		
                  
                  /*session = sessionFactory.openSession();
                  query = session.createSQLQuery("INSERT INTO agenda(agendaCodigoTransaccion, agendaFechaTransaccion, agendaFechaCiere, agendaNumeroCliente, "
@@ -124,7 +144,7 @@ public class AgendaDaoImpl implements AgendaDao {
                  
                  session.flush();
                  session.clear();*/
-          }
+          
           
           return "";
     }

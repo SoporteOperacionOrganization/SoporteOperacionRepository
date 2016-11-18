@@ -18,12 +18,15 @@
 		style="width: 100%; margin-top: 8em;; z-index: 1; position: absolute;">
 		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">Consultar usuarios</div>
 
-<form class="navbar-form"  
+<form id="filtroSoeid" name="filtroSoeid" class="navbar-form"  
 			style="background-color: white; text-align: left; margin: 0% 0% 0% 9%; "
 			role="search" action="filtrarUsuarios">
+			<!-- <div>
+				<span id="errorFiltroSoeid"></span>
+			</div> -->
 			<div class="form-group" >
-				<input type="text" name="criterio" class="form-control"
-					placeholder="Buscar por SOEID" >
+				<input id="criterioSoeid" type="text" name="criterio" class="form-control"
+					placeholder="Buscar por SOEID" maxlength="7">
 			</div>
 			<button type="submit" class="btn btn-primary">
 				<i style="height: 19px;" class="glyphicon glyphicon-search"></i>

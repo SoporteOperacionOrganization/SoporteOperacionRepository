@@ -23,8 +23,11 @@ public class UsuarioValidator implements Validator{
     public void validate(Object obj, Errors errors) {
         Usuario usuario = (Usuario) obj;
              
+        String patronContraseñaSeguridad = "^(?=.[a-z])(?=.[A-Z])(?=.\\d).+$";
         String patronContraseñaSegura =
-                "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";
+                "^[a-zA-Z0-9]*$";
+        /*String patronContraseñaSegura =
+                "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,100})";*/
         String patronSoloNumeros = "\\d+";
         String patronSoloLetras = "^[\\p{L} .'-]+$";
         
@@ -62,15 +65,15 @@ public class UsuarioValidator implements Validator{
         }else if(usuario.getPassword().length() != 8){
         	errors.rejectValue("password", "NotLenght.usuario.password");
         }else if(!tieneEspaciosEnBlanco(usuario.getPassword())){
-        	errors.rejectValue("password", "NotPattern.usuario.password");
+        	errors.rejectValue("password", "NoBlankSpaces.usuario.password");
         }else if(tieneCaracteresConsecutivos(usuario.getPassword()) >= 3){
-        	errors.rejectValue("password", "NotPattern.usuario.password");
+        	errors.rejectValue("password", "RepeatedCharacters.usuario.password");
         }else if(usuario.getPassword().contains(usuario.getNombre()) || usuario.getPassword().contains(usuario.getApellidoPaterno())){
-        	errors.rejectValue("password", "NotPattern.usuario.password");
+        	errors.rejectValue("password", "NotUserName.usuario.password");
         }else if(usuario.getPassword().contains("Banamex") || usuario.getPassword().contains("Citi") || usuario.getPassword().contains("CitiBanamex")){
-        	errors.rejectValue("password", "NotPattern.usuario.password");
+        	errors.rejectValue("password", "NotKeyWords.usuario.password");
         }else if(usuario.getPassword().charAt(0) == '0'){
-        	errors.rejectValue("password", "NotPattern.usuario.password");
+        	errors.rejectValue("password", "NotZeroAtBeggining.usuario.password");
         }else if(!usuario.getPassword().matches(patronContraseñaSegura)){
         	errors.rejectValue("password", "NotPattern.usuario.password");
         }
