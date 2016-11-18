@@ -52,7 +52,10 @@ public class HibernateConfiguration {
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.put("hibernate.jdbc.batch_size", 50);
-        properties.put("hibernate.cache.use_second_level_cache", false);
+        properties.put("hibernate.order_inserts", true);
+        properties.put("hibernate.order_updates", true);
+        properties.put("hibernate.jdbc.batch_versioned_data", true);
+        properties.put("hibernate.cache.use_second_level_cache", true);
         return properties;        
     }
 

@@ -1,5 +1,8 @@
 package com.eficacia.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -10,6 +13,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -100,17 +104,8 @@ public class AgendaDaoImpl implements AgendaDao {
 
 	@Override
     public String cargaMasiva(List<Agenda> agendas) {
-          //int tamano = agendas.size();
-          //SQLQuery query;
-          
-	/*for(Agenda age : agendas){
-                 
-        	  session = sessionFactory.getCurrentSession();
-              session.save(age);
-          
-          }*/
-		
-		int tamano = agendas.size();
+
+		/*int tamano = agendas.size();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		for(int i = 0; i < tamano; i++){
@@ -121,12 +116,61 @@ public class AgendaDaoImpl implements AgendaDao {
 			}
 		}
 		tx.commit();
-		session.close();
+		session.close();*/
 		
 		
 		
-                 
+		Session session = null;
+		session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.doWork(new Work(){
+            @Override
+            public void execute(Connection connection) throws SQLException {
+            	PreparedStatement pstmt = null;
+            	
+            	try{
+
+            	String sqlQuery = "insert into agenda(agendaCodigoTransaccion, agendaFechaTransaccion, agendaFechaCiere, agendaNumeroCliente, agendaRazonSocial,"
+        				+ "agendaNombreRepresentante, agendaNumeroTelefono, agendaSoeid, agendaEjecutivo, agendaSede) values "
+        				+ "(?,?,?,?,?,?,?,?,?,?)";
+            	
+            	pstmt = connection.prepareStatement(sqlQuery);
+            	System.out.println("PerpareStatement " );
+            	int tamano = agendas.size();
+            	for(int i = 0; i < tamano; i++){
+        			pstmt.setString(1, agendas.get(i).getCodigoTransaccion());
+        			pstmt.setString(2, agendas.get(i).getFechaTransaccion());
+        			pstmt.setString(3, agendas.get(i).getFechaCierre());
+        			pstmt.setString(4, agendas.get(i).getNumeroCliente());
+        			pstmt.setString(5, agendas.get(i).getRazonSocial());
+        			pstmt.setString(6, agendas.get(i).getNombreRepresentante());
+        			pstmt.setString(7, agendas.get(i).getNumeroTelefono());
+        			pstmt.setString(8, agendas.get(i).getSoeid());
+        			pstmt.setString(9, agendas.get(i).getEjecutivo());
+        			pstmt.setString(10, agendas.get(i).getSede());
+        			pstmt .addBatch();
+        			if ( i % 50 == 0 ) { 
+                        pstmt.executeBatch();
+                    }
+        		}
+            	pstmt.executeBatch();
+            	
+            	}catch(SQLException ex){
+            		System.out.println("Excepcion de SQL Server: " + ex.getMessage());
+            	}
+            	finally{
+            		pstmt.close();
+            	}
+            	
+              }
+          });
+		  tx.commit();
+		  session.close();
+		
+		
+    	
                  /*session = sessionFactory.openSession();
+              for(Agenda age : agendas){
                  query = session.createSQLQuery("INSERT INTO agenda(agendaCodigoTransaccion, agendaFechaTransaccion, agendaFechaCiere, agendaNumeroCliente, "
                                + "agendaRazonSocial, agendaNombreRepresentante, agendaNumeroTelefono , agendaSoeid , agendaEjecutivo , agendaSede) values (?,?,?,?,?,?,?,?,?,?)");
               query.setParameter(0, age.getCodigoTransaccion());
@@ -143,8 +187,8 @@ public class AgendaDaoImpl implements AgendaDao {
               query.executeUpdate();
                  
                  session.flush();
-                 session.clear();*/
-          
+                 session.clear();
+              }*/
           
           return "";
     }
