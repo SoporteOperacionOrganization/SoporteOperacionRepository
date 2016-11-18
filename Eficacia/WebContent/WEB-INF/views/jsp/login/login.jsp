@@ -39,7 +39,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input id="login-username"
 								type="text" class="form-control" name="soeid" value=""
-								placeholder="Soeid" required="required">
+								placeholder="Soeid" required="required" maxlength="7">
 						</div>
 						<div style="margin-bottom: 5px; width: 100%" class="input-group">
 							<span class="input-group-addon"><i
