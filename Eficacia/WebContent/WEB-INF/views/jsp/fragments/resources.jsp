@@ -7,6 +7,7 @@
 <spring:url value="resources/js/bootstrap.min.js" var="bootstrapJsMin" />
 <spring:url value="resources/js/jquery-3.1.1.min.js" var="jquery311" />
 <spring:url value="resources/js/customJs.js" var="customJs" />
+<spring:url value="resources/js/funciones.js" var="funciones" />
 
 <link href="${bootstrapCss}" rel="stylesheet" ></link>
 <link href="${bootstrapCssMin}" rel="stylesheet" ></link>
@@ -16,4 +17,5 @@
 <script src="${bootstrapJs}"></script>
 <script src="${bootstrapJsMin}"></script>
 <script src="${customJs}"></script>
+<script src="${funciones}"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

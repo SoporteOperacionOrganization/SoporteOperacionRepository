@@ -73,7 +73,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="Digitos">
 								<label class="col-md-3 control-lable" for="numeroCliente">No.
 									cliente *</label>
 								<div class="col-md-7">
@@ -87,7 +87,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="RazonSocial">
 								<label class="col-md-3 control-lable" for="razonSocial">Razón
 									social *</label>
 								<div class="col-md-7">
@@ -101,7 +101,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="Nombre">
 								<label class="col-md-3 control-lable" for="nombreRepresentante">Nombre
 									representante *</label>
 								<div class="col-md-7">
@@ -115,7 +115,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="Telefono">
 								<label class="col-md-3 control-lable" for="numeroTelefono">Teléfono *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="numeroTelefono"
@@ -128,7 +128,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="Soeid">
 								<label class="col-md-3 control-lable" for="soeid">SOEID *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="soeid" id="soeid"
@@ -141,7 +141,7 @@
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12" id="Ejecutivo">
 								<label class="col-md-3 control-lable" for="ejecutivo">Ejecutivo *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="ejecutivo" id="ejecutivo"

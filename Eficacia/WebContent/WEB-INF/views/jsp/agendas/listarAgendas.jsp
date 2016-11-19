@@ -23,7 +23,7 @@
     <form class="navbar-form " role="search" action="filtrarAgendas" 
    style="background-color: white; text-align: left;  margin: 0% 0% 0% 9%;">
       <div  class="form-group">
-        <input type="text" name="criterio" class="form-control" placeholder="Buscar por razón social">
+        <input type="text" name="criterio" class="form-control" placeholder="Buscar por razón social" id="Caracteres">
       </div>      
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
     </form>
