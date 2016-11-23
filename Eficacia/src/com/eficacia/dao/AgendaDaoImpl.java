@@ -50,7 +50,6 @@ public class AgendaDaoImpl implements AgendaDao {
 	
 	@Override
 	public List<Agenda> obtenerAgendas(String razonSocial) {
-		System.out.println("DAO-Razon Social: "+razonSocial);
 		List<Agenda> agendas = new ArrayList<Agenda>();
 		session = sessionFactory.getCurrentSession();
 		

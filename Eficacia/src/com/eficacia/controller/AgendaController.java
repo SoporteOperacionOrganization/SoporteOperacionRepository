@@ -120,7 +120,6 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/exportarAgendas/{razonSocial}", method = RequestMethod.GET)
 	public String exportarAgendas(Model model, @PathVariable String razonSocial){
-		System.out.println("Controlador-Razon Social: "+razonSocial);
 		List<Agenda> agendas = agendaService.obtenerAgendas(razonSocial);
 		model.addAttribute("agendas", agendas);
 		return "VistaExcel";
