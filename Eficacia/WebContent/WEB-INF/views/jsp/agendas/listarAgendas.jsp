@@ -114,8 +114,13 @@
 		
 		<br>
 		<div class="exportacionExcel">
-			<a href="<c:url value='/exportarAgendas' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
-			<!-- <a href="<c:url value='/exportarAgendas' />" class="btn btn-success custom-width">Exportar</a> -->
+			<c:if test="${empty criterio}">
+				<a href="<c:url value='/exportarAgendas/all' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
+			</c:if>
+			
+			<c:if test="${ not empty criterio}">
+				<a href="<c:url value='/exportarAgendas/${criterio}' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
+			</c:if>
 		
 		</div>
 		</c:if>

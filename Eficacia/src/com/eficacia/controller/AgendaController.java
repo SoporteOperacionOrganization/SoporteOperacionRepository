@@ -118,9 +118,10 @@ public class AgendaController {
 		return "redirect:/listarAgendas";
 	}	
 	
-	@RequestMapping(value = "/exportarAgendas", method = RequestMethod.GET)
-	public String exportarAgendas(Model model){
-		List<Agenda> agendas = agendaService.obtenerAgendas();
+	@RequestMapping(value = "/exportarAgendas/{razonSocial}", method = RequestMethod.GET)
+	public String exportarAgendas(Model model, @PathVariable String razonSocial){
+		System.out.println("Controlador-Razon Social: "+razonSocial);
+		List<Agenda> agendas = agendaService.obtenerAgendas(razonSocial);
 		model.addAttribute("agendas", agendas);
 		return "VistaExcel";
 	}
@@ -137,9 +138,10 @@ public class AgendaController {
                  return "agendas/cargaMasiva";
           }
           String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
+          System.out.println("Extension: " +extension);
        
-          if(!"xlsx".equals(extension) && !"xlsm".equals(extension) ){
-                 redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls. , xlsm");
+          if(!"xlsx".equals(extension) && !"xlsm".equals(extension)){
+                 redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xlsm");
           }else{
                  String estatus = agendaService.validarExcel(excelfile);
                  if("".equals(estatus)){

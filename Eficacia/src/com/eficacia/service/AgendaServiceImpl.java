@@ -38,8 +38,9 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 	
 	@Override
-	public List<Agenda> obtenerAgendas() {
-		return agendaDao.obtenerAgendas();
+	public List<Agenda> obtenerAgendas(String razonSocial) {
+		System.out.println("Service-Razon Social: "+razonSocial);
+		return agendaDao.obtenerAgendas(razonSocial);
 	}
 
 	@Override

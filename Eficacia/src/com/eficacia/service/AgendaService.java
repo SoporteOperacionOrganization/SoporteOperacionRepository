@@ -11,7 +11,7 @@ public interface AgendaService {
 
 	public Agenda obtenerAgenda(String codigoTransaccion);
 	
-	public List<Agenda> obtenerAgendas();
+	public List<Agenda> obtenerAgendas(String razonSocial);
 
 	public Long contarRegistros();
 	
