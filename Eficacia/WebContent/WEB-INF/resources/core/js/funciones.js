@@ -58,7 +58,7 @@
 
 		    } else if (key < 48) {
 
-		        if (key != 8 && key != 9 && key != 37 && key != 39 ) {
+		        if (key != 9) {
 		            e.preventDefault();
 		        }
 		    }
