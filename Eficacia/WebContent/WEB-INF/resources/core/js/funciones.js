@@ -12,7 +12,7 @@
       			  }
       		  }
 	  });
-	  $('#SoidCaracteres').keydown(function(e) {
+	  $('#SoeidCaracteres').keydown(function(e) {
 		  
 		  if ( e.ctrlKey || e.altKey || e.shiftKey) {
 			  e.preventDefault();
