@@ -19,6 +19,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/password-score.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-strength-meter.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/funciones.js" ></script>
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
@@ -141,7 +142,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="soeid">Soeid *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="soeid" id="soeid" class="form-control input-sm" readonly="true"/>
+                    <form:input type="text" path="soeid" id="Soeid" class="form-control input-sm" readonly="true"/>
                     <div class="has-error errores">
                         <form:errors path="soeid" class="help-inline"/>
                     </div>
@@ -152,7 +153,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="nombre">Nombre usuario *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="nombre" id="nombre" class="form-control input-sm" maxlength="40"/>
+                    <form:input type="text" path="nombre" id="Ejecutivo" class="form-control input-sm" maxlength="40"/>
                     <div class="has-error errores">
                         <form:errors path="nombre" class="help-inline"/>
                     </div>
@@ -162,9 +163,9 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno *</label>
+                <label class="col-md-3 control-lable" for="Nombre">Apellido paterno *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm" maxlength="30"/>
+                    <form:input type="text" path="apellidoPaterno" id="Nombre" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoPaterno" class="help-inline"/>
                     </div>
@@ -174,9 +175,9 @@ $(document).ready(function(){
         
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="apellidoMaterno">Apellido materno</label>
+                <label class="col-md-3 control-lable" for="Nombre">Apellido materno</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm" maxlength="30"/>
+                    <form:input type="text" path="apellidoMaterno" id="Nombre1" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoMaterno" class="help-inline"/>
                     </div>
@@ -188,7 +189,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="telefono">Teléfono *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="telefono" id="telefono" class="form-control input-sm" maxlength="15"/>
+                    <form:input type="text" path="telefono" id="Telefono" class="form-control input-sm" maxlength="15"/>
                     <div class="has-error errores">
                         <form:errors path="telefono" class="help-inline"/>
                     </div>
@@ -260,7 +261,8 @@ $(document).ready(function(){
                     <c:otherwise>
                     
                         <input type="submit" value="Agregar"
-											class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
+											class="btn btn-primary custom-width" style="background-color: #013F7A" 
+											onclick="formatoSoeid()"/> 
 											
 												<a href="<c:url value='/listarUsuarios' />"
 										class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>

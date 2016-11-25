@@ -43,7 +43,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="soeid">SOEID *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="soeid" id="soeid" class="form-control input-sm"   maxlength="7" style="text-transform:uppercase"/>
+                    <form:input type="text" path="soeid" id="Soeid" class="form-control input-sm"   maxlength="7" style="text-transform:uppercase"/>
                     <div class="has-error errores">
                         <form:errors path="soeid" class="help-inline"/>
                     </div>
@@ -67,7 +67,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="apellidoPaterno">Apellido paterno *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoPaterno" id="apellidoPaterno" class="form-control input-sm" maxlength="30"/>
+                    <form:input type="text" path="apellidoPaterno" id="Nombre" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoPaterno" class="help-inline"/>
                     </div>
@@ -79,7 +79,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="apellidoMaterno">Apellido materno</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="apellidoMaterno" id="apellidoMaterno" class="form-control input-sm" maxlength="30"/>
+                    <form:input type="text" path="apellidoMaterno" id="Nombre1" class="form-control input-sm" maxlength="30"/>
                     <div class="has-error errores">
                         <form:errors path="apellidoMaterno" class="help-inline"/>
                     </div>
@@ -91,7 +91,7 @@ $(document).ready(function(){
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="telefono">Teléfono *</label>
                 <div class="col-md-7">
-                    <form:input type="text" path="telefono" id="telefono" class="form-control input-sm" maxlength="15" />
+                    <form:input type="text" path="telefono" id="Telefono" class="form-control input-sm" maxlength="15" />
                     <div class="has-error errores">
                         <form:errors path="telefono" class="help-inline"/>
                     </div>
@@ -155,7 +155,8 @@ $(document).ready(function(){
                     </c:when>
                     <c:otherwise>
                                        <input type="submit" value="Agregar"
-                                                                          class="btn btn-primary custom-width" style="background-color: #013F7A" /> 
+                                                                          class="btn btn-primary custom-width" style="background-color: #013F7A"
+                                                                          onclick="formatoSoeid()" /> 
                                                                           
                                                                                  <a href="<c:url value='/listarUsuarios' />"
                                                                    class="btn btn-primary custom-width" style="background-color: #941A26; border-color:#941A26 "> Cancelar</a>

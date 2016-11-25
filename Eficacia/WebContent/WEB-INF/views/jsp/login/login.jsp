@@ -37,9 +37,11 @@
 						<div style="margin-bottom: 5px; width: 100%; height: 3px"
 							class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input id="login-username"
-								type="text" class="form-control" name="soeid" value=""
+								class="glyphicon glyphicon-user"></i></span>
+								 <input id="Soeid"
+								type="text" class="form-control" name="soeid" value=""  autofocus="autofocus" 
 								placeholder="Soeid" required="required" maxlength="7">
+						
 						</div>
 						<div style="margin-bottom: 5px; width: 100%" class="input-group">
 							<span class="input-group-addon"><i
@@ -56,10 +58,11 @@
 							<!-- Button -->
 
 							<div class="col-sm-12 controls" style="margin-left: 0%">
-								<input type="submit" class="btn btn-primary"
+								<input type="submit" class="btn btn-primary" id="pruebas"
 									style="width: 60px; height: 27px; font-size: 12px;"
-									value="Validar" />
+									value="Validar"  onclick="formatoSoeid()"/>
 							</div>
+							
 						</div>
 						<br> <br> <br>
 					</div>
