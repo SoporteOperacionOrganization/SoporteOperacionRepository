@@ -39,6 +39,19 @@
       		  }
 	  });
 	  
+	  $('#fechaCierre').keydown(function(e) {
+		  var key = e.keyCode;
+		  if ( key >= 48) {
+		        e.preventDefault();
+
+		    } else if (key < 48) {
+
+		        if (key != 8 && key != 9 && key != 37 && key != 39 ) {
+		            e.preventDefault();
+		        }
+		    }
+	  });
+	  
 	  	  
   });
   

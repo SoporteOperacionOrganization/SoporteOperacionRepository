@@ -63,7 +63,7 @@
 									cierre *</label>
 								<div class="col-md-7">
 									<form:input type="text" path="fechaCierre" id="fechaCierre"
-										class="form-control input-sm datepicker" readonly="true" />
+										class="form-control input-sm datepicker" />
 									<div class="has-error errores">
 										<form:errors path="fechaCierre" class="help-inline" />
 
