@@ -34,6 +34,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 <script
+	src="${pageContext.request.contextPath}/resources/js/funciones.js"></script>
+<script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -191,7 +193,7 @@
 									cierre</label>
 								<div class="col-md-7">
 									<form:input type="text" path="fechaCierre" id="fechaCierre"
-										class="form-control input-sm datepicker" readonly="true" />
+										class="form-control input-sm datepicker" />
 									<div class="has-error errores">
 										<form:errors path="fechaCierre" class="help-inline" />
 									</div>
@@ -299,7 +301,7 @@
 
 						<div class="row">
 							<div class="form-actions floatRight">
-								<input type="submit" value="Modificara"
+								<input type="submit" value="Modificar"
 									class="btn btn-primary custom-width"
 									style="background-color: #013F7A" 
 									onclick="formatoSoeid()"/> <a

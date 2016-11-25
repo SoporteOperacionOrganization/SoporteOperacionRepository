@@ -51,6 +51,34 @@
       		  }
 	  });
 	  
+	  $('#fechaCierre').keydown(function(e) {
+		  var key = e.keyCode;
+		  if ( key >= 48) {
+		        e.preventDefault();
+
+		    } else if (key < 48) {
+
+		        if (key != 8 && key != 9 && key != 37 && key != 39 ) {
+		            e.preventDefault();
+		        }
+		    }
+	  });
+	  
+	  $('#SoidCaracteres').keydown(function(e)  { 
+          
+          if ( e.ctrlKey || e.altKey || e.shiftKey) { 
+                  e.preventDefault(); 
+          } else { 
+                  var key = e.keyCode;  
+
+                  if (!((key == 9) || (key >= 48 && key <= 90) || (key >= 96 && key <= 105) || (key == 8))) { 
+                          e.preventDefault(); 
+                  } 
+          } 
+          
+  });
+
+
 	  	  
   });
   
