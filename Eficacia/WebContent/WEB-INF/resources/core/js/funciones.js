@@ -52,6 +52,21 @@
 		    }
 	  });
 	  
+	  $('#SoidCaracteres').keydown(function(e)  { 
+          
+          if ( e.ctrlKey || e.altKey || e.shiftKey) { 
+                  e.preventDefault(); 
+          } else { 
+                  var key = e.keyCode;  
+
+                  if (!((key == 9) || (key >= 48 && key <= 90) || (key >= 96 && key <= 105) || (key == 8))) { 
+                          e.preventDefault(); 
+                  } 
+          } 
+          
+  });
+
+
 	  	  
   });
   
