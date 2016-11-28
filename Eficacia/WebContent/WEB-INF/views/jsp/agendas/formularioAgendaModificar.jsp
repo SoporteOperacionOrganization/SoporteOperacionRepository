@@ -34,6 +34,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 <script
+	src="${pageContext.request.contextPath}/resources/js/funciones.js"></script>
+<script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -191,7 +193,7 @@
 									cierre</label>
 								<div class="col-md-7">
 									<form:input type="text" path="fechaCierre" id="fechaCierre"
-										class="form-control input-sm datepicker" readonly="true" />
+										class="form-control input-sm datepicker" />
 									<div class="has-error errores">
 										<form:errors path="fechaCierre" class="help-inline" />
 									</div>
@@ -204,7 +206,7 @@
 								<label class="col-md-3 control-lable" for="numeroCliente">No.
 									cliente</label>
 								<div class="col-md-7">
-									<form:input type="text" path="numeroCliente" id="numeroCliente"
+									<form:input type="text" path="numeroCliente" id="Digitos"
 										class="form-control input-sm"  maxlength="5"/>
 									<div class="has-error errores">
 										<form:errors path="numeroCliente" class="help-inline" />
@@ -218,7 +220,7 @@
 								<label class="col-md-3 control-lable" for="razonSocial">Razón
 									social</label>
 								<div class="col-md-7">
-									<form:input type="text" path="razonSocial" id="razonSocial"
+									<form:input type="text" path="razonSocial" id="RazonSocial"
 										class="form-control input-sm" />
 									<div class="has-error errores">
 										<form:errors path="razonSocial" class="help-inline" />
@@ -233,7 +235,7 @@
 									representante</label>
 								<div class="col-md-7">
 									<form:input type="text" path="nombreRepresentante"
-										id="nombreRepresentante" class="form-control input-sm" />
+										id="Nombre" class="form-control input-sm" />
 									<div class="has-error errores">
 										<form:errors path="nombreRepresentante" class="help-inline" />
 									</div>
@@ -246,7 +248,7 @@
 								<label class="col-md-3 control-lable" for="numeroTelefono">Teléfono</label>
 								<div class="col-md-7">
 									<form:input type="text" path="numeroTelefono"
-										id="numeroTelefono" class="form-control input-sm"   maxlength="15"/>
+										id="Telefono" class="form-control input-sm"   maxlength="15"/>
 									<div class="has-error errores">
 										<form:errors path="numeroTelefono" class="help-inline" />
 									</div>
@@ -258,8 +260,9 @@
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="soeid">SOEID</label>
 								<div class="col-md-7">
-									<form:input type="text" path="soeid" id="soeid"
-										class="form-control input-sm"  maxlength="7" style="text-transform:uppercase"/>
+									<form:input type="text" path="soeid" id="Soeid"
+										class="form-control input-sm"  maxlength="7" style="text-transform:uppercase"
+										readonly="true" />
 									<div class="has-error errores">
 										<form:errors path="soeid" class="help-inline" />
 									</div>
@@ -271,7 +274,7 @@
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable" for="ejecutivo">Ejecutivo</label>
 								<div class="col-md-7">
-									<form:input type="text" path="ejecutivo" id="ejecutivo"
+									<form:input type="text" path="ejecutivo" id="Ejecutivo"
 										class="form-control input-sm" />
 									<div class="has-error errores">
 										<form:errors path="ejecutivo" class="help-inline" />
@@ -300,7 +303,8 @@
 							<div class="form-actions floatRight">
 								<input type="submit" value="Modificar"
 									class="btn btn-primary custom-width"
-									style="background-color: #013F7A" /> <a
+									style="background-color: #013F7A" 
+									onclick="formatoSoeid()"/> <a
 									href="<c:url value='/listarAgendas' />"
 									class="btn btn-primary custom-width"
 									style="background-color: #941A26; border-color: #941A26">

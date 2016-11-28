@@ -26,10 +26,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.eficacia.dao.AgendaDao;
 import com.eficacia.model.Agenda;
 
-//import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-
 @Service
 @Transactional
 public class AgendaServiceImpl implements AgendaService {
@@ -46,8 +42,8 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 	
 	@Override
-	public List<Agenda> obtenerAgendas() {
-		return agendaDao.obtenerAgendas();
+	public List<Agenda> obtenerAgendas(String razonSocial) {
+		return agendaDao.obtenerAgendas(razonSocial);
 	}
 
 	@Override

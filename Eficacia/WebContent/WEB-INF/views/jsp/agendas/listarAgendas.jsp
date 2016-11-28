@@ -23,7 +23,7 @@
     <form class="navbar-form " role="search" action="filtrarAgendas" 
    style="background-color: white; text-align: left;  margin: 0% 0% 0% 9%;">
       <div  class="form-group">
-        <input type="text" name="criterio" class="form-control" placeholder="Buscar por razón social" id="Caracteres">
+        <input type="text" name="criterio" class="form-control" placeholder="Buscar por razón social" id="RazonSocial">
       </div>      
      <button type="submit" class="btn btn-primary"><i style="height:19px;" class="glyphicon glyphicon-search"></i></button> 
     </form>
@@ -114,8 +114,13 @@
 		
 		<br>
 		<div class="exportacionExcel">
-			<a href="<c:url value='/exportarAgendas' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
-			<!-- <a href="<c:url value='/exportarAgendas' />" class="btn btn-success custom-width">Exportar</a> -->
+			<c:if test="${empty criterio}">
+				<a href="<c:url value='/exportarAgendas/all' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
+			</c:if>
+			
+			<c:if test="${ not empty criterio}">
+				<a href="<c:url value='/exportarAgendas/${criterio}' />" type="submit" class="btn btn-success custom-width"><span class="glyphicon glyphicon-download-alt"></span>Exportar</a>
+			</c:if>
 		
 		</div>
 		</c:if>

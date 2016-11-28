@@ -53,10 +53,18 @@ public class AgendaDaoImpl implements AgendaDao {
 	}
 	
 	@Override
-	public List<Agenda> obtenerAgendas() {
+	public List<Agenda> obtenerAgendas(String razonSocial) {
 		List<Agenda> agendas = new ArrayList<Agenda>();
 		session = sessionFactory.getCurrentSession();
-		query = session.createQuery("FROM Agenda");
+		
+		if("all".equals(razonSocial)){
+			query = session.createQuery("FROM Agenda");
+			
+		}else{
+			query = session.createQuery("FROM Agenda a where a.razonSocial like :razonSocial");
+			query.setParameter("razonSocial", "%"+razonSocial+"%");
+		}
+		
 		agendas = query.list();
 		return agendas;
 	}

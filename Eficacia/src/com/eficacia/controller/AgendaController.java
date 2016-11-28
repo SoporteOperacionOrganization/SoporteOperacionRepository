@@ -118,9 +118,9 @@ public class AgendaController {
 		return "redirect:/listarAgendas";
 	}	
 	
-	@RequestMapping(value = "/exportarAgendas", method = RequestMethod.GET)
-	public String exportarAgendas(Model model){
-		List<Agenda> agendas = agendaService.obtenerAgendas();
+	@RequestMapping(value = "/exportarAgendas/{razonSocial}", method = RequestMethod.GET)
+	public String exportarAgendas(Model model, @PathVariable String razonSocial){
+		List<Agenda> agendas = agendaService.obtenerAgendas(razonSocial);
 		model.addAttribute("agendas", agendas);
 		return "VistaExcel";
 	}

@@ -25,7 +25,7 @@
 				<span id="errorFiltroSoeid"></span>
 			</div> -->
 			<div class="form-group" >
-				<input id="criterioSoeid" type="text" name="criterio" class="form-control"
+				<input id="SoeidCaracteres" type="text" name="criterio" class="form-control"
 					placeholder="Buscar por SOEID" maxlength="7">
 			</div>
 			<button type="submit" class="btn btn-primary">
