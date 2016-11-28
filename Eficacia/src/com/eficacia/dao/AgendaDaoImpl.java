@@ -15,6 +15,7 @@ import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.Transaction;
 import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -263,11 +264,7 @@ public class AgendaDaoImpl implements AgendaDao {
           });
 		  tx.commit();
 		  session.close();
-		
-		
-		
-		
-		
+    	
 		/*int tamano = agendas.size();
 		String totalNoEncontrados="";
 		int NoEncontrados=0;
