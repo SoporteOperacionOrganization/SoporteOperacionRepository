@@ -50,7 +50,7 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
       
         
         //crear cabecera
-        Row header = sheet.createRow(0);
+        Row header = sheet.createRow(2);
         
          
         header.createCell(0).setCellValue("CÓDIGO TRANSACCION");
@@ -84,7 +84,7 @@ public class AgendaExcelBuilder extends AbstractXlsxView{
         header.getCell(9).setCellStyle(style);
         
         //Crear filas
-        int rowCount = 1;
+        int rowCount = 3;
          
         for (Agenda aAgenda : agendas) {
             Row aRow = sheet.createRow(rowCount++);

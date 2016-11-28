@@ -1,6 +1,7 @@
 package com.eficacia.service;
 
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -18,9 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.eficacia.dao.AgendaDao;
 import com.eficacia.model.Agenda;
+
+//import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 
 @Service
 @Transactional
@@ -121,7 +129,32 @@ public class AgendaServiceImpl implements AgendaService {
                         agenda.setSede(row.getCell(8).getStringCellValue());
                         
                         agendas.add(agenda);
-                 }            
+                 
+                 		
+		                 /*CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) excelFile;
+		                 FileItem fileItem = commonsMultipartFile.getFileItem();
+		                 DiskFileItem diskFileItem = (DiskFileItem) fileItem;
+		                 String absPath = diskFileItem.getStoreLocation().getAbsolutePath();
+		                 File inputWorkbook = new File(absPath);*/
+                 
+                 		
+                 		/*File inputWorkbook = new File( excelFile.getOriginalFilename());
+                 		excelFile.transferTo(inputWorkbook);
+                 		
+                 		System.out.println("Nombre " + inputWorkbook.getAbsolutePath());
+                 		List<Agenda> agendas = new ArrayList<>();
+                 		Workbook w;
+                 		w = Workbook.getWorkbook(inputWorkbook);
+                 		Sheet sheet = w.getSheet(0);
+                 		for (int j = 0; j < sheet.getColumns(); j++) {
+                 			for (int i = 3; i < sheet.getRows(); i++) {
+                 				Cell cell = sheet.getCell(j, i);
+                 				System.out.println("Contenido " + cell.getContents());
+                 			}
+                 		}
+                 		*/
+                 
+                 }         
                  if(estatusCarga.equals("")){
                         agendaDao.cargaMasiva(agendas);
                  }
@@ -164,29 +197,28 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 	
 	
-	public String validarExcelEliminacion(MultipartFile excelFile) {
+	public List<String> validarExcelEliminacion(MultipartFile excelFile) {
 		List<String> letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 		String estatusCarga = "";
+		List<String> codigosNoEncontrados = new ArrayList<String>();
 		int i = 3;
 		try{
-			List<Agenda> agendas = new ArrayList<>();
-			
+			List<String> codigos = new ArrayList<>();
+		
 			XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream());
 			XSSFSheet worksheet = workbook.getSheetAt(0);
 			while (i <= worksheet.getLastRowNum()) {
-				Agenda agenda = new Agenda();
 				XSSFRow row = worksheet.getRow(i++);
-				agenda.setCodigoTransaccion(row.getCell(0).getStringCellValue());
-				agendas.add(agenda);
+				codigos.add(row.getCell(0).getStringCellValue());
 			}		
 			if(estatusCarga.equals("")){
-					agendaDao.eliminacionMasiva(agendas);
+				codigosNoEncontrados = agendaDao.eliminacionMasiva(codigos);
 			}
 				workbook.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return estatusCarga;
+		return codigosNoEncontrados;
 	}
 	
 	
@@ -227,7 +259,7 @@ public class AgendaServiceImpl implements AgendaService {
 		return estatus;
 	}
 	
-	
+
 
 	@Override
 	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite) {

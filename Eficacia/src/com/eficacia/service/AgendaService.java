@@ -27,7 +27,7 @@ public interface AgendaService {
 	
 	public void eliminarAgenda(String codigoTransaccion);
 	
-	public String validarExcelEliminacion(MultipartFile excelFile);
+	public List<String> validarExcelEliminacion(MultipartFile excelFile);
 	
 	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite);
 	

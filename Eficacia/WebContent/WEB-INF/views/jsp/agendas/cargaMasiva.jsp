@@ -24,6 +24,7 @@
 
 <div class="contenidoUsuarios">
 	<div class="generic-container">
+
 		<form:form action="cargarExcel" modelAttribute="file" method="POST" enctype="multipart/form-data"> 
 			<form:input type="file" path="archivo" name="archivo" id="archivo" class="filestyle" data-buttonName="btn-primary" />
 			<br/>

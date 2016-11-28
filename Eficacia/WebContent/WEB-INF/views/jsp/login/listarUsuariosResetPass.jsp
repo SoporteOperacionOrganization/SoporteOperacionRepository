@@ -16,7 +16,7 @@
 <body >
 	<div class="container" 
 		style="width: 100%; margin-top: 8em;; z-index: 1; position: absolute; text-align: center">
-		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">Resetear Usuario</div>
+		<div style="text-align: center; font-weight: bold; font-size: 1.4em; ">Resetear contraseña de usuario</div>
 
 <form class="navbar-form"  
 			style="background-color: white; text-align: left; margin: 2% 0% 0% 24%; "

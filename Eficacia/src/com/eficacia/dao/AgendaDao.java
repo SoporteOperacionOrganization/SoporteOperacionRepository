@@ -25,7 +25,7 @@ public interface AgendaDao {
 	
 	public void modificarAgenda(Agenda agenda);
 	
-	public String eliminacionMasiva(List<Agenda> agendas);
+	public List<String> eliminacionMasiva(List<String> agendas);
 	
 	public List<Agenda> obtenerAgendasPaginacion(Integer offset, Integer limite);
 

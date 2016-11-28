@@ -2,6 +2,7 @@ package com.eficacia.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,11 +11,14 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
+import org.hibernate.ScrollMode;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.stereotype.Repository;
 
 import com.eficacia.model.Agenda;
@@ -195,8 +199,68 @@ public class AgendaDaoImpl implements AgendaDao {
 
 	
 	@Override
-	public String eliminacionMasiva(List<Agenda> agendas){
-		int tamano = agendas.size();
+	public List<String> eliminacionMasiva(List<String> agendas){
+		
+		/*session = sessionFactory.getCurrentSession();
+		String hql = "delete from Agenda a where a.codigoTransaccion in :codigos";
+		List<String> codigos = new ArrayList();
+		int cont = 0;
+		int ind = 0;
+		boolean flag = false;
+		while(ind < agendas.size()){
+			codigos.add(agendas.get(ind));
+			if(cont == 2000){
+				session.createQuery(hql).setParameterList("codigos", codigos).executeUpdate();
+				codigos.clear();
+				cont = 0;
+			}else if((agendas.size() - 1) == ind){
+				session.createQuery(hql).setParameterList("codigos", codigos).executeUpdate();
+			}
+			if(ind % 50 == 0){
+				session.flush();
+				session.clear();
+			}
+			
+			cont++;
+			ind++;
+		}*/
+		
+		
+		
+		List<String> codigosNoEncontrados = new ArrayList<String>();
+		Session session = null;
+		session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.doWork(new Work(){
+            @Override
+            public void execute(Connection connection) throws SQLException {
+            	PreparedStatement pstmt = null;
+            	try{
+	            	String sqlQuery = "DELETE FROM agenda WHERE agendaCodigoTransaccion = ?";
+	            	pstmt = connection.prepareStatement(sqlQuery);
+	            	int tamano = agendas.size();
+	            	for(int i = 0; i < tamano; i++){
+	        			pstmt.setString(1, agendas.get(i));
+	        			int filasAfectadas = pstmt.executeUpdate();
+	        			if(filasAfectadas == 0){
+	        				codigosNoEncontrados.add(agendas.get(i));
+	        			}
+	        		}
+            	}catch(SQLException ex){
+            		System.out.println("Excepcion de SQL Server: " + ex.getMessage());
+            	}finally{
+            		pstmt.close();
+            	}            	
+              }
+          });
+		  tx.commit();
+		  session.close();
+		
+		
+		
+		
+		
+		/*int tamano = agendas.size();
 		String totalNoEncontrados="";
 		int NoEncontrados=0;
 		session = sessionFactory.getCurrentSession();
@@ -212,15 +276,70 @@ public class AgendaDaoImpl implements AgendaDao {
 				}
 		}
 
-		totalNoEncontrados=Integer.toString(NoEncontrados);
+		totalNoEncontrados=Integer.toString(NoEncontrados);*/
 	
-		return totalNoEncontrados;
+		return codigosNoEncontrados;
 	}
 	
 	
 	@Override
 	public ArrayList<String> registrosNoEncontrados(List<Agenda> agendas){
-		int tamano = agendas.size();
+		
+			/*ArrayList<String> noEncontrados = new ArrayList<>();
+			session = sessionFactory.getCurrentSession();
+			String sqlQuery = "SELECT COUNT(*) FROM agenda WHERE agendaCodigoTransaccion = :codigo";
+		
+			SQLQuery query = session.createSQLQuery(sqlQuery);
+			for(int i = 0; i < agendas.size(); i++){
+				query.setParameter("codigo", agendas.get(i).getCodigoTransaccion());
+				Integer count = (Integer)query.uniqueResult();
+				System.out.println("Cont " + count);
+			}*/
+			
+			
+		    ArrayList<String> noEncontrados= new ArrayList<>();
+			session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			session.doWork(new Work(){
+            @Override
+            public void execute(Connection connection) throws SQLException {
+            	PreparedStatement pstmt = null;
+            	
+            	try{
+
+            	String sqlQuery = "SELECT count(*) FROM agenda WHERE agendaCodigoTransaccion = ?";
+            	ResultSet rs;
+            	pstmt = connection.prepareStatement(sqlQuery);
+            	int tamano = agendas.size();
+            	int con = 0;
+            	for(int i = 0; i < tamano; i++){
+            		String codigoTransaccion = agendas.get(i).getCodigoTransaccion();
+        			pstmt.setString(1, codigoTransaccion);
+        			rs = pstmt.executeQuery();
+        			if(rs.next()){
+        				con = rs.getInt(1);
+        			}
+        			
+        			if(con == 0){
+        				noEncontrados.add(codigoTransaccion);
+        			}
+        		}
+            	
+            	}catch(SQLException ex){
+            		System.out.println("RNE Excepcion de SQL Server: " + ex.getMessage());
+            	}
+            	finally{
+            		pstmt.close();
+            	}
+            	
+              }
+          });
+		  tx.commit();
+		  session.close();
+		
+		
+		
+		/*int tamano = agendas.size();
 		ArrayList<String> noEncontrados= new ArrayList<>();
 		session = sessionFactory.getCurrentSession();
 		
@@ -236,7 +355,8 @@ public class AgendaDaoImpl implements AgendaDao {
 				noEncontrados.add(codigoTransaccion);
 		}
 		}
-return noEncontrados;
+		return noEncontrados;*/
+		return noEncontrados;
 	}
 
 	@Override

@@ -138,10 +138,10 @@ public class AgendaController {
           }
           String extension = excelfile.getOriginalFilename().substring(excelfile.getOriginalFilename().lastIndexOf(".") + 1);
        
-          if(!"xlsx".equals(extension) && !"xlsm".equals(extension) ){
+          if(!"xlsx".equals(extension) && !"xlsm".equals(extension) && !"xls".equals(extension)){
                  redirectAttributes.addFlashAttribute("extensionError","Verifica que el archivo tenga la extensión solicitada xlsx, xls. , xlsm");
           }else{
-                 String estatus = agendaService.validarExcel(excelfile);
+              String estatus = agendaService.validarExcel(excelfile);
                  if("".equals(estatus)){
                         redirectAttributes.addFlashAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
                         
@@ -164,17 +164,11 @@ public class AgendaController {
 		if(result.hasErrors()){	
 			return "agendas/eliminacionMasiva";
 		}
-		
-		ArrayList<String> noEncontrados =new ArrayList<>();
-		noEncontrados = agendaService.registrosNoEncontrados(excelfile);
+		List<String> noEncontrados =new ArrayList<String>();
+
+		noEncontrados = agendaService.validarExcelEliminacion(excelfile);
 		model.addAttribute("noEncontrados", noEncontrados);
-		
-		String estatus = agendaService.validarExcelEliminacion(excelfile);
-		if(estatus.equals("")){
-			model.addAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
-		}
-		model.addAttribute("estatus", estatus);
-	
+		model.addAttribute("procesoCorrecto", "El proceso ha terminado exitosamente");
 		
 		return "agendas/eliminacionMasiva";
 	}
