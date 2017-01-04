@@ -16,7 +16,7 @@
 			<td width="30%"></td>
 				<td  width="43%">
 					<h3 class="titleSize"
-						style="color: #D7D7D7; margin-top: 0.0em">SISTEMA DE GESTIÓN EFICASIA</h3>
+						style="color: #fff; margin-top: 0.0em">SISTEMA DE GESTION EFICASIA</h3>
 				</td>
 				<td style="width: 52%; height: 100px;  text-align: right;"> 
 				
@@ -46,7 +46,7 @@
 						  <div class="navbar-header" >
 							    <button type="button" class="navbar-toggle" data-toggle="collapse"
 							            data-target=".navbar-ex1-collapse">
-							      <span class="sr-only">Desplegar navegación</span>
+							      <span class="sr-only">Desplegar navegaciï¿½n</span>
 							      <span class="icon-bar"></span>
 							      <span class="icon-bar"></span>
 							      <span class="icon-bar"></span>
@@ -86,7 +86,7 @@
 							      </li>
 							    </ul>
 							    <ul  style="text-align: right; margin: 17px 5px 0px 0px">
-									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Cerrar sesión</a>
+									<a style="color: white; font-weight: bold;" href="<c:url value='/logout' />"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Cerrar sesiï¿½n</a>
 								</ul>
 						  </div>
 					</nav>
